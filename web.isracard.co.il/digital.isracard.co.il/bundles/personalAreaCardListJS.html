@@ -1,0 +1,633 @@
+/// <reference path="../../common/validations/validation.directives.ts" />
+/// <reference path="../../common/returnCodes.ts" />
+/// <reference path="../../common/DigitalServices/DigitalServices.ts" />
+(function () {
+    var cardsListApp = angular.module('app.PersonalArea.CardsList', ['ngSanitize', 'ui.select', 'ngMessages', 'app.Common.validations.UniValidationModule',
+        'app.Common.ReturnCodesModule', 'app.Common.DigitalServicesModule',
+        'app.Common.FeaturesModule', 'FilterModule']);
+})();
+//# sourceMappingURL=app.module.js.map
+var app;
+(function (app) {
+    var PersonalArea;
+    (function (PersonalArea) {
+        var CardsList;
+        (function (CardsList) {
+            var Classes;
+            (function (Classes) {
+                var CardsListResponse = (function () {
+                    function CardsListResponse() {
+                        this.returnCode = "-1";
+                        this.message = "";
+                        this.id = "";
+                        this.info = "";
+                        this.Table1 = new Array();
+                        this.Table2 = new Array();
+                    }
+                    return CardsListResponse;
+                }());
+                Classes.CardsListResponse = CardsListResponse;
+                var Card = (function () {
+                    function Card() {
+                        this.cardNumber = "";
+                        this.cardName = "";
+                        this.bankId = "";
+                        this.bankBranchId = "";
+                        this.bankAccountId = "";
+                        this.partnerName = "";
+                        this.userName = "";
+                        this.serviceType = "";
+                        this.shiuch = "";
+                        this.club1 = "";
+                        this.stage = "";
+                        this.returnCode = "-1";
+                        this.message = "";
+                    }
+                    return Card;
+                }());
+                Classes.Card = Card;
+                var CardsListRequest = (function () {
+                    function CardsListRequest() {
+                    }
+                    return CardsListRequest;
+                }());
+                Classes.CardsListRequest = CardsListRequest;
+                //Rikuz Netuney Credit
+                var CreditLineResponse = (function () {
+                    function CreditLineResponse() {
+                        var _this = this;
+                        this.copyObj = function (json) {
+                            var response = new CreditLineResponse();
+                            response.CardsTotal = _this.getCardsTotal(json["cardsTotal"]);
+                            return response;
+                        };
+                        this.getCardsTotal = function (json) {
+                            var creditcardLines = new Array();
+                            for (var i = 0; i <= json.length - 1; i++) {
+                                // if ((json[i]["isThereData"] == "yes")) {
+                                var creditcardLine = new CreditLine();
+                                creditcardLine.misgeretKolelet = json[i]["misgeretKolelet"];
+                                creditcardLine.nitzulLoCredit = json[i]["nitzulLoCredit"];
+                                creditcardLine.selectedCardIndex = json[i]["selectedCardIndex"];
+                                creditcardLine.yitraLeNitzul = json[i]["yitraLeNitzul"];
+                                creditcardLine.cardNumberTail = json[i]["cardNumberTail"];
+                                creditcardLine.constantRefundAmount = json[i]["constantRefundAmount"];
+                                creditcardLine.usedBalanceCredit = json[i]["usedBalanceCredit"];
+                                creditcardLine.tokefMisgeret = json[i]["tokefMisgeret"];
+                                //creditcardLine.cardNumber = json[i]["cardNumber"];
+                                //creditcardLine.cardName = json[i]["cardName"];
+                                //creditcardLine.userName = json[i]["userName"];
+                                //creditcardLine.cardIndex = json[i]["cardIndex"];
+                                //creditcardLine.holderId = json[i]["holderId"];
+                                //creditcardLine.logoSmallUrl = json[i]["logoSmallUrl"];
+                                //creditcardLine.logoBigUrl = json[i]["logoBigUrl"];
+                                //creditcardLine.isActive = json[i]["isActive"];
+                                //creditcardLine.expirationDate = json[i]["expirationDate"];
+                                //creditcardLine.paymentDate = json[i]["paymentDate"];
+                                //creditcardLine.bankId = json[i]["bankId"];
+                                //creditcardLine.bankBranchId = json[i]["bankBranchId"];
+                                //creditcardLine.bankAccountId = json[i]["bankAccountId"];
+                                //creditcardLine.club1 = json[i]["club1"];
+                                //creditcardLine.cardName = json[i]["cardName"];
+                                creditcardLines.push(creditcardLine);
+                                //   }
+                            }
+                            return creditcardLines;
+                        };
+                        ////Find credit card from collection to access properties
+                        //findByCardIndex = (source: any, id: any) => {
+                        //    for (var i = 0; i < source.length; i++) {
+                        //        if (source[i].cardIndex == id) {
+                        //            return source[i];
+                        //        }
+                        //    }
+                        //    throw "Couldn't find object with id: " + id;
+                        //}
+                    }
+                    return CreditLineResponse;
+                }());
+                Classes.CreditLineResponse = CreditLineResponse;
+                //Merge cards Details
+                var MergeCreditCardLineResponse = (function () {
+                    function MergeCreditCardLineResponse() {
+                        var _this = this;
+                        this.copyObj = function (json) {
+                            var response = new CreditLineResponse();
+                            response.CardsTotal = _this.getCardsTotal(json["cardsTotal"]);
+                            return response;
+                        };
+                        this.getCardsTotal = function (json) {
+                            var CreditCardsListGroup = new Array();
+                            for (var i = 0; i <= json.length - 1; i++) {
+                                // if ((json[i]["isThereData"] == "yes")) {
+                                var MergeCreditCardLine = new MergeCreditCardLine();
+                                MergeCreditCardLine.misgeretKolelet = json[i]["misgeretKolelet"];
+                                MergeCreditCardLine.nitzulLoCredit = json[i]["nitzulLoCredit"];
+                                MergeCreditCardLine.selectedCardIndex = json[i]["selectedCardIndex"];
+                                MergeCreditCardLine.yitraLeNitzul = json[i]["yitraLeNitzul"];
+                                MergeCreditCardLine.cardNumberTail = json[i]["cardNumberTail"];
+                                MergeCreditCardLine.constantRefundAmount = json[i]["constantRefundAmount"];
+                                MergeCreditCardLine.usedBalanceCredit = json[i]["usedBalanceCredit"];
+                                MergeCreditCardLine.cardNumber = json[i]["cardNumber"];
+                                MergeCreditCardLine.cardName = json[i]["cardName"];
+                                MergeCreditCardLine.userName = json[i]["userName"];
+                                MergeCreditCardLine.cardIndex = json[i]["cardIndex"];
+                                MergeCreditCardLine.holderId = json[i]["holderId"];
+                                MergeCreditCardLine.logoSmallUrl = json[i]["logoSmallUrl"];
+                                MergeCreditCardLine.logoBigUrl = json[i]["logoBigUrl"];
+                                MergeCreditCardLine.isActive = json[i]["isActive"];
+                                MergeCreditCardLine.isDigital = json[i]["isDigital"];
+                                MergeCreditCardLine.cardExpirationDate = json[i]["cardExpirationDate"];
+                                MergeCreditCardLine.paymentDate = json[i]["paymentDate"];
+                                MergeCreditCardLine.bankId = json[i]["bankId"];
+                                MergeCreditCardLine.bankBranchId = json[i]["bankBranchId"];
+                                MergeCreditCardLine.bankAccountId = json[i]["bankAccountId"];
+                                MergeCreditCardLine.club1 = json[i]["club1"];
+                                MergeCreditCardLine.cardName = json[i]["cardName"];
+                                MergeCreditCardLine.tokefMisgeret = json[i]["tokefMisgeret"];
+                                CreditCardsListGroup.push(MergeCreditCardLine);
+                                //   }
+                            }
+                            return CreditCardsListGroup;
+                        };
+                        ////Find credit card from collection to access properties
+                        //findByCardIndex = (source: any, id: any) => {
+                        //    for (var i = 0; i < source.length; i++) {
+                        //        if (source[i].cardIndex == id) {
+                        //            return source[i];
+                        //        }
+                        //    }
+                        //    throw "Couldn't find object with id: " + id;
+                        //}
+                    }
+                    return MergeCreditCardLineResponse;
+                }());
+                Classes.MergeCreditCardLineResponse = MergeCreditCardLineResponse;
+                var CreditLineRequest = (function () {
+                    function CreditLineRequest(Stage) {
+                        this.stage = Stage;
+                    }
+                    return CreditLineRequest;
+                }());
+                Classes.CreditLineRequest = CreditLineRequest;
+                var CreditLine = (function () {
+                    function CreditLine() {
+                    }
+                    return CreditLine;
+                }());
+                Classes.CreditLine = CreditLine;
+                //102+Rikuz
+                var MergeCreditCardLine = (function () {
+                    function MergeCreditCardLine() {
+                    }
+                    return MergeCreditCardLine;
+                }());
+                Classes.MergeCreditCardLine = MergeCreditCardLine;
+            })(Classes = CardsList.Classes || (CardsList.Classes = {}));
+        })(CardsList = PersonalArea.CardsList || (PersonalArea.CardsList = {}));
+    })(PersonalArea = app.PersonalArea || (app.PersonalArea = {}));
+})(app || (app = {}));
+//# sourceMappingURL=CardsListResponse.js.map
+/// <reference path="CardsListResponse.ts" />
+/// <reference path="ICardsListService.ts" />
+var app;
+(function (app) {
+    var PersonalArea;
+    (function (PersonalArea) {
+        var CardsList;
+        (function (CardsList) {
+            var Services;
+            (function (Services) {
+                'usestrict';
+                var CardsListService = (function () {
+                    function CardsListService(digitalServices) {
+                        var _this = this;
+                        this.digitalServices = digitalServices;
+                        this.getCardsList = function (dataRequest) {
+                            return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.CardsList_102Digital, ObjecttoParams(dataRequest));
+                        };
+                        this.getCreditLine = function (creditLineRequest) {
+                            return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.RikuzNetuneyCreditDigi, "");
+                        };
+                    }
+                    return CardsListService;
+                }());
+                CardsListService.$inject = ["app.Common.DigitalServicesModule.DigitalServices"];
+                Services.CardsListService = CardsListService;
+                angular.module('app.PersonalArea.CardsList').service('app.PersonalArea.CardsList.Services.CardsListService', CardsListService);
+            })(Services = CardsList.Services || (CardsList.Services = {}));
+        })(CardsList = PersonalArea.CardsList || (PersonalArea.CardsList = {}));
+    })(PersonalArea = app.PersonalArea || (app.PersonalArea = {}));
+})(app || (app = {}));
+//# sourceMappingURL=CardsListService.js.map
+/// <reference path="../../../../scripts/typings/angularjs/angular.d.ts" />
+/// <reference path="../../Common/DigitalServices/DigitalServiceRequests.ts" />
+/// <reference path="../../Common/Features/Classes.ts" />
+/// <reference path="../../Common/commonFunctions.ts" />
+var app;
+(function (app) {
+    var PersonalArea;
+    (function (PersonalArea) {
+        var CardsList;
+        (function (CardsList) {
+            var Controllers;
+            (function (Controllers) {
+                'usestrict';
+                var CardsListController = (function () {
+                    function CardsListController(CardsListService, returnCodesService, featuresService, $http) {
+                        var _this = this;
+                        this.CardsListService = CardsListService;
+                        this.returnCodesService = returnCodesService;
+                        this.featuresService = featuresService;
+                        this.$http = $http;
+                        this.cashBackEpiContent = CashBackEpiContent;
+                        this.showCashBackErrorMessageReturnCode1 = false;
+                        this.showCashBackErrorMessageReturnCode2 = false;
+                        this.showCashBackLoader = false;
+                        this.cashBackEventcalled = false;
+                        this._showError = function (error) {
+                            _this._errorMessage = error;
+                        };
+                        this._getReturnCodeMessage = function (returnCode) {
+                            _this.messageRequest.returnCode = _this.response.returnCode;
+                            var returnedMessage = _this.returnCodesService.getMessage(_this.messageRequest).then(function (result) {
+                                _this._showError(result["message"]);
+                                _this._isCardsListSuccess = false;
+                            });
+                        };
+                        this._getCreditCardList = function () {
+                            //call 102Digital
+                            var allCreditCards = _this.featuresService.getCreditCards().then(function (results) {
+                                return results;
+                            }).then(function (results) {
+                                _this._fillCreditCardList(results[app.Common.DigitalServicesModule.Constants.CardsList_102Digital.toBean()]);
+                                _this._getCreditLines();
+                            });
+                        };
+                        this._getCreditLines = function () {
+                            var creditLineResult = _this.CardsListService.getCreditLine(_this.creditLineRequestData).then(function (results) {
+                                return results;
+                            }).then(function (results) {
+                                _this._fillCreditLineObj(results[app.Common.DigitalServicesModule.Constants.RikuzNetuneyCreditDigi.toBean()]);
+                                _this.spinner = false;
+                            });
+                        };
+                        //Load default values into dropdowns time
+                        this._fillCreditCardList = function (response) {
+                            //Init Data - AllCards
+                            _this.creditcardResponseData = _this.creditcardResponseData.copyObj(response);
+                            //By default filteredCards are all active cards
+                            //this.filteredCards = JSON.parse(JSON.stringify(this.creditcardResponseData.AllCards));
+                            //JSON.parse(JSON.stringify(this.MergeCardsList));
+                            //Group by first dropdown
+                            // this.groupedByCards = groupBy(this.creditcardResponseData.AllCards, "holderId");
+                        };
+                        this._fillCreditLineObj = function (response) {
+                            //Init Data
+                            _this.creditLineResponseData = _this.creditLineResponseData.copyObj(response);
+                            //By default - selectedCreditLines are all active creditLines
+                            _this.selectedCreditLines = JSON.parse(JSON.stringify(_this.creditLineResponseData.CardsTotal));
+                            _this.MergeCardsList = _this._mergeLists();
+                            //Group by first dropdown
+                            _this.groupedByCards = groupBy(_this.MergeCardsList, "holderId");
+                        };
+                        //_mergeLists = () => {
+                        //        for (var i = 0; i < this.creditcardResponseData.AllCards.length; i++) {
+                        //                for (var j = i; j < this.selectedCreditLines.length; j++) {
+                        //                    if (this.creditcardResponseData.AllCards[i].cardIndex == this.selectedCreditLines[j].selectedCardIndex) {
+                        //                        this.MergeCardsList[i] = new app.PersonalArea.CardsList.Classes.MergeCreditCardLine();
+                        //                        this.MergeCardsList[i].cardIndex = this.creditcardResponseData.AllCards[i].cardIndex;
+                        //                        this.MergeCardsList[i].userName = this.creditcardResponseData.AllCards[i].userName;
+                        //                        this.MergeCardsList[i].bankAccountId = this.creditcardResponseData.AllCards[i].bankAccountId;
+                        //                        this.MergeCardsList[i].bankBranchId = this.creditcardResponseData.AllCards[i].bankBranchId;
+                        //                        this.MergeCardsList[i].paymentDate = this.creditcardResponseData.AllCards[i].paymentDate;
+                        //                        this.MergeCardsList[i].bankId = this.creditcardResponseData.AllCards[i].bankId;
+                        //                        this.MergeCardsList[i].expirationDate = this.creditcardResponseData.AllCards[i].expirationDate;
+                        //                        this.MergeCardsList[i].cardName = this.creditcardResponseData.AllCards[i].cardName;
+                        //                        this.MergeCardsList[i].cardNumber = this.creditcardResponseData.AllCards[i].cardNumber;
+                        //                        this.MergeCardsList[i].holderId = this.creditcardResponseData.AllCards[i].holderId;
+                        //                        this.MergeCardsList[i].isActive = this.creditcardResponseData.AllCards[i].isActive;
+                        //                        this.MergeCardsList[i].logoBigUrl = this.creditcardResponseData.AllCards[i].logoBigUrl;
+                        //                        this.MergeCardsList[i].misgeretKolelet = this.selectedCreditLines[j].misgeretKolelet;
+                        //                        this.MergeCardsList[i].yitraLeNitzul = this.selectedCreditLines[j].yitraLeNitzul;
+                        //                        this.MergeCardsList[i].nitzulLoCredit = this.selectedCreditLines[j].nitzulLoCredit;
+                        //                        this.MergeCardsList[i].usedBalanceCredit = this.selectedCreditLines[j].usedBalanceCredit;
+                        //                        this.MergeCardsList[i].constantRefundAmount = this.selectedCreditLines[j].constantRefundAmount;
+                        //                        this.MergeCardsList[i].club1 = this.creditcardResponseData.AllCards[i].club1;
+                        //                        break;
+                        //                    }
+                        //                }
+                        //    }
+                        //    return this.MergeCardsList;
+                        //}
+                        this._mergeLists = function () {
+                            angular.forEach(_this.creditcardResponseData.AllCards, function (value_i, key_i) {
+                                angular.forEach(this.selectedCreditLines, function (value_j, key_j) {
+                                    var _this = this;
+                                    if (value_i.cardNumber == value_j.cardNumberTail.toString()) {
+                                        this.MergeCardsList[key_i] = new app.PersonalArea.CardsList.Classes.MergeCreditCardLine();
+                                        this.MergeCardsList[key_i].cardIndex = this.creditcardResponseData.AllCards[key_i].cardIndex;
+                                        this.MergeCardsList[key_i].userName = this.creditcardResponseData.AllCards[key_i].userName;
+                                        this.MergeCardsList[key_i].bankAccountId = this.creditcardResponseData.AllCards[key_i].bankAccountId;
+                                        this.MergeCardsList[key_i].bankBranchId = this.creditcardResponseData.AllCards[key_i].bankBranchId;
+                                        this.MergeCardsList[key_i].paymentDate = this.creditcardResponseData.AllCards[key_i].paymentDate;
+                                        this.MergeCardsList[key_i].bankId = this.creditcardResponseData.AllCards[key_i].bankId;
+                                        this.MergeCardsList[key_i].expirationDate = this.creditcardResponseData.AllCards[key_i].expirationDate;
+                                        this.MergeCardsList[key_i].cardName = this.creditcardResponseData.AllCards[key_i].cardName;
+                                        this.MergeCardsList[key_i].cardNumber = this.creditcardResponseData.AllCards[key_i].cardNumber;
+                                        this.MergeCardsList[key_i].holderId = this.creditcardResponseData.AllCards[key_i].holderId;
+                                        this.MergeCardsList[key_i].isActive = this.creditcardResponseData.AllCards[key_i].isActive;
+                                        this.MergeCardsList[key_i].isDigital = this.creditcardResponseData.AllCards[key_i].isDigital;
+                                        this.MergeCardsList[key_i].logoBigUrl = this.creditcardResponseData.AllCards[key_i].logoBigUrl;
+                                        this.MergeCardsList[key_i].misgeretKolelet = value_j.misgeretKolelet;
+                                        this.MergeCardsList[key_i].yitraLeNitzul = value_j.yitraLeNitzul;
+                                        this.MergeCardsList[key_i].nitzulLoCredit = value_j.nitzulLoCredit;
+                                        this.MergeCardsList[key_i].usedBalanceCredit = value_j.usedBalanceCredit;
+                                        this.MergeCardsList[key_i].constantRefundAmount = value_j.constantRefundAmount;
+                                        this.MergeCardsList[key_i].club1 = this.creditcardResponseData.AllCards[key_i].club1;
+                                        this.MergeCardsList[key_i].tokefMisgeret = value_j.tokefMisgeret;
+                                        this.MergeCardsList[key_i].kod_kartis_im_sodi = this.creditcardResponseData.AllCards[key_i].kod_kartis_im_sodi;
+                                        this.MergeCardsList[key_i].kodIshurBenleumi = this.creditcardResponseData.AllCards[key_i].kodIshurBenleumi;
+                                        this.MergeCardsList[key_i].creditLineType = this.creditcardResponseData.AllCards[key_i].creditLineType;
+                                        this.MergeCardsList[key_i].chargeNumCode = this.creditcardResponseData.AllCards[key_i].chargeNumCode;
+                                        this.MergeCardsList[key_i].chargeNumCode = this.creditcardResponseData.AllCards[key_i].chargeNumCode;
+                                        this.MergeCardsList[key_i].monthlyCashBackAmount = "";
+                                        this.MergeCardsList[key_i].totalCashBackAmount = "";
+                                        //CASHBACK
+                                        this.showCashBackErrorMessageReturnCode1 = false;
+                                        this.showCashBackErrorMessageReturnCode2 = false;
+                                        if (this.MergeCardsList[key_i].chargeNumCode == "3") {
+                                            PushGACode({
+                                                'event': 'ScreenView',
+                                                'Screen_name': 'Cashback/MyCards',
+                                                'Parameter1': 'הכרטיסים שלי'
+                                            });
+                                            var dataRequest = { cardIndex: this.MergeCardsList[key_i].cardIndex.toString() };
+                                            this.showCashBackLoader = true;
+                                            var applicationId = window.location.hostname.match("isracard") ? "I" : "A";
+                                            var cashbackLimidedDetailsRes;
+                                            $.ajax({
+                                                url: "/CashbackV2/GetCashbackLimitedDetails",
+                                                async: false,
+                                                type: "POST",
+                                                data: {
+                                                    "applicationId": applicationId,
+                                                    "cardSuffix": this.MergeCardsList[key_i].cardNumber
+                                                },
+                                                dataType: "json",
+                                                success: function (res) {
+                                                    if (res && res.data) {
+                                                        cashbackLimidedDetailsRes = res.data;
+                                                    }
+                                                },
+                                                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                                                    console.log(xmlHttpRequest);
+                                                    console.log(textStatus);
+                                                    console.log(errorThrown);
+                                                    PushGACode({
+                                                        'event': 'ScreenView',
+                                                        'Screen_name': 'Cashback/MyCards/Failure',
+                                                        'Parameter1': 'הכרטיסים שלי'
+                                                    });
+                                                }
+                                            }).done(function (res) {
+                                                _this.showCashBackLoader = false;
+                                                if (cashbackLimidedDetailsRes) {
+                                                    _this.cashbackLimitedDetailsResponse = cashbackLimidedDetailsRes;
+                                                    if (_this.cashbackLimitedDetailsResponse.returnCode == 0) {
+                                                        if (_this.cashBackEpiContent.MissingToLoad) {
+                                                            _this.cashBackEpiContent.MissingToLoad = _this.cashBackEpiContent.MissingToLoad.replace("{MissingToLoad}", _this.cashbackLimitedDetailsResponse.missingToLoad);
+                                                        }
+                                                        if (_this.cashBackEpiContent.TotalSum) {
+                                                            _this.cashBackEpiContent.TotalSum = _this.cashBackEpiContent.TotalSum.replace("{TotalSum}", _this.cashbackLimitedDetailsResponse.onlineBalance + ' ₪');
+                                                        }
+                                                        if (_this.cashBackEpiContent.MonthlySum) {
+                                                            _this.cashBackEpiContent.MonthlySum = _this.cashBackEpiContent.MonthlySum.replace("{MonthlySum}", _this.cashbackLimitedDetailsResponse.accrual[0].monthBalance + ' ₪');
+                                                        }
+                                                    }
+                                                    if (_this.cashbackLimitedDetailsResponse.returnCode == 1) {
+                                                        _this.showCashBackErrorMessageReturnCode1 = true;
+                                                        _this.showCashBackErrorMessageReturnCode2 = false;
+                                                    }
+                                                    if (_this.cashbackLimitedDetailsResponse.returnCode == 2) {
+                                                        _this.showCashBackErrorMessageReturnCode1 = false;
+                                                        _this.showCashBackErrorMessageReturnCode2 = true;
+                                                    }
+                                                }
+                                            });
+                                        }
+                                        // break;
+                                    }
+                                }, this);
+                            }, _this);
+                            return _this.MergeCardsList;
+                        };
+                        this.cashbackButtonClicked = function () {
+                            _this.featuresService.getCashBackEvent().then(function (response) {
+                                _this.cashBackEventcalled = true;
+                                if (response && response.GetCashBackEventBean && response.GetCashBackEventBean.returnCode == "0") {
+                                    PushGACode({
+                                        'event': 'Click',
+                                        'Screen_name': 'Cashback/MyCards',
+                                        'User_action': 'click_on_giftcard',
+                                        'Parameter1': 'הכרטיסים שלי'
+                                    });
+                                    _this.cashBackEventSucceed = true;
+                                    if (_this.cashBackEpiContent.CashbackEventMessageSuccess) {
+                                        //please notice the {PhoneNumber} place holder needs to be exact in the epi
+                                        var appSenderSplitter = _this.cashBackEpiContent.CashbackEventMessageSuccess.split('{PhoneNumber}');
+                                        _this.cashBackEpiContent.beforeAppSenderPhone = appSenderSplitter[0];
+                                        _this.cashBackEpiContent.phoneBrackets = response.GetCashBackEventBean.maskCellPhoneNum;
+                                        _this.cashBackEpiContent.afterAppSenderPhone = appSenderSplitter[1];
+                                    }
+                                }
+                                else {
+                                    PushGACode({
+                                        'event': 'Click',
+                                        'Screen_name': 'Cashback/MyCards/Failure',
+                                        'User_action': 'click_on_giftcard',
+                                        'Parameter1': 'הכרטיסים שלי'
+                                    });
+                                    _this.cashBackEventSucceed = false;
+                                }
+                            }).catch(function (ex) {
+                                _this.cashBackEventSucceed = false;
+                            });
+                        };
+                        this.showError = function () {
+                            return ((_this.cashbackLimitedDetailsResponse.returnCode == 0) ? false : true);
+                        };
+                        this.showError1 = function () {
+                            return ((_this.cashbackLimitedDetailsResponse.returnCode == 1) ? true : false);
+                        };
+                        this.showError2 = function () {
+                            return ((_this.cashbackLimitedDetailsResponse.returnCode == 2) ? true : false);
+                        };
+                        this.redirectToCashbackLink = function () {
+                            window.location.href = _this.cashBackEpiContent.CashBackButtonLink.Uri;
+                        };
+                        this._isShowUsedBalanceCreditBtn = function (usedBalanceCredit, ChargesDeployAmount) {
+                            if (usedBalanceCredit >= ChargesDeployAmount) {
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+                        };
+                        this.filterGA = function (param) {
+                            PushGACode({
+                                //this is for GA code, 
+                                'PageFilteredName': param,
+                                'event': 'PageFiltered'
+                            });
+                            pushEloquaGAParam('PageFiltered');
+                        };
+                        this.getGAForSecretCodeRenewal = function () {
+                            PushGACode({
+                                'event': 'CardsCodeRecoveryClick'
+                            });
+                            pushEloquaGAParam('CardsCodeRecoveryClick');
+                        };
+                        this.digitalRepresentativeClick = function () {
+                            //this is for GA code, 
+                            PushGACode({
+                                'event': 'CardsPageDigitalChat'
+                            });
+                            pushEloquaGAParam('CardsPageDigitalChat');
+                        };
+                        this.chargesClick = function () {
+                            //this is for GA code, 
+                            PushGACode({
+                                'event': 'CardsPageSeeDeals'
+                            });
+                            pushEloquaGAParam('CardsPageSeeDeals');
+                        };
+                        this.expandCardMoreInfo = function (creditLine) {
+                            if (creditLine.isMoreDetailsCollapseOpen) {
+                                if (!creditLine.enrichmentData) {
+                                    var data = new app.Common.Features.Classes.CardsEnrichmentRequest();
+                                    data.cardLastFourDigits = creditLine.cardNumber;
+                                    data.idCode = _this.userLogonId;
+                                    creditLine.isCardEnrichmentLoading = true;
+                                    var cardMoreInfo = _this.featuresService.getCardMoreInfo(data)
+                                        .then(function (results) {
+                                        if (results.CardInfoEnrichmentBean.returnCode == 0) {
+                                            creditLine.enrichmentData = results.CardInfoEnrichmentBean;
+                                        }
+                                        else {
+                                            creditLine.isCardEnrichmentLoading = false;
+                                        }
+                                    }).catch(function (err) { return console.error(err); })
+                                        .finally(function () { return creditLine.isCardEnrichmentLoading = false; });
+                                }
+                            }
+                        };
+                        this._isCreditcardActive = function (cardIndex) {
+                            if (_this.creditcardResponseData.AllCards == null)
+                                return false;
+                            for (var i = 0; i <= _this.creditcardResponseData.AllCards.length; i++) {
+                                if ((_this.creditcardResponseData.AllCards[i] != undefined) && (_this.creditcardResponseData.AllCards[i].cardIndex.toString() == cardIndex)) {
+                                    return _this.creditcardResponseData.AllCards[i].isActive;
+                                }
+                            }
+                        };
+                        this._calcBalanceWidth = function (balance, max) {
+                            if (max != null) {
+                                var newMax = max.replace(',', "");
+                            }
+                            var width = 0;
+                            if (newMax != 0) {
+                                width = (balance / newMax) * 100;
+                            }
+                            return width;
+                        };
+                        this.onGettingCardCommissionDetails = function (response, creditLine) {
+                            try {
+                                if (response.data.GetStateTableBean.returnCode == '0') {
+                                    creditLine.stateTableBean = response.data.GetStateTableBean;
+                                }
+                            }
+                            catch (e) {
+                                creditLine.stateTableBean = null;
+                                creditLine.showStateTableData = false;
+                            }
+                        };
+                        this.handleCollapseClick = function (creditLine) {
+                            creditLine.isMoreDetailsCollapseOpen = !creditLine.isMoreDetailsCollapseOpen;
+                            if (creditLine.isMoreDetailsCollapseOpen && !creditLine.isGetCardCommissionLoading && !creditLine.stateTableBean) {
+                                _this.getCardComissionDetails(creditLine);
+                            }
+                            _this.PushGaMoreDetailsButton(creditLine.cardName + ' ' + creditLine.cardNumber, creditLine.isMoreDetailsCollapseOpen);
+                        };
+                        this.getCardComissionDetails = function (creditLine) {
+                            creditLine.isGetCardCommissionLoading = true;
+                            _this.$http.get("GetCardComissionDetails?Last4CardNumber=" + creditLine.cardNumber + "&requestType=001")
+                                .then(function (response) { _this.onGettingCardCommissionDetails(response, creditLine); })
+                                .catch(function (error) { console.error(error); })
+                                .finally(function () { creditLine.isGetCardCommissionLoading = false; });
+                        };
+                        this.billingCodeTranslator = function (billingCode) {
+                            switch (billingCode) {
+                                case "1": return "BillingCodeQuarterly";
+                                case "2": return "BillingCodeMonthly";
+                                case "3": return "BillingCodeFoundCommission";
+                            }
+                            return "";
+                        };
+                        this.commissionTypeTranslator = function (commissionCode) {
+                            switch (commissionCode) {
+                                case "1": return "AbsoluteCommission";
+                                case "2": return "DynamicCommission";
+                            }
+                            return "";
+                        };
+                        this.errorTranslator = function (returnCode) {
+                            return "ErrorMessage_Code" + returnCode;
+                        };
+                        this.addCommasToNumber = function (number) {
+                            if (number != null) {
+                                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+                            else
+                                return number;
+                        };
+                        this.PushGaMoreDetailsButton = function (cardName, isOpening) {
+                            var event = isOpening ? 'PZCardPageMoreInfoCollapseOpen' : 'PZCardPageMoreInfoCollapseClose';
+                            PushGACode({
+                                'event': event,
+                                'CardPageMoreInfoCardName': "" + cardName
+                            });
+                        };
+                        this._errorMessage = "";
+                        //this.httpService=$http;
+                        //console.log(this.httpService);
+                        this.response = new app.PersonalArea.CardsList.Classes.CardsListResponse();
+                        this.messageRequest = new app.Common.ReturnCodesModule.ReturnCodeRequest(app.Common.DigitalServicesModule.Constants.CardsList_102Digital, "", "ErrorPageID");
+                        this.creditcardResponseData = new app.Common.Features.Classes.CreditCardListResponse();
+                        this.creditLineRequestData = new app.PersonalArea.CardsList.Classes.CreditLineRequest(0);
+                        this.creditLineResponseData = new app.PersonalArea.CardsList.Classes.CreditLineResponse();
+                        this.cards = new Array();
+                        //this.filteredCards = Array<app.Common.Features.Classes.CreditCardsList>();
+                        this.MergeCardsList = new Array();
+                        this.groupedByCards = Array();
+                        this.selectedCreditLines = Array();
+                        this.creditLineTypeMessage = window['creditLineTypeMessages']['creditLineType1CardList'];
+                        this.userLogonId = window['userLogonId'];
+                        //this.MergeCreditCardLineResponseData = new app.PersonalArea.CardsList.Classes.MergeCreditCardLineResponse();
+                        this.spinner = true;
+                        this.$http.get(window.location.protocol + "//" + window.location.host + "/CardsEnrichment/GetEpiData").then(function (response) {
+                            if (response && response.data) {
+                                _this.cardsEnrichmentEpiData = response.data;
+                            }
+                        });
+                    }
+                    return CardsListController;
+                }());
+                CardsListController.$inject = ["app.PersonalArea.CardsList.Services.CardsListService", "app.Common.ReturnCodesModule.Service", "app.Common.FeaturesModule.FeatureServices", "$http"];
+                Controllers.CardsListController = CardsListController;
+                angular.module('app.PersonalArea.CardsList').controller('app.PersonalArea.CardsList.Controllers.CardsListController', CardsListController);
+            })(Controllers = CardsList.Controllers || (CardsList.Controllers = {}));
+        })(CardsList = PersonalArea.CardsList || (PersonalArea.CardsList = {}));
+    })(PersonalArea = app.PersonalArea || (app.PersonalArea = {}));
+})(app || (app = {}));
+//# sourceMappingURL=CardsListController.js.map

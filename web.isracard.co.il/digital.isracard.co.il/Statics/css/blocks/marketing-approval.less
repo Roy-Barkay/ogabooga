@@ -1,0 +1,286 @@
+.deleteme {
+  display: none;
+}
+.opacity-change,
+.opacity-change:hover {
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.transition-all {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.disabled-block {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+::-webkit-input-placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+:-moz-placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+.placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+/*** User Select ***/
+/*** Rounded corners ***/
+/* 
+** Custom rounded corners
+** Sets a border-radius for each of the 4 corners individually. 
+** The values go in a clockwise rotation: top right, bottom right, bottom left, top left. 
+*/
+/*** Background Cover ***/
+/*** Shadow ***/
+/*** Box sizing ***/
+/*** Opacity ***/
+/*** CSS3 Animation ***/
+/*.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}*/
+.disply-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  display: flex;
+  align-items: center;
+}
+/*vars form standard popup after login*/
+/*Assistant font*/
+
+@font-face {
+  font-family: 'Assistant';
+  src: url('/Statics/fonts/Assistant-Regular.ttf');
+}
+@font-face {
+  font-family: 'Assistant extra-bold';
+  src: url('/Statics/fonts/Assistant-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'Assistant light';
+  src: url('/Statics/fonts/Assistant-Light.ttf');
+}
+#marketingApproval {
+  width: 520px;
+  min-height: 300px;
+  background: white;
+  margin: 0 auto;
+  position: fixed;
+  top: 17%;
+  right: 0px;
+  left: 0px;
+  z-index: 9999999;
+  box-shadow: 1px -1px 4px 1px #707070;
+  border-radius: 6px;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  /*shadow*/
+
+  /*responsive*/
+
+}
+#marketingApproval::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #0000007a;
+  margin: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  z-index: -1;
+}
+#marketingApproval #marketingApprovalForm {
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  background: white;
+  padding: 4% 5%;
+  border-radius: 4px;
+  flex-direction: column;
+}
+#marketingApproval #marketingApprovalForm .marketingApprovalWrapper {
+  text-align: center;
+}
+#marketingApproval #marketingApprovalForm .close-btn {
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  align-self: flex-end;
+}
+#marketingApproval #marketingApprovalForm .present-icon {
+  width: 63.3px;
+  height: 72px;
+  margin: 0 auto;
+}
+#marketingApproval #marketingApprovalForm h2 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin: 4% 0%;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper {
+  font-size: 18px;
+  font-weight: normal;
+  margin-bottom: 5%;
+  text-align: right;
+  display: flex;
+  padding-left: 7%;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper div:first-of-type {
+  display: flex;
+  padding-left: 8px;
+  position: relative;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper input[type=checkbox]:checked + label {
+  height: 20px;
+  width: 20px;
+  z-index: 10;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  cursor: pointer;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper input[type=checkbox] + label {
+  height: 20px;
+  width: 20px;
+  z-index: 10;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  display: table-cell;
+  cursor: pointer;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper input[type=checkbox]:focus + label:after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  left: -2px;
+  border: solid 1px #4d90fe;
+  border-radius: 3px;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper input[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+  z-index: 99999;
+  right: 3px;
+  cursor: pointer;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper span:not(.moreInfoOpenBtn,.moreInfoCloseBtn) {
+  color: #020338;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper #marketingMoreInfo {
+  margin-top: 10px;
+}
+#marketingApproval #marketingApprovalForm .cbWrapper #marketingMoreInfo p {
+  margin-bottom: 0;
+}
+#marketingApproval #marketingApprovalForm span.moreInfoOpenBtn {
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 115px;
+  display: block;
+}
+#marketingApproval #marketingApprovalForm span.moreInfoOpenBtn ~ span.close {
+  display: none;
+}
+#marketingApproval #marketingApprovalForm .moreInfoCloseBtn {
+  display: block;
+  cursor: pointer;
+  width: 38px;
+}
+#marketingApproval #marketingApprovalForm .submitBtn {
+  width: 72%;
+  padding: 3% 0;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 0px;
+  color: white;
+  margin-top: 5%;
+}
+#marketingApproval #marketingApprovalForm .errorMsg {
+  display: block;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  max-width: 254px;
+  margin: 0 auto;
+}
+@media (min-width: 991px) and (max-width: 1700px) {
+  #marketingApproval {
+    top: 3%;
+  }
+  #marketingApproval #marketingMoreInfo {
+    max-height: 20vh;
+    overflow-y: scroll;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #marketingApproval {
+    width: 40%;
+    top: 5%;
+  }
+}
+@media (max-width: 767px) {
+  #marketingApproval {
+    width: 90%;
+    top: 12%;
+  }
+  #marketingApproval .cbWrapper {
+    overflow-y: scroll;
+    max-height: 135px;
+    padding: 0;
+  }
+  #marketingApproval .cbWrapper > div:first-of-type {
+    padding-top: 4px;
+  }
+  #marketingApproval #marketingApprovalForm .submitBtn {
+    width: 95%;
+    padding: 4% 0;
+  }
+}

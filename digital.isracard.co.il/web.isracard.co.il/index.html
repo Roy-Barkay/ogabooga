@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <!--GlassBox start -->
+        <script type="text/javascript"
+            async="true"
+            id="_cls_detector"
+            src="https://digital.isracard.co.il/gb-isracard/js-glassbox/prod/detector-dom.min.js"
+            data-clsconfig=reportURI=https://digital.isracard.co.il/gb-isracard/glassbox/reporting/1174163d-6539-4619-d252-a4ce2b6cb459/cls_report;recordScrolls=true;recordMouseMoves=true>
+        </script>
+
+    <!--GlassBox end -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TNGNB5');</script>
+
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/css/fonts/assistant-font.css" rel="stylesheet" />
+    <link href="/css/fonts/ICPangeaText-font.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/x-icon" href="/assets/favicon/isracard/favicon.ico">
+</head>
+
+<body dir="rtl">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNGNB5"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="idleApp"></div>
+
+    <div class="main-app-container" data-site="isracard">
+        <div id="headerApp"></div>
+        <div class="digital--wrapper">
+
+            <digital-breadcrumb></digital-breadcrumb>
+
+            <section class="digital--main--wrapper">
+                <div class="digital--container">
+                    <div id="sideBarApp"></div>
+                    <div id="onlineBankingModalApp"></div>
+                    <main class="digital--main">
+                        <div id="app" class="main-app"></div>
+                    </main>
+                </div>
+            </section>
+        </div>
+
+        <div id="footerApp"></div>
+    </div>
+
+    <div id="errorModal" class="modal" data-site="isracard">
+        <div class="modal-content">
+            <img src=/assets/images/modalError.svg />
+            <div>
+                <span class="errorspan">נראה שיש תקלה זמנית</span>
+            </div>
+            <div>
+                <span>כדאי לנסות שוב בקרוב</span>
+            </div>
+            <a id="closeBtn" class="buttonPopap" href="javascript:window.dispatchEvent(new Event('attemptRecoverFromErrorEvent'));">חזרה לדף הבית</a>
+        </div>
+    </div>
+
+    <div id="errorsview-general" style="display: none;" data-site="isracard">
+        <div class="content">
+            <div id="generalError" style="display: none; margin-bottom: 233px;">
+                <div class="icons">
+                    <img src=/assets/images/isracardLogo.svg />
+                    <img src=/assets/images/generalError.svg />
+                </div>
+                <div class="wrapper">
+                    <span id="generalErrorTextSpan" class="errorspan">נראה שיש תקלה זמנית</span>
+                </div>
+                <div class="wrapper">
+                    <span>כדאי לנסות שוב בקרוב</span>
+                </div>
+            </div>
+            <div id="pagenotfoundError" style="display: none; margin-bottom: 233px;">
+                <div class="icons">
+                    <img src=/assets/images/isracardLogo.svg />
+                    <img src=/assets/images/pagenotfound_new2.svg />
+                </div>
+                <div class="wrapper">
+                    <span id="pagenotfoundErrorTextSpan" class="errorspan">נראה שיש שגיאה</span>
+                </div>
+                <div class="wrapper">
+                    <span>דף זה אינו קיים</span>
+                </div>
+            </div>
+
+        </div>
+        <a id="goToHomepageButtonText" class="button"
+           href="javascript:window.dispatchEvent(new Event('attemptRecoverFromErrorEvent'));">חזרה לדף הבית</a>
+    </div>
+
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/silkrouter/silkrouter3.5.7.js"></script>
+
+    <script src="/js/ajaxHelper.js"></script>
+    <script src="/js/PubSubService.js" asp-append-version="true"></script>
+    <script src="/js/RouterManager.js"></script>
+    <script src="/js/Idle.js" asp-append-version="true"></script>
+    <script src="/js/StartUpManager.js"></script>
+
+
+    <script src="/js/breadcrumb.webComponent.js" id="breadcrumbs"></script>
+    <script type="text/javascript" id="breadcrumbsInit">
+                // Temporary information Array!
+                window.jsonData = [];
+
+
+                var breadcrumbElement = document.querySelector('digital-breadcrumb');
+                breadcrumbElement.breadcrumb = jsonData || [];
+
+                var updateBreadcrumbData = (arr) => {
+                    breadcrumbElement.breadcrumb = arr;
+                }
+
+                /* [ { Page: { DisplayName: 'קישור 1', LinkUrl: '/parents', MobileLinkUrl: '/parents',
+        friendlyUrl: null, }, Children: [], }, { Page: { DisplayName: 'קישור 2', IsBolded:
+        '', LinkUrl: '/cook', friendlyUrl: null, }, Children: [], }, { Page: {
+        DisplayName: 'קישור 3', IsBolded: '', LinkUrl: '/art', friendlyUrl: null, },
+        Children: [], }, ]  */
+    </script>
+    <script src="/js/welcomeBack.webComponent.js" id="welcomeBack"></script>
+
+        <script src="/js/IsracardTheme.js"></script>
+
+</body>
+
+</html>

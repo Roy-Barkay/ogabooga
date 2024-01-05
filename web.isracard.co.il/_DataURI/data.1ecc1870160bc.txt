@@ -1,0 +1,1 @@
+importScripts('https://digital.isracard.co.il/statics/js/qpfolder/worker.js')

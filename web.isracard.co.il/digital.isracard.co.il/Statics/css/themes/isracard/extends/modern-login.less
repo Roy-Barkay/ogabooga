@@ -1,0 +1,1242 @@
+/*@import '../../../utilities/index.less';*/
+
+.deleteme {
+  display: none;
+}
+.opacity-change,
+.opacity-change:hover {
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.transition-all {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.disabled-block {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+::-webkit-input-placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+:-moz-placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+.placeholder {
+  color: #999999;
+  font: 14px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+@media (max-width: 767px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+/*** User Select ***/
+/*** Rounded corners ***/
+/* 
+** Custom rounded corners
+** Sets a border-radius for each of the 4 corners individually. 
+** The values go in a clockwise rotation: top right, bottom right, bottom left, top left. 
+*/
+/*** Background Cover ***/
+/*** Shadow ***/
+/*** Box sizing ***/
+/*** Opacity ***/
+/*** CSS3 Animation ***/
+/*.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}*/
+.disply-flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  display: flex;
+  align-items: center;
+}
+@font-face {
+  font-family: 'Alchemist_OERegular';
+  src: url('/Statics/fonts/alchemist_oeregular-webfont.eot');
+  src: local('☺'), url('/Statics/fonts/alchemist_oeregular-webfont.woff') format('woff'), url('/Statics/fonts/alchemist_oeregular-webfont.svg#webfontNjGuZ934') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Alchemist_OEBlack';
+  src: url('/Statics/fonts/alchemist_oeblack-webfont.eot');
+  src: local('☺'), url('/Statics/fonts/alchemist_oeblack-webfont.woff') format('woff'), url('/Statics/fonts/alchemist_oeblack-webfont.svg#webfontMoUSPMga') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Assistant;
+  src: url(/Statics/fonts/Assistant-Regular.ttf);
+}
+@font-face {
+  font-family: IC-Pangea;
+  src: url(/Statics/fonts/ICPangeaText-Regular.ttf);
+}
+/* ===============================================================================
+COLOUR REFERENCE SHEET
+----------------------
+Brand Primary Color                                  : #19398a (Jacksons Purple);
+Brand Footer Color                                   : #3b3b3b (Mine Shaft);
+Login Button, Sidebar Title Color                    : #ee3224 (Pomegranate);
+Promotion Area Background Color                      : #ffcfcf (pink);
+Promotion Area Font, Product/Service Box Title Color : #333334 (tuna);
+================================================================================== */
+/*@font-family--base: IC-Pangea ;*/
+.brandColorBG {
+  background: #19398a;
+}
+.brandColor {
+  color: #19398a;
+}
+/*Home Page*/
+/* rebranding */
+/*digital-loans*/
+/*rebrandColors*/
+/*@import '../components/form/index.less';*/
+
+.smart-form textarea:focus,
+.smart-form input[type="text"]:focus,
+.smart-form input[type="password"]:focus,
+.smart-form input[type="datetime"]:focus,
+.smart-form input[type="datetime-local"]:focus,
+.smart-form input[type="date"]:focus,
+.smart-form input[type="month"]:focus,
+.smart-form input[type="time"]:focus,
+.smart-form input[type="week"]:focus,
+.smart-form input[type="number"]:focus,
+.smart-form input[type="email"]:focus,
+.smart-form input[type="url"]:focus,
+.smart-form input[type="search"]:focus,
+.smart-form input[type="tel"]:focus,
+.smart-form input[type="color"]:focus,
+.smart-form .uneditable-input:focus,
+.smart-form .form-control,
+.smart-form input {
+  /* IE6-9 */
+  -webkit-box-shadow: inset 0 0 0 transparent, 0 0 0 rgba(255, 255, 255, 0);
+  -moz-box-shadow: inset 0 0 0 transparent, 0 0 0 rgba(255, 255, 255, 0);
+  box-shadow: inset 0 0 0 transparent, 0 0 0 rgba(255, 255, 255, 0);
+}
+.smart-form .form-group input,
+.smart-form .form-group input:active,
+.smart-form .form-group input:visited,
+.smart-form .form-group input:focus {
+  border: 1px solid #19398a;
+}
+@media (min-width: 768px) {
+  .smart-form .form-group input::-webkit-input-placeholder,
+  .smart-form .form-group input:active::-webkit-input-placeholder,
+  .smart-form .form-group input:visited::-webkit-input-placeholder,
+  .smart-form .form-group input:focus::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-moz-placeholder,
+  .smart-form .form-group input:active:-moz-placeholder,
+  .smart-form .form-group input:visited:-moz-placeholder,
+  .smart-form .form-group input:focus:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #19398a;
+  }
+  .smart-form .form-group input::-moz-placeholder,
+  .smart-form .form-group input:active::-moz-placeholder,
+  .smart-form .form-group input:visited::-moz-placeholder,
+  .smart-form .form-group input:focus::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-ms-input-placeholder,
+  .smart-form .form-group input:active:-ms-input-placeholder,
+  .smart-form .form-group input:visited:-ms-input-placeholder,
+  .smart-form .form-group input:focus:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #19398a;
+  }
+  .smart-form .form-group input:placeholder-shown,
+  .smart-form .form-group input:active:placeholder-shown,
+  .smart-form .form-group input:visited:placeholder-shown,
+  .smart-form .form-group input:focus:placeholder-shown {
+    color: #19398a;
+  }
+}
+@media (max-width: 767px) {
+  .smart-form .form-group input::-webkit-input-placeholder,
+  .smart-form .form-group input:active::-webkit-input-placeholder,
+  .smart-form .form-group input:visited::-webkit-input-placeholder,
+  .smart-form .form-group input:focus::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-moz-placeholder,
+  .smart-form .form-group input:active:-moz-placeholder,
+  .smart-form .form-group input:visited:-moz-placeholder,
+  .smart-form .form-group input:focus:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #19398a;
+  }
+  .smart-form .form-group input::-moz-placeholder,
+  .smart-form .form-group input:active::-moz-placeholder,
+  .smart-form .form-group input:visited::-moz-placeholder,
+  .smart-form .form-group input:focus::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-ms-input-placeholder,
+  .smart-form .form-group input:active:-ms-input-placeholder,
+  .smart-form .form-group input:visited:-ms-input-placeholder,
+  .smart-form .form-group input:focus:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #19398a;
+  }
+  .smart-form .form-group input:placeholder-shown,
+  .smart-form .form-group input:active:placeholder-shown,
+  .smart-form .form-group input:visited:placeholder-shown,
+  .smart-form .form-group input:focus:placeholder-shown {
+    color: #19398a;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .smart-form .form-group input::-webkit-input-placeholder,
+  .smart-form .form-group input:active::-webkit-input-placeholder,
+  .smart-form .form-group input:visited::-webkit-input-placeholder,
+  .smart-form .form-group input:focus::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-moz-placeholder,
+  .smart-form .form-group input:active:-moz-placeholder,
+  .smart-form .form-group input:visited:-moz-placeholder,
+  .smart-form .form-group input:focus:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #19398a;
+  }
+  .smart-form .form-group input::-moz-placeholder,
+  .smart-form .form-group input:active::-moz-placeholder,
+  .smart-form .form-group input:visited::-moz-placeholder,
+  .smart-form .form-group input:focus::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #19398a;
+  }
+  .smart-form .form-group input:-ms-input-placeholder,
+  .smart-form .form-group input:active:-ms-input-placeholder,
+  .smart-form .form-group input:visited:-ms-input-placeholder,
+  .smart-form .form-group input:focus:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #19398a;
+  }
+  .smart-form .form-group input:placeholder-shown,
+  .smart-form .form-group input:active:placeholder-shown,
+  .smart-form .form-group input:visited:placeholder-shown,
+  .smart-form .form-group input:focus:placeholder-shown {
+    color: #19398a;
+  }
+}
+.smart-form input[type=checkbox] + label {
+  background-image: url(/Statics/css/themes/isracard/img/digitalLoans/wizard/no-checked-icon.png);
+}
+.smart-form input[type=checkbox]:checked + label {
+  background-image: url(/Statics/css/themes/isracard/img/digitalLoans/wizard/checked-icon.png);
+}
+.smart-form .ng-invalid {
+  border: 1px solid #ee3224;
+}
+.smart-form .glyphicons-alert:before {
+  content: "";
+  background: url(/Statics/img/error-message-icon.png);
+  -webkit-filter: drop-shadow(0px 1px 1px #dcd8d8);
+  filter: drop-shadow(0px 1px 1px #dcd8d8);
+}
+.smart-form .ui-select-toggle.ng-invalid {
+  border: 1px solid #ee3224;
+}
+.smart-form .ui-select-toggle {
+  border: 1px solid #19398a;
+}
+@font-face {
+  font-family: IC-Pangea;
+  src: url(/Statics/fonts/ICPangeaText-Regular.ttf);
+}
+.shadow {
+  -webkit-box-shadow: 0 0 30px 0 rgba(33, 53, 132, 0.25);
+  -moz-box-shadow: 0 0 30px 0 rgba(33, 53, 132, 0.25);
+  box-shadow: 0 0 30px 0 rgba(33, 53, 132, 0.25);
+}
+.modern-login-block .background-holder {
+  background: -moz-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, transparent));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+  /* IE6-9 */
+
+}
+.modern-login-block .modern-login-container {
+  font-family: IC-Pangea;
+}
+.modern-login-block .modern-login-container .global-box-holder-container:after {
+  background-color: white;
+}
+.modern-login-block .modern-login-container .modern-login-box:after {
+  background-color: white;
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .modern-login-box:after {
+    display: none;
+  }
+}
+.modern-login-block .modern-login-container .modern-login-box h1.main-title {
+  background-color: #f6f6f6;
+  color: #101820;
+  padding-right: 41px;
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .modern-login-box h1.main-title {
+    /*                    background-color: #F6F6F6;
+                      color: #101820;*/
+    padding-right: 45px;
+  }
+}
+.modern-login-block .modern-login-container .modern-login-box h1.title {
+  color: #19398a;
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .modern-login-box h2.title {
+    padding-top: 25px !important;
+  }
+}
+.modern-login-block .modern-login-container .modern-login-box a.connection-with-password-link {
+  color: black;
+  border: solid 1px black;
+  background-color: white;
+  padding-top: 9px !important;
+  padding-bottom: 8px !important;
+}
+.modern-login-block .modern-login-container .modern-login-box a.connection-with-password-link:hover {
+  background-color: #e8e8e9;
+}
+.modern-login-block .modern-login-container .modern-login-box a.connection-with-password-link:focus {
+  background-color: #e8e8e9;
+}
+.modern-login-block .modern-login-container .modern-login-box a.connection-with-password-link:active {
+  background-color: #e8e8e9;
+}
+.modern-login-block .modern-login-container .modern-login-box a.connection-with-password-link:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="6.406" height="9.406" viewBox="0 0 6.406 9.406"><defs><style>.cls-1{fill:none;stroke:%23000000;stroke-linecap:round}</style></defs><g id="Group_7361" transform="translate(-983.797 -699.797)"><path id="Line_885" d="M0 4L5 0" class="cls-1" transform="translate(984.5 700.5)"/><path id="Line_886" d="M0 0L5 4" class="cls-1" transform="translate(984.5 704.5)"/></g></svg>');
+  top: 8px !important;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group {
+  margin-bottom: 30px !important;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .forgot-password-link,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .forgot-password-link,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .forgot-password-link,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .forgot-password-link,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .forgot-password-link,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .forgot-password-link {
+  color: #101820;
+  text-decoration: underline !important;
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .forgot-password-link,
+  .modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .forgot-password-link,
+  .modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .forgot-password-link,
+  .modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .forgot-password-link,
+  .modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .forgot-password-link,
+  .modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .forgot-password-link {
+    color: #101820;
+  }
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group input,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .ui-select-container,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group #captchaInputStep2SMS,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group #captchaInputStep2SMS,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group #captchaInputStep2SMS,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group #captchaInputStep2SMS,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group #captchaInputStep2SMS,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group #captchaInputStep2SMS {
+  border-bottom: 1px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group input.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .ui-select-container.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched),
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group #captchaInputStep2SMS.ng-invalid:not(.ng-untouched) {
+  border-bottom: 1px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group input#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .ui-select-container#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid {
+  border-bottom: 1px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group input#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .ui-select-container#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group #captchaInputStep2SMS#selectCountryPassword.ng-invalid.ng-touched {
+  border-bottom: 1px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group input.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group .ui-select-container.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .form-group #captchaInputStep2SMS.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .form-group #captchaInputStep2SMS.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .form-group #captchaInputStep2SMS.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .form-group #captchaInputStep2SMS.form-control,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .form-group #captchaInputStep2SMS.form-control,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .form-group #captchaInputStep2SMS.form-control {
+  color: black;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .global-error-div,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .global-error-div,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .global-error-div,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .global-error-div,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .global-error-div,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .global-error-div {
+  color: #de0000;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .global-error-div span,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .global-error-div span,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .global-error-div span,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .global-error-div span,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .global-error-div span,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .global-error-div span {
+  color: #de0000;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .global-error-div span a,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .global-error-div span a,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .global-error-div span a,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .global-error-div span a,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .global-error-div span a,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .global-error-div span a {
+  color: #de0000;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm button,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms button,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword button,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm button,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm button,
+.modern-login-block .modern-login-container .modern-login-box #otpForm button {
+  background-color: black;
+  color: white;
+  -webkit-box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+  -moz-box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+  box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm button:after,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms button:after,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword button:after,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm button:after,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm button:after,
+.modern-login-block .modern-login-container .modern-login-box #otpForm button:after {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAJCAYAAAARml2dAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUU2MzUwM0MyNUMxMTFFN0EzQzFEMDVBNUFEQkM2OTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUU2MzUwM0QyNUMxMTFFN0EzQzFEMDVBNUFEQkM2OTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRTYzNTAzQTI1QzExMUU3QTNDMUQwNUE1QURCQzY5NCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRTYzNTAzQjI1QzExMUU3QTNDMUQwNUE1QURCQzY5NCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Po8Yi7oAAAA0SURBVHjaYmBAA////3dhwCJY/h8CXLAJlhMUVALid0B8BpvZLlDJVWRLGmOTFATRAAEGALlHUZ62BbLBAAAAAElFTkSuQmCC');
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm button:hover,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms button:hover,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword button:hover,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm button:hover,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm button:hover,
+.modern-login-block .modern-login-container .modern-login-box #otpForm button:hover {
+  background-color: #707479;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm button:focus,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms button:focus,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword button:focus,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm button:focus,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm button:focus,
+.modern-login-block .modern-login-container .modern-login-box #otpForm button:focus {
+  background-color: #707479;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm button:active,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms button:active,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword button:active,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm button:active,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm button:active,
+.modern-login-block .modern-login-container .modern-login-box #otpForm button:active {
+  background-color: #707479;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .sign-up-link,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .sign-up-link,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .sign-up-link,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .sign-up-link,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .sign-up-link,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .sign-up-link {
+  color: #727272;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .sign-up-link a,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .sign-up-link a,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .sign-up-link a,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .sign-up-link a,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .sign-up-link a,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .sign-up-link a {
+  color: #19398a;
+}
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyForm .sign-up-link a:after,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormSms .sign-up-link a:after,
+.modern-login-block .modern-login-container .modern-login-box #otpLobbyFormPassword .sign-up-link a:after,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredFrm .sign-up-link a:after,
+.modern-login-block .modern-login-container .modern-login-box #PasswordExpiredSuccessFrm .sign-up-link a:after,
+.modern-login-block .modern-login-container .modern-login-box #otpForm .sign-up-link a:after {
+  background-color: #19398a;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section {
+  background-color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  /*.shadow;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .txt {
+  color: #101820;
+  /*color: #19398a;*/
+  font-size: 14px;
+  font-weight: 600;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .mask-number {
+  color: black;
+  /*color: @brand-primary-color;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-section-info {
+  display: flex;
+  justify-content: space-between;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link {
+  display: flex;
+  align-items: center;
+  color: #19398a;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link:focus:not(:focus-visible) {
+  outline: none;
+  background-color: none;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link:focus-visible {
+  box-shadow: 0 0 5px #101820;
+  border: 2px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link:after {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAJCAYAAAARml2dAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTBFQUVGQzQyRTU4MTFFNzlFNjJEQ0NGQUE5MTc3RkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTBFQUVGQzUyRTU4MTFFNzlFNjJEQ0NGQUE5MTc3RkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMEVBRUZDMjJFNTgxMUU3OUU2MkRDQ0ZBQTkxNzdGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMEVBRUZDMzJFNTgxMUU3OUU2MkRDQ0ZBQTkxNzdGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph41nMEAAABpSURBVHjaYvj//z8DMpa07HIB0YwgAgakrLrLgVQHELuyYBGseHasdA9MezkQ/wfRMCMZgRwloKozQHwPqNIEZgITkHMPSIcBsRLQuFVwCRABNhMi6QKTRHeVC5ACSbgyYPGHIIgGCDAAoJhL0o/Zo9wAAAAASUVORK5CYII=')/*/Statics/css/themes/isracard/img/modern-login/isracard-blue-left-arrow.png*/;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link-new {
+  display: inline-block;
+  margin-top: 5px;
+}
+.modern-login-block .modern-login-container .modern-login-box .wrong-phone-number-section .wrong-phone-number-link-new a {
+  color: #101820;
+  text-decoration: underline;
+  /*color: #19398a;*/
+  font-size: 14px;
+  font-weight: 600;
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password button {
+  /*background-color: #4338fc;*/
+  background-color: black;
+  color: white;
+  -webkit-box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+  -moz-box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+  box-shadow: 0 10px 15px 0 rgba(32, 49, 135, 0.16);
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password button:after {
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAJCAYAAAARml2dAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUU2MzUwM0MyNUMxMTFFN0EzQzFEMDVBNUFEQkM2OTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUU2MzUwM0QyNUMxMTFFN0EzQzFEMDVBNUFEQkM2OTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRTYzNTAzQTI1QzExMUU3QTNDMUQwNUE1QURCQzY5NCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRTYzNTAzQjI1QzExMUU3QTNDMUQwNUE1QURCQzY5NCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Po8Yi7oAAAA0SURBVHjaYmBAA////3dhwCJY/h8CXLAJlhMUVALid0B8BpvZLlDJVWRLGmOTFATRAAEGALlHUZ62BbLBAAAAAElFTkSuQmCC');
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password button:focus {
+  background-color: #707479;
+  /*background-color: #1c12d3;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password button:hover {
+  background-color: #707479;
+  /*background-color: #1c12d3;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password .txt {
+  color: black;
+  font-weight: 600;
+  /*color: @brand-new-black-gray;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password input {
+  border-bottom: 1px solid rgba(44, 45, 133, 0.2);
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password input.ng-invalid {
+  border-bottom: 1px solid rgba(229, 57, 70, 0.2);
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password input.form-control {
+  color: #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .txt {
+  color: black;
+  font-weight: 600;
+  text-decoration: underline !important;
+  /*color: @brand-primary-color;*/
+
+  /*&:after {
+                                content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAJCAYAAAARml2dAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTBFQUVGQzQyRTU4MTFFNzlFNjJEQ0NGQUE5MTc3RkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTBFQUVGQzUyRTU4MTFFNzlFNjJEQ0NGQUE5MTc3RkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMEVBRUZDMjJFNTgxMUU3OUU2MkRDQ0ZBQTkxNzdGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMEVBRUZDMzJFNTgxMUU3OUU2MkRDQ0ZBQTkxNzdGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph41nMEAAABpSURBVHjaYvj//z8DMpa07HIB0YwgAgakrLrLgVQHELuyYBGseHasdA9MezkQ/wfRMCMZgRwloKozQHwPqNIEZgITkHMPSIcBsRLQuFVwCRABNhMi6QKTRHeVC5ACSbgyYPGHIIgGCDAAoJhL0o/Zo9wAAAAASUVORK5CYII=')*/
+
+  /*/Statics/css/themes/isracard/img/modern-login/isracard-blue-left-arrow.png*/
+
+  /*;
+                            }*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .txt:focus {
+  outline: none;
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .txt:focus:not(:focus-visible) {
+  outline: none;
+  background-color: none;
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .txt:focus-visible {
+  box-shadow: 0 0 5px #101820;
+  border: 2px solid #101820;
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .tooltip {
+  color: white;
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .tooltip.success {
+  background-color: #101820;
+  /*background-color: @tooltip-success;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .tooltip.success:after {
+  border-left-color: #101820;
+  /*border-left-color: @tooltip-success;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .tooltip.failed {
+  background-color: #e50000;
+  /*background-color: @tolltip-failed;*/
+
+}
+.modern-login-block .modern-login-container .modern-login-box .otp-action-wrapper ul li .tooltip.failed:after {
+  border-left-color: #e50000;
+  /*border-left-color: @tolltip-failed;*/
+
+}
+.modern-login-block .modern-login-container .activity-list .light-border {
+  border-color: #cecece;
+}
+.modern-login-block .modern-login-container .activity-list .messenger-div {
+  /*border-color: @black;*/
+  border: 2px solid black;
+  background-color: white;
+  /*border-color: @modern-mesenger-button-prymary;*/
+  color: black;
+  /*color: @modern-mesenger-button-prymary;*/
+
+}
+.modern-login-block .modern-login-container .activity-list .messenger-div > div {
+  color: black;
+  /*color: @modern-mesenger-button-prymary;*/
+
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .activity-list {
+    background-color: #f6f6f6;
+    padding-bottom: 35px !important;
+    /*background-color: @activity-list-bg;*/
+  
+  }
+}
+.modern-login-block .modern-login-container .activity-list:after {
+  content: "";
+  background: -moz-linear-gradient(270deg, rgba(255, 255, 255, 0.85) 22%, white 73%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(22%, rgba(255, 255, 255, 0.85)), color-stop(73%, white));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0.85) 22%, white 73%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(270deg, rgba(255, 255, 255, 0.85) 22%, white 73%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(270deg, rgba(255, 255, 255, 0.85) 22%, white 73%);
+  /* ie10+ */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 22%, white 73%);
+  /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF', GradientType=0);
+  /* ie6-9 */
+
+}
+.modern-login-block .modern-login-container .activity-list .title {
+  background-color: #ebe9e9;
+  color: white;
+}
+.modern-login-block .modern-login-container .activity-list h1:not(.title) {
+  color: black;
+  /*color: @brand-primary-color;*/
+
+}
+.modern-login-block .modern-login-container .activity-list ul li {
+  color: black;
+  /*color: @brand-primary-color;*/
+
+}
+.agreement-section-image {
+  position: relative;
+  display: block;
+  width: 154px;
+  margin: 0 auto;
+  padding: 40px 0 0 0;
+}
+.checkbox-holder {
+  padding: 20px 0 0 0;
+}
+.checkbox-list > .checkbox-holder:nth-of-type(1) {
+  padding: 0 0 0 0;
+}
+button.arrow {
+  border: 0;
+  background-color: transparent;
+  position: relative;
+  height: 5px;
+  width: 15px;
+}
+.show-banking-action-holder {
+  /*padding: 0 30px 0 0;*/
+  margin-right: 23%;
+  margin-top: -5%;
+}
+.show-banking-action-label {
+  padding: 0 0 0 15px;
+  float: none;
+  font-family: IC-Pangea;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #020338;
+  position: relative;
+}
+.show-banking-action-label:after,
+button.arrow:after {
+  content: '';
+  /*position: absolute;*/
+  display: block;
+  width: 7px;
+  height: 7px;
+  top: 5px;
+  left: 3px;
+  margin-top: -9px;
+  border-top: solid 1px #101820;
+  border-left: solid 1px #101820;
+  transform: rotate(-135deg);
+  transform-origin: 50% 50%;
+  transition: all 0.35s;
+}
+button.arrow::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  background-color: transparent;
+  height: 14px;
+  width: 111px;
+}
+.show-banking-action-holder input[type=checkbox]:checked + .show-banking-action-label:after,
+button.arrow[aria-expanded="true"]:after {
+  transform: rotate(45deg);
+  top: 8px;
+}
+.checkbox-list {
+  margin: 0 0 25px 0;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+}
+.checkbox-list::-webkit-scrollbar {
+  display: none;
+}
+.agreement-section-tite {
+  font-family: IC-Pangea;
+  font-size: 26px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  text-align: center;
+  color: #101820;
+  outline: none;
+}
+.agreement-section-sub-tite {
+  font-family: IC-Pangea;
+  font-size: 20px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: center;
+  color: #101820;
+  padding: 0 0 15px 0;
+}
+.checkbox-item {
+  overflow: hidden;
+}
+.checkbox-item [type="checkbox"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  z-index: 5;
+  opacity: 0;
+}
+.checkbox-item [type="checkbox"]:focus ~ .checkbox-item-label {
+  box-shadow: 0 0 9px 0px #101820;
+}
+.checkbox-item-label {
+  width: 20px;
+  height: 20px;
+  border: solid 1px #101820;
+  border-radius: 2px;
+  background-color: white;
+  transition: background 0.35s;
+  cursor: pointer;
+  float: right;
+  margin: 2px 0 0 0;
+  position: relative;
+}
+.checkbox-item-label:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url("/Statics/img/__vi2.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 75% auto;
+  opacity: 0;
+}
+.s_internet {
+  background-color: #101820;
+  border: 1px solid #101820;
+}
+.checkbox-item input[type=checkbox]:checked + .checkbox-item-label {
+  background-color: #101820;
+}
+.checkbox-item input[type=checkbox]:checked + .checkbox-item-label .s_internet {
+  background-color: #737373;
+  border: 1px solid #737373 !important;
+}
+.checkbox-item input[type=checkbox]:checked + .checkbox-item-label:after {
+  opacity: 1;
+}
+.checkbox-item-label-text {
+  width: calc(100% - 30px);
+  padding: 0 10px 0 0;
+  float: right;
+  font-family: IC-Pangea;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #101820;
+}
+.checkbox-item-label-text p {
+  margin: 0;
+  display: inline;
+  margin-left: -9px;
+}
+.checkbox-item-label-text a {
+  color: #101820;
+  cursor: pointer;
+}
+.checkbox-item-label-text a:visited {
+  color: #101820;
+}
+.checkbox-item-label-text a:focus {
+  color: #101820;
+}
+.choice-items {
+  margin: 14px 0 -14px 0;
+  overflow: hidden;
+  padding: 0 25px 0 0;
+}
+.chose-item {
+  position: relative;
+  float: right;
+}
+.chose-item [type="checkbox"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+  z-index: 5;
+  opacity: 0;
+}
+.chose-item [type="checkbox"]:focus ~ .checkbox-item-label {
+  box-shadow: 0 0 9px 0px #101820;
+}
+.chose-item-label {
+  margin: 0 5px 14px 5px;
+  font-family: IC-Pangea;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #101820;
+  padding: 1.5px 25px 1.5px 10px;
+  min-width: 82px;
+  border-radius: 4px;
+  border: solid 1px #101820;
+  background-color: white;
+  position: relative;
+  transition: background 0.35s;
+  cursor: pointer;
+}
+.chose-item-label:before {
+  content: "+";
+  color: #101820;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 20px);
+  transform: translate(0, -50%);
+  opacity: 1;
+  transition: opacity 0.3s;
+  font-weight: bold;
+}
+.chose-item-label:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: url("/Statics/img/__vi2.svg");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 7.6px) 50%;
+  background-size: 12px auto;
+  opacity: 0;
+}
+.chose-item input[type=checkbox]:checked + .chose-item-label {
+  color: whitesmoke;
+  background-color: #101820;
+}
+.chose-item input[type=checkbox]:checked + .chose-item-label:before {
+  opacity: 0;
+}
+.chose-item input[type=checkbox]:checked + .chose-item-label:after {
+  opacity: 1;
+}
+.disabled-checkbox-btn {
+  border: 1px solid !important;
+  min-width: 323px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 14px 108px 13px;
+  background-color: #ebe9e9;
+  font-family: IC-Pangea;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  display: block;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.register-info-form-submit {
+  min-width: 323px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 14px 108px 13px;
+  background-color: #101820;
+  font-family: IC-Pangea;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  display: block;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.register-info-form-submit .myLoader {
+  position: relative;
+}
+.radioWrapper {
+  display: flex;
+  padding-bottom: 10px;
+}
+.radioWrapper fieldset .radio-custom {
+  opacity: 0;
+  position: absolute;
+}
+.radioWrapper fieldset .radio-custom,
+.radioWrapper fieldset .radio-custom-label {
+  display: inline;
+  vertical-align: middle;
+  padding-left: 40px;
+  cursor: pointer;
+}
+.radioWrapper fieldset .radio-custom-label {
+  position: relative;
+  font-size: 1.3em;
+  color: #727272;
+}
+.radioWrapper fieldset .radio-custom + .radio-custom-label:before {
+  content: '';
+  background: white;
+  border: 1px solid black;
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  margin-left: 10px;
+  text-align: center;
+}
+.radioWrapper fieldset .radio-custom + .radio-custom-label:before {
+  border-radius: 50%;
+}
+.radioWrapper fieldset .radio-custom:checked + .radio-custom-label:before {
+  background: black;
+  box-shadow: inset 0px 0px 0px 4px white;
+}
+.radioWrapper fieldset .radio-custom:focus + .radio-custom-label {
+  outline: 1px solid #dddddd;
+  /* focus style */
+
+}
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label {
+  color: #939393;
+}
+.floating-label {
+  color: #727272;
+}
+.page {
+  background: url(/Statics/css/themes/isracard/img/modern-login/main-background3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+}
+.main-page {
+  background-color: white;
+}
+.error-div h4 .form__error-msg,
+.error-div .h4 .form__error-msg,
+.error-div h5 .form__error-msg,
+.error-div .h5 .form__error-msg,
+.error-div h6 .form__error-msg,
+.error-div .h6 .form__error-msg {
+  color: #de0000;
+}
+@media (max-width: 767px) {
+  .error-div h4 .form__error-msg,
+  .error-div .h4 .form__error-msg,
+  .error-div h5 .form__error-msg,
+  .error-div .h5 .form__error-msg,
+  .error-div h6 .form__error-msg,
+  .error-div .h6 .form__error-msg {
+    color: #ff374a;
+  }
+}
+#myTransition,
+#myTransition1,
+#myTransition2 {
+  background-color: white;
+}
+#myTransition:before,
+#myTransition1:before,
+#myTransition2:before {
+  webkit-box-shadow: -12px -38px 27px -8px rgba(44, 45, 133, 0.1);
+  -moz-box-shadow: -12px -38px 27px -8px rgba(44, 45, 133, 0.1);
+  box-shadow: -12px -38px 27px -8px rgba(44, 45, 133, 0.1);
+}
+@media (max-width: 767px) {
+  #myTransition:before,
+  #myTransition1:before,
+  #myTransition2:before {
+    box-shadow: none;
+  }
+}
+.input-wrapper2:after {
+  /*content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWMAAAABCAYAAAALic8EAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAnSURBVHgB7c+xDQAACMOw9P+j4QMkxlb1nCUChgx6tH321edbn00t8XsGAeDDcr8AAAAASUVORK5CYII=' );*/
+  content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAAWCAYAAAA1mmCfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACYSURBVHhe7dchCgMxEEDR3v+ArSjUVKxYERlRkZqV+1u/vAcjIwYGPrktAAgiAUASCQCSSACQRAKAJBIAJJEAIIkEAEkkAEgiAUASCQCSSACQ/kbi/tguO9t7HFuGz1qv5zh9e5WZ89g1jH2evrvKuAE34AZ+34CfBABJJABIIgFAEgkAkkgAkEQCgCQSACSRACCJBABhrS+ScA8K+Pbs8QAAAABJRU5ErkJggg==');
+  /*content: url('/Statics/css/themes/isracard/img/modern-login/rebranding-otp-input.png');*/
+
+}
+@media (max-width: 767px) {
+  .input-wrapper2 {
+    border-bottom: 1px solid rgba(44, 45, 133, 0.2);
+  }
+}
+.smart-form .ng-invalid:not(.ng-untouched) {
+  border: none;
+  border-bottom: 1px solid rgba(229, 57, 70, 0.2);
+}
+.select2 .select2-container .select2-choice {
+  color: #727272 !important;
+}
+.select2 .select2-container .select2-choice .select2-arrow b {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAGCAYAAAARx7TFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Njc4M0ZENTEyNUMzMTFFNzk3NTU5NDZENDlCQTRBNjIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Njc4M0ZENTIyNUMzMTFFNzk3NTU5NDZENDlCQTRBNjIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2NzgzRkQ0RjI1QzMxMUU3OTc1NTk0NkQ0OUJBNEE2MiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2NzgzRkQ1MDI1QzMxMUU3OTc1NTk0NkQ0OUJBNEE2MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Php2bIwAAABhSURBVHjaYmAAgqKiIiUGLAAmzgxkpAHpVZaWlmePHz9+D0mBC5DaDRR/zwgVWAWkQIJhfX19e6AKQGJ7gPwwRiSdMIWdQFwOUwCSY0RzA0hhKBCvhilgwOHYcnQxgAADAMOsJMSYrIPTAAAAAElFTkSuQmCC') no-repeat/*/statics/css/themes/isracard/img/modern-login/arrow-down.png*/ 0 13px;
+}
+.select2-drop-active {
+  border: 1px solid rgba(198, 198, 198, 0.5) !important;
+  border-top: none !important;
+}
+.select2 .select2-results ::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 4px;
+  background: #c6c6c6;
+}
+.select2 .select2-results .select2-highlighted span {
+  color: black !important;
+  /*color: @white !important;*/
+
+}
+.select2 .select2-results .select2-highlighted {
+  background: rgba(0, 0, 0, 0.05);
+  /*background-color: @brand-primary-color;*/
+
+}
+.select2 .select2-result-label.ui-select-choices-row-inner:hover {
+  background: #929292;
+  color: #101820;
+}
+@media (max-width: 767px) {
+  .modern-login-block .modern-login-container .modern-login-box #otp-password input.form-control:not(#captchaInputStep2SMS) {
+    /*border-bottom: 1px solid @rebrand-primary-color;*/
+    border-bottom: 1px solid rgba(44, 45, 133, 0.2);
+  }
+}
+.global-error-div {
+  color: #de0000;
+}
+.global-error-div span {
+  color: #de0000;
+}
+.global-error-div span a {
+  color: #de0000;
+}
+.modern-login-block .modern-login-container .modern-login-box #otp-password input.form-control {
+  /*border-bottom: 1px solid @rebrand-primary-color;*/
+  border-bottom: 1px solid rgba(44, 45, 133, 0.2);
+}
+.SMS-input-title.floating-label {
+  color: #727272;
+}
+div[vc-recaptcha] {
+  border: none !important;
+}

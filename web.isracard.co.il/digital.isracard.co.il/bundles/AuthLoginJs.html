@@ -1,0 +1,2734 @@
+/* Minification failed. Returning unminified contents.
+(2194,49-60): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(2193,49-60): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(1994,65-76): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(1993,65-76): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+ */
+/* Minification failed. Returning unminified contents.
+(2188,49-60): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(2187,49-60): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(1988,65-76): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+(1987,65-76): run-time error JS1300: Strict-mode does not allow assignment to undefined variables: urlRedirect
+ */
+/**
+ * @license angular-recaptcha build:2017-03-14
+ * https://github.com/vividcortex/angular-recaptcha
+ * Copyright (c) 2017 VividCortex
+**/
+
+/*global angular, Recaptcha */
+(function (ng) {
+    'use strict';
+
+    ng.module('vcRecaptcha', []);
+
+}(angular));
+
+/*global angular */
+(function (ng) {
+    'use strict';
+
+    function throwNoKeyException() {
+        throw new Error('You need to set the "key" attribute to your public reCaptcha key. If you don\'t have a key, please get one from https://www.google.com/recaptcha/admin/create');
+    }
+
+    var app = ng.module('vcRecaptcha');
+
+    /**
+     * An angular service to wrap the reCaptcha API
+     */
+    app.provider('vcRecaptchaService', function () {
+        var provider = this;
+        var config = {};
+        provider.onLoadFunctionName = 'vcRecaptchaApiLoaded';
+
+        /**
+         * Sets the reCaptcha configuration values which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param defaults  object which overrides the current defaults object.
+         */
+        provider.setDefaults = function (defaults) {
+            ng.copy(defaults, config);
+        };
+
+        /**
+         * Sets the reCaptcha key which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param siteKey  the reCaptcha public key (refer to the README file if you don't know what this is).
+         */
+        provider.setSiteKey = function (siteKey) {
+            config.key = siteKey;
+        };
+
+        /**
+         * Sets the reCaptcha theme which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param theme  The reCaptcha theme.
+         */
+        provider.setTheme = function (theme) {
+            config.theme = theme;
+        };
+
+        /**
+         * Sets the reCaptcha stoken which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param stoken  The reCaptcha stoken.
+         */
+        provider.setStoken = function (stoken) {
+            config.stoken = stoken;
+        };
+
+        /**
+         * Sets the reCaptcha size which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param size  The reCaptcha size.
+         */
+        provider.setSize = function (size) {
+            config.size = size;
+        };
+
+        /**
+         * Sets the reCaptcha type which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param type  The reCaptcha type.
+         */
+        provider.setType = function (type) {
+            config.type = type;
+        };
+
+        /**
+         * Sets the reCaptcha language which will be used by default is not specified in a specific directive instance.
+         *
+         * @param lang  The reCaptcha language.
+         */
+        provider.setLang = function (lang) {
+            config.lang = lang;
+        };
+
+        /**
+         * Sets the reCaptcha configuration values which will be used by default is not specified in a specific directive instance.
+         *
+         * @since 2.5.0
+         * @param onLoadFunctionName  string name which overrides the name of the onload function. Should match what is in the recaptcha script querystring onload value.
+         */
+        provider.setOnLoadFunctionName = function (onLoadFunctionName) {
+            provider.onLoadFunctionName = onLoadFunctionName;
+        };
+
+        provider.$get = ['$rootScope', '$window', '$q', '$document', function ($rootScope, $window, $q, $document) {
+            var deferred = $q.defer(), promise = deferred.promise, instances = {}, recaptcha;
+
+            $window.vcRecaptchaApiLoadedCallback = $window.vcRecaptchaApiLoadedCallback || [];
+
+            var callback = function () {
+                recaptcha = $window.grecaptcha;
+
+                deferred.resolve(recaptcha);
+            };
+
+            $window.vcRecaptchaApiLoadedCallback.push(callback);
+
+            $window[provider.onLoadFunctionName] = function () {
+                $window.vcRecaptchaApiLoadedCallback.forEach(function (callback) {
+                    callback();
+                });
+            };
+
+
+            function getRecaptcha() {
+                if (!!recaptcha) {
+                    return $q.when(recaptcha);
+                }
+
+                return promise;
+            }
+
+            function validateRecaptchaInstance() {
+                if (!recaptcha) {
+                    throw new Error('reCaptcha has not been loaded yet.');
+                }
+            }
+
+
+            // Check if grecaptcha is not defined already.
+            if (ng.isDefined($window.grecaptcha)) {
+                callback();
+            } else {
+                // Generate link on demand
+                var script = $window.document.createElement('script');
+                script.async = true;
+                script.defer = true;
+                script.src = 'https://www.google.com/recaptcha/api.js?onload=' + provider.onLoadFunctionName + '&render=explicit';
+                $document.find('body').append(script);
+            }
+
+            return {
+
+                /**
+                 * Creates a new reCaptcha object
+                 *
+                 * @param elm  the DOM element where to put the captcha
+                 * @param conf the captcha object configuration
+                 * @throws NoKeyException    if no key is provided in the provider config or the directive instance (via attribute)
+                 */
+                create: function (elm, conf) {
+
+                    conf.sitekey = window[elm.id + "Key"] || googleCaptchaKey;
+                    conf.theme = conf.theme || config.theme;
+                    conf.stoken = conf.stoken || config.stoken;
+                    conf.size = conf.size || config.size;
+                    conf.type = conf.type || config.type;
+                    conf.hl = conf.lang || config.lang;
+
+                    if (!conf.sitekey || conf.sitekey.length !== 40) {
+                        throwNoKeyException();
+                    }
+                    return getRecaptcha().then(function (recaptcha) {
+                        var widgetId = recaptcha.render(elm, conf);
+                        instances[widgetId] = elm;
+                        return widgetId;
+                    });
+                },
+
+                /**
+                 * Reloads the reCaptcha
+                 */
+                reload: function (widgetId) {
+                    validateRecaptchaInstance();
+
+                    recaptcha.reset(widgetId);
+
+                    // Let everyone know this widget has been reset.
+                    $rootScope.$broadcast('reCaptchaReset', widgetId);
+                },
+
+                /**
+                 * Get/Set reCaptcha language
+                 */
+                useLang: function (widgetId, lang) {
+                    var instance = instances[widgetId];
+
+                    if (instance) {
+                        var iframe = instance.querySelector('iframe');
+                        if (lang) {
+                            // Setter
+                            if (iframe && iframe.src) {
+                                var s = iframe.src;
+                                if (/[?&]hl=/.test(s)) {
+                                    s = s.replace(/([?&]hl=)\w+/, '$1' + lang);
+                                } else {
+                                    s += ((s.indexOf('?') === -1) ? '?' : '&') + 'hl=' + lang;
+                                }
+
+                                iframe.src = s;
+                            }
+                        } else {
+                            // Getter
+                            if (iframe && iframe.src && /[?&]hl=\w+/.test(iframe.src)) {
+                                return iframe.src.replace(/.+[?&]hl=(\w+)([^\w].+)?/, '$1');
+                            } else {
+                                return null;
+                            }
+                        }
+                    } else {
+                        throw new Error('reCaptcha Widget ID not exists', widgetId);
+                    }
+                },
+
+                /**
+                 * Gets the response from the reCaptcha widget.
+                 *
+                 * @see https://developers.google.com/recaptcha/docs/display#js_api
+                 *
+                 * @returns {String}
+                 */
+                getResponse: function (widgetId) {
+                    validateRecaptchaInstance();
+
+                    return recaptcha.getResponse(widgetId);
+                },
+
+                /**
+                 * Gets reCaptcha instance and configuration
+                 */
+                getInstance: function (widgetId) {
+                    return instances[widgetId];
+                },
+
+                /**
+                 * Destroy reCaptcha instance.
+                 */
+                destroy: function (widgetId) {
+                    delete instances[widgetId];
+                }
+            };
+
+        }];
+    });
+
+}(angular));
+
+/*global angular, Recaptcha */
+(function (ng) {
+    'use strict';
+
+    var app = ng.module('vcRecaptcha');
+
+    app.directive('vcRecaptcha', ['$document', '$timeout', 'vcRecaptchaService', function ($document, $timeout, vcRecaptcha) {
+
+        return {
+            restrict: 'A',
+            require: "?^^form",
+            scope: {
+                response: '=?ngModel',
+                key: '=?',
+                stoken: '=?',
+                theme: '=?',
+                size: '=?',
+                type: '=?',
+                lang: '=?',
+                tabindex: '=?',
+                required: '=?',
+                onCreate: '&',
+                onSuccess: '&',
+                onExpire: '&'
+            },
+            link: function (scope, elm, attrs, ctrl) {
+                scope.widgetId = null;
+
+                if (ctrl && ng.isDefined(attrs.required)) {
+                    scope.$watch('required', validate);
+                }
+
+                var removeCreationListener = scope.$watch('key', function (key) {
+                    var callback = function (gRecaptchaResponse) {
+                        // Safe $apply
+                        $timeout(function () {
+                            scope.response = gRecaptchaResponse;
+                            validate();
+
+                            // Notify about the response availability
+                            scope.onSuccess({ response: gRecaptchaResponse, widgetId: scope.widgetId });
+                        });
+                    };
+
+                    vcRecaptcha.create(elm[0], {
+
+                        callback: callback,
+                        key: key,
+                        stoken: scope.stoken || attrs.stoken || null,
+                        theme: scope.theme || attrs.theme || null,
+                        type: scope.type || attrs.type || null,
+                        lang: scope.lang || attrs.lang || null,
+                        tabindex: scope.tabindex || attrs.tabindex || null,
+                        size: scope.size || attrs.size || null,
+                        'expired-callback': expired
+
+                    }).then(function (widgetId) {
+                        // The widget has been created
+                        validate();
+                        scope.widgetId = widgetId;
+                        scope.onCreate({ widgetId: widgetId });
+
+                        scope.$on('$destroy', destroy);
+
+                        scope.$on('reCaptchaReset', function (event, resetWidgetId) {
+                            if (ng.isUndefined(resetWidgetId) || widgetId === resetWidgetId) {
+                                scope.response = "";
+                                validate();
+                            }
+                        })
+
+                    });
+
+                    // Remove this listener to avoid creating the widget more than once.
+                    removeCreationListener();
+                });
+
+                function destroy() {
+                    if (ctrl) {
+                        // reset the validity of the form if we were removed
+                        ctrl.$setValidity('recaptcha', null);
+                    }
+
+                    cleanup();
+                }
+
+                function expired() {
+                    // Safe $apply
+                    $timeout(function () {
+                        scope.response = "";
+                        validate();
+
+                        // Notify about the response availability
+                        scope.onExpire({ widgetId: scope.widgetId });
+                    });
+                }
+
+                function validate() {
+                    if (ctrl) {
+                        ctrl.$setValidity('recaptcha', scope.required === false ? null : Boolean(scope.response));
+                    }
+                }
+
+                function cleanup() {
+                    vcRecaptcha.destroy(scope.widgetId);
+
+                    // removes elements reCaptcha added.
+                    ng.element($document[0].querySelectorAll('.pls-container')).parent().remove();
+                }
+            }
+        };
+    }]);
+
+}(angular));;
+var init = function () {
+    $(document).ready(function () {
+        var card = document.getElementById('card');
+        var myTransition = document.getElementById('myTransition');
+        document.getElementById('flip').addEventListener('click', function () {
+            if ($(".back").hasClass("nowInBack")) {
+                card.toggleClassName('flipped');
+                $(".back").removeClass("nowInBack");
+                setTimeout(function () {
+                    $(".front").addClass("nowInBack");
+
+                }, 500);
+            }
+            else {
+
+                card.toggleClassName('flipped');
+                $(".front").removeClass("nowInBack");
+                setTimeout(function () {
+                    $(".back").addClass("nowInBack");
+
+                }, 500);
+            }
+        }, false);
+        document.getElementById('flip2').addEventListener('click', function () {
+            if ($(".back").hasClass("nowInBack")) {
+                card.toggleClassName('flipped');
+                $(".back").removeClass("nowInBack");
+                setTimeout(function () {
+                    $(".front").addClass("nowInBack");
+
+                }, 500);
+            }
+            else {
+
+                card.toggleClassName('flipped');
+                $(".front").removeClass("nowInBack");
+                setTimeout(function () {
+                    $(".back").addClass("nowInBack");
+
+                }, 500);
+            }
+        }, false);
+    });
+};
+
+window.addEventListener('DOMContentLoaded', init, false);
+
+// ======================= DOM Utility Functions from PastryKit =============================== //
+
+// Sure, we could use jQuery or XUI for these,
+// but these are concise and will work with plain vanilla JS
+
+Element.prototype.hasClassName = function (a) {
+    return new RegExp("(?:^|\\s+)" + a + "(?:\\s+|$)").test(this.className);
+};
+
+Element.prototype.addClassName = function (a) {
+    if (!this.hasClassName(a)) {
+        this.className = [this.className, a].join(" ");
+    }
+};
+
+Element.prototype.removeClassName = function (b) {
+    if (this.hasClassName(b)) {
+        var a = this.className;
+        this.className = a.replace(new RegExp("(?:^|\\s+)" + b + "(?:\\s+|$)", "g"), " ");
+    }
+};
+
+Element.prototype.toggleClassName = function (a) {
+    this[this.hasClassName(a) ? "removeClassName" : "addClassName"](a);
+};
+
+// ======================= Modernizr =============================== //
+
+/* Modernizr 2.0.6 (Custom Build) | MIT & BSD
+ * Build: http://www.modernizr.com/download/#-csstransforms3d-iepp-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load
+ */
+; window.Modernizr = function (a, b, c) { function C(a, b) { var c = a.charAt(0).toUpperCase() + a.substr(1), d = (a + " " + o.join(c + " ") + c).split(" "); return B(d, b) } function B(a, b) { for (var d in a) if (k[a[d]] !== c) return b == "pfx" ? a[d] : !0; return !1 } function A(a, b) { return !!~("" + a).indexOf(b) } function z(a, b) { return typeof a === b } function y(a, b) { return x(n.join(a + ";") + (b || "")) } function x(a) { k.cssText = a } var d = "2.0.6", e = {}, f = !0, g = b.documentElement, h = b.head || b.getElementsByTagName("head")[0], i = "modernizr", j = b.createElement(i), k = j.style, l, m = Object.prototype.toString, n = " -webkit- -moz- -o- -ms- -khtml- ".split(" "), o = "Webkit Moz O ms Khtml".split(" "), p = {}, q = {}, r = {}, s = [], t = function (a, c, d, e) { var f, h, j, k = b.createElement("div"); if (parseInt(d, 10)) while (d--) j = b.createElement("div"), j.id = e ? e[d] : i + (d + 1), k.appendChild(j); f = ["&shy;", "<style>", a, "</style>"].join(""), k.id = i, k.innerHTML += f, g.appendChild(k), h = c(k, a), k.parentNode.removeChild(k); return !!h }, u, v = {}.hasOwnProperty, w; !z(v, c) && !z(v.call, c) ? w = function (a, b) { return v.call(a, b) } : w = function (a, b) { return b in a && z(a.constructor.prototype[b], c) }; var D = function (a, c) { var d = a.join(""), f = c.length; t(d, function (a, c) { var d = b.styleSheets[b.styleSheets.length - 1], g = d.cssRules && d.cssRules[0] ? d.cssRules[0].cssText : d.cssText || "", h = a.childNodes, i = {}; while (f--) i[h[f].id] = h[f]; e.csstransforms3d = i.csstransforms3d.offsetLeft === 9 }, f, c) }([, ["@media (", n.join("transform-3d),("), i, ")", "{#csstransforms3d{left:9px;position:absolute}}"].join("")], [, "csstransforms3d"]); p.csstransforms3d = function () { var a = !!B(["perspectiveProperty", "WebkitPerspective", "MozPerspective", "OPerspective", "msPerspective"]); a && "webkitPerspective" in g.style && (a = e.csstransforms3d); return a }; for (var E in p) w(p, E) && (u = E.toLowerCase(), e[u] = p[E](), s.push((e[u] ? "" : "no-") + u)); x(""), j = l = null, a.attachEvent && function () { var a = b.createElement("div"); a.innerHTML = "<elem></elem>"; return a.childNodes.length !== 1 }() && function (a, b) { function s(a) { var b = -1; while (++b < g) a.createElement(f[b]) } a.iepp = a.iepp || {}; var d = a.iepp, e = d.html5elements || "abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", f = e.split("|"), g = f.length, h = new RegExp("(^|\\s)(" + e + ")", "gi"), i = new RegExp("<(/*)(" + e + ")", "gi"), j = /^\s*[\{\}]\s*$/, k = new RegExp("(^|[^\\n]*?\\s)(" + e + ")([^\\n]*)({[\\n\\w\\W]*?})", "gi"), l = b.createDocumentFragment(), m = b.documentElement, n = m.firstChild, o = b.createElement("body"), p = b.createElement("style"), q = /print|all/, r; d.getCSS = function (a, b) { if (a + "" === c) return ""; var e = -1, f = a.length, g, h = []; while (++e < f) { g = a[e]; if (g.disabled) continue; b = g.media || b, q.test(b) && h.push(d.getCSS(g.imports, b), g.cssText), b = "all" } return h.join("") }, d.parseCSS = function (a) { var b = [], c; while ((c = k.exec(a)) != null) b.push(((j.exec(c[1]) ? "\n" : c[1]) + c[2] + c[3]).replace(h, "$1.iepp_$2") + c[4]); return b.join("\n") }, d.writeHTML = function () { var a = -1; r = r || b.body; while (++a < g) { var c = b.getElementsByTagName(f[a]), d = c.length, e = -1; while (++e < d) c[e].className.indexOf("iepp_") < 0 && (c[e].className += " iepp_" + f[a]) } l.appendChild(r), m.appendChild(o), o.className = r.className, o.id = r.id, o.innerHTML = r.innerHTML.replace(i, "<$1font") }, d._beforePrint = function () { p.styleSheet.cssText = d.parseCSS(d.getCSS(b.styleSheets, "all")), d.writeHTML() }, d.restoreHTML = function () { o.innerHTML = "", m.removeChild(o), m.appendChild(r) }, d._afterPrint = function () { d.restoreHTML(), p.styleSheet.cssText = "" }, s(b), s(l); d.disablePP || (n.insertBefore(p, n.firstChild), p.media = "print", p.className = "iepp-printshim", a.attachEvent("onbeforeprint", d._beforePrint), a.attachEvent("onafterprint", d._afterPrint)) }(a, b), e._version = d, e._prefixes = n, e._domPrefixes = o, e.testProp = function (a) { return B([a]) }, e.testAllProps = C, e.testStyles = t, e.prefixed = function (a) { return C(a, "pfx") }, g.className = g.className.replace(/\bno-js\b/, "") + (f ? " js " + s.join(" ") : ""); return e }(this, this.document), function (a, b, c) { function k(a) { return !a || a == "loaded" || a == "complete" } function j() { var a = 1, b = -1; while (p.length - ++b) if (p[b].s && !(a = p[b].r)) break; a && g() } function i(a) { var c = b.createElement("script"), d; c.src = a.s, c.onreadystatechange = c.onload = function () { !d && k(c.readyState) && (d = 1, j(), c.onload = c.onreadystatechange = null) }, m(function () { d || (d = 1, j()) }, H.errorTimeout), a.e ? c.onload() : n.parentNode.insertBefore(c, n) } function h(a) { var c = b.createElement("link"), d; c.href = a.s, c.rel = "stylesheet", c.type = "text/css"; if (!a.e && (w || r)) { var e = function (a) { m(function () { if (!d) try { a.sheet.cssRules.length ? (d = 1, j()) : e(a) } catch (b) { b.code == 1e3 || b.message == "security" || b.message == "denied" ? (d = 1, m(function () { j() }, 0)) : e(a) } }, 0) }; e(c) } else c.onload = function () { d || (d = 1, m(function () { j() }, 0)) }, a.e && c.onload(); m(function () { d || (d = 1, j()) }, H.errorTimeout), !a.e && n.parentNode.insertBefore(c, n) } function g() { var a = p.shift(); q = 1, a ? a.t ? m(function () { a.t == "c" ? h(a) : i(a) }, 0) : (a(), j()) : q = 0 } function f(a, c, d, e, f, h) { function i() { !o && k(l.readyState) && (r.r = o = 1, !q && j(), l.onload = l.onreadystatechange = null, m(function () { u.removeChild(l) }, 0)) } var l = b.createElement(a), o = 0, r = { t: d, s: c, e: h }; l.src = l.data = c, !s && (l.style.display = "none"), l.width = l.height = "0", a != "object" && (l.type = d), l.onload = l.onreadystatechange = i, a == "img" ? l.onerror = i : a == "script" && (l.onerror = function () { r.e = r.r = 1, g() }), p.splice(e, 0, r), u.insertBefore(l, s ? null : n), m(function () { o || (u.removeChild(l), r.r = r.e = o = 1, j()) }, H.errorTimeout) } function e(a, b, c) { var d = b == "c" ? z : y; q = 0, b = b || "j", C(a) ? f(d, a, b, this.i++, l, c) : (p.splice(this.i++, 0, a), p.length == 1 && g()); return this } function d() { var a = H; a.loader = { load: e, i: 0 }; return a } var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance" in l.style, s = r && !!b.createRange().compareNode, t = r && !s, u = s ? l : n.parentNode, v = a.opera && o.call(a.opera) == "[object Opera]", w = "webkitAppearance" in l.style, x = w && "async" in b.createElement("script"), y = r ? "object" : v || x ? "img" : "script", z = w ? "img" : y, A = Array.isArray || function (a) { return o.call(a) == "[object Array]" }, B = function (a) { return Object(a) === a }, C = function (a) { return typeof a == "string" }, D = function (a) { return o.call(a) == "[object Function]" }, E = [], F = {}, G, H; H = function (a) { function f(a) { var b = a.split("!"), c = E.length, d = b.pop(), e = b.length, f = { url: d, origUrl: d, prefixes: b }, g, h; for (h = 0; h < e; h++) g = F[b[h]], g && (f = g(f)); for (h = 0; h < c; h++) f = E[h](f); return f } function e(a, b, e, g, h) { var i = f(a), j = i.autoCallback; if (!i.bypass) { b && (b = D(b) ? b : b[a] || b[g] || b[a.split("/").pop().split("?")[0]]); if (i.instead) return i.instead(a, b, e, g, h); e.load(i.url, i.forceCSS || !i.forceJS && /css$/.test(i.url) ? "c" : c, i.noexec), (D(b) || D(j)) && e.load(function () { d(), b && b(i.origUrl, h, g), j && j(i.origUrl, h, g) }) } } function b(a, b) { function c(a) { if (C(a)) e(a, h, b, 0, d); else if (B(a)) for (i in a) a.hasOwnProperty(i) && e(a[i], h, b, i, d) } var d = !!a.test, f = d ? a.yep : a.nope, g = a.load || a.both, h = a.callback, i; c(f), c(g), a.complete && b.load(a.complete) } var g, h, i = this.yepnope.loader; if (C(a)) e(a, 0, i, 0); else if (A(a)) for (g = 0; g < a.length; g++) h = a[g], C(h) ? e(h, 0, i, 0) : A(h) ? H(h) : B(h) && b(h, i); else B(a) && b(a, i) }, H.addPrefix = function (a, b) { F[a] = b }, H.addFilter = function (a) { E.push(a) }, H.errorTimeout = 1e4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", G = function () { b.removeEventListener("DOMContentLoaded", G, 0), b.readyState = "complete" }, 0)), a.yepnope = d() }(this, this.document), Modernizr.load = function () { yepnope.apply(window, [].slice.call(arguments, 0)) };
+
+// ======================= DDD mini framework =============================== //
+
+(function () {
+
+
+
+    var DDD = {};
+    // again, borrowed from PastryKit
+    DDD.isTangible = !!('createTouch' in document);
+    DDD.CursorStartEvent = DDD.isTangible ? 'touchstart' : 'mousedown';
+    DDD.CursorMoveEvent = DDD.isTangible ? 'touchmove' : 'mousemove';
+    DDD.CursorEndEvent = DDD.isTangible ? 'touchend' : 'mouseup';
+
+    // get i.e. 'WebkitTransform'
+    var transformProp = Modernizr.prefixed('transform');
+
+    /* ==================== EventHandler ==================== */
+
+    DDD.EventHandler = function () { };
+
+    DDD.EventHandler.prototype.handleEvent = function (event) {
+        if (this[event.type]) {
+            this[event.type](event);
+        }
+    };
+
+
+    /* ==================== RangeDisplay ==================== */
+
+    // displays the value of a range input
+    // why isn't this in the HTML5 spec?
+
+    DDD.RangeDisplay = function (range) {
+        this.range = range;
+        this.output = document.createElement('span');
+        this.output.addClassName('range-display');
+
+
+        this.units = this.range.getAttribute('data-units') || '';
+
+        // this.output.textContent = this.range.value;
+        this.change();
+
+
+        this.range.parentNode.appendChild(this.output);
+
+        this.range.addEventListener('change', this, false);
+    };
+
+    DDD.RangeDisplay.prototype = new DDD.EventHandler();
+
+    DDD.RangeDisplay.prototype.change = function (event) {
+        this.output.textContent = this.range.value + this.units;
+    };
+
+
+    /* ==================== ProxyRange ==================== */
+
+    // polyfill for range inputs
+    // by no means a production-ready solution, but it'll do for these demos
+
+    DDD.ProxyRange = function (input) {
+        this.input = input;
+
+        this.slider = document.createElement('div');
+        this.slider.addClassName('proxy-range');
+
+        this.handle = document.createElement('div');
+        this.handle.addClassName('handle');
+        this.slider.appendChild(this.handle);
+
+
+        this.width = parseInt(getComputedStyle(this.input).width, 10);
+        this.slider.style.width = this.width + 'px';
+
+        this.min = parseInt(this.input.getAttribute('min') || 0, 10);
+        this.max = parseInt(this.input.getAttribute('max') || 100, 10);
+
+        this.normalizeRatio = (this.max - this.min) / (this.width - DDD.ProxyRange.lineCap * 2);
+
+        this.value = this.input.value;
+
+        this.resetHandlePosition();
+
+        this.slider.addEventListener(DDD.CursorStartEvent, this, false);
+        this.handle.addEventListener(DDD.CursorStartEvent, this, false);
+
+        this.input.parentNode.insertBefore(this.slider, this.input.nextSibling);
+        this.input.style.display = 'none';
+
+        this.x = this.slider.offsetLeft;
+
+    };
+
+    // constant for position the handle inside the slider
+    DDD.ProxyRange.lineCap = 15;
+
+    DDD.ProxyRange.prototype = new DDD.EventHandler();
+
+    DDD.ProxyRange.prototype.moveHandle = function (event) {
+        var cursor = DDD.isTangible ? event.touches[0] : event,
+            x = cursor.pageX - this.x;
+        x = Math.max(DDD.ProxyRange.lineCap, Math.min(this.width - DDD.ProxyRange.lineCap, x));
+
+        this.positionHandle(x);
+
+        this.value = Math.round((x - DDD.ProxyRange.lineCap) * this.normalizeRatio + this.min);
+
+        if (this.input.value != this.value) {
+            this.input.value = this.value;
+
+            // trigger change event
+            var evt = document.createEvent("Event");
+            evt.initEvent("change", true, true);
+            this.input.dispatchEvent(evt);
+        }
+
+    };
+
+    DDD.ProxyRange.prototype.positionHandle = function (x) {
+        this.handle.style[transformProp] = DDD.translate(x, 0);
+    };
+
+    DDD.ProxyRange.prototype.resetHandlePosition = function () {
+        var x = (this.value - this.min) / this.normalizeRatio + DDD.ProxyRange.lineCap;
+        this.positionHandle(x);
+    };
+
+
+    DDD.ProxyRange.prototype[DDD.CursorStartEvent] = function (event) {
+        this.slider.addClassName('highlighted');
+
+        this.moveHandle(event);
+
+        window.addEventListener(DDD.CursorMoveEvent, this, false);
+        window.addEventListener(DDD.CursorEndEvent, this, false);
+
+        event.preventDefault();
+    };
+
+    DDD.ProxyRange.prototype[DDD.CursorMoveEvent] = function (event) {
+
+        this.moveHandle(event);
+
+        event.preventDefault();
+    };
+
+    DDD.ProxyRange.prototype[DDD.CursorEndEvent] = function (event) {
+
+        this.slider.removeClassName('highlighted');
+
+        window.removeEventListener(DDD.CursorMoveEvent, this, false);
+        window.removeEventListener(DDD.CursorEndEvent, this, false);
+    };
+
+
+    /* ==================== Test 3D transform support ==================== */
+
+    DDD.translate = Modernizr.csstransforms3d ?
+      function (x, y) {
+          return 'translate3d(' + x + 'px, ' + y + 'px, 0 )';
+      } :
+      function (x, y) {
+          return 'translate(' + x + 'px, ' + y + 'px)';
+      };
+
+
+    /* ==================== Start Up ==================== */
+
+
+    DDD.init = function () {
+
+        var ranges = document.querySelectorAll('input[type="range"]'),
+            rangesLen = ranges.length,
+            i;
+
+        if (rangesLen) {
+
+            // create range output display
+            for (i = 0; i < rangesLen; i++) {
+                new DDD.RangeDisplay(ranges[i]);
+            }
+
+            // check browser support for range input
+            // this has been hacked together from Modernizr range input test
+            // -> Thanks Faruk Ates, Paul Irish, and Mike Taylor http://modernizr.com
+            var isRangeSupported = (function () {
+                var isSupported = ranges[0].type !== 'text';
+                if (isSupported) {
+                    var appearanceProp = Modernizr.prefixed('appearance');
+                    isSupported = getComputedStyle(ranges[0])[appearanceProp] !== 'textfield';
+                }
+                return isSupported;
+            })();
+
+            // create range inputs for iOS
+            if (!isRangeSupported) {
+                for (i = 0; i < rangesLen; i++) {
+                    new DDD.ProxyRange(ranges[i]);
+                }
+            }
+
+        }
+
+    };
+
+
+    window.addEventListener('DOMContentLoaded', DDD.init, false);
+
+    // put in global namespace
+    window.DDD = DDD;
+
+})();;
+(function () {
+    var authModule = angular.module("app.personalArea.authModule", ['ngRoute', 'ngMessages', 'app.Common.validations.UniValidationModule', 'ui.select', 'ngSanitize',
+        'app.Common.ReturnCodesModule', 'app.Common.DigitalServicesModule', 'app.Common.FeaturesModule', 'app.DynamicPopup.callBackAddrequest', 'app.DynamicPopup.SendOtp', 'app.CallBack.CallBackPopup', 'vcRecaptcha'])
+        .config(['vcRecaptchaServiceProvider', function (vcRecaptchaServiceProvider) {
+            vcRecaptchaServiceProvider.setSiteKey(window.googleRecaptchaSiteKey);
+            vcRecaptchaServiceProvider.setLang("iw");
+        }]);
+})();
+//# sourceMappingURL=authModule.js.map;
+var auth;
+(function (auth) {
+    var login;
+    (function (login) {
+        angular.module("app.personalArea.authModule").
+            directive('onlyDigits', function () {
+            return {
+                restrict: 'A',
+                require: '?ngModel',
+                link: function (scope, element, attrs, ctrl) {
+                    element.bind('keydown', function (event) {
+                        //ctrl.$setValidity('numbersOnly', true); scope.$apply();
+                        if (isNumeric(event)) {
+                            return true;
+                        }
+                        //ctrl.$setValidity('numbersOnly', false);
+                        //scope.$apply();
+                        return false;
+                    });
+                    element[0].addEventListener('paste', function (event) {
+                        var data = event.clipboardData.getData('Text');
+                        if (!data.trim().match(/^\d+$/)) {
+                            //ctrl.$setValidity('numbersOnly', false);
+                            //scope.$apply();
+                            event.preventDefault();
+                            return false;
+                        }
+                        else {
+                            ctrl.$setValidity('numbersOnly', true);
+                            scope.$apply();
+                            return true;
+                        }
+                    });
+                }
+            };
+        });
+        function isNumeric(event) {
+            //console.log('key code: ' + event.keyCode);
+            //allow paste
+            if (event.ctrlKey && event.keyCode === 86) {
+                return true;
+            }
+            if ($.inArray(event.keyCode, [46, 8, 9, 13, 116]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (event.keyCode === 65 && (event.ctrlKey === true || event.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (event.keyCode >= 35 && event.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return true;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
+                //event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+        //angular.module("app.personalArea.authModule")
+        //    .directive('singleDigitAndJump', function () {
+        //    return {
+        //        restrict: 'A',
+        //        require: '?ngModel',
+        //        link: function (scope, element, attrs, modelCtrl) {
+        //            element.bind('keydown', function (event) {
+        //                //if (/^\d+$/.test(event.key)) {
+        //                //    var next = attrs['singleDigitAndJump'];
+        //                //    if (next) {
+        //                //        var el = document.getElementById(next);
+        //                //        el.focus();
+        //                //    }
+        //                //}
+        //                if (isNumeric(event)) {
+        //                    if (/^\d+$/.test(event.key)) {
+        //                        setTimeout(function () {
+        //                            var next = attrs['singleDigitAndJump'];
+        //                            if (next) {
+        //                                var el = document.getElementById(next);
+        //                                el.focus();
+        //                            }
+        //                        }, 1);
+        //                    }
+        //                    return true;
+        //                } else {
+        //                    return false;
+        //                }
+        //            });
+        //            element.bind('paste', function (event) {
+        //                return false;
+        //            });
+        //        }
+        //    };
+        //});
+        angular.module("app.personalArea.authModule")
+            .directive('englishAndNumbers', function () {
+            return {
+                require: 'ngModel',
+                restrict: 'A',
+                link: function (scope, element, attrs, ctrl) {
+                    element[0].addEventListener('paste', function (event) {
+                        //todo check event.clipboardData
+                        var data = event.clipboardData.getData('Text');
+                        if (!data.match(/^[a-z0-9]+$/i)) {
+                            ctrl.$setValidity('englishAndNumbers', false);
+                            scope.$apply();
+                            event.preventDefault();
+                            return false;
+                        }
+                        ctrl.$setValidity('englishAndNumbers', true);
+                        return true;
+                    });
+                    element[0].addEventListener('keydown', function (event) {
+                        if (typeof event.key != 'undefined') {
+                            var match = event.key.match(/^[a-z0-9]+$/i);
+                            if (!match) {
+                                ctrl.$setValidity('englishAndNumbers', false);
+                                scope.$apply();
+                                event.preventDefault();
+                                return false;
+                            }
+                            else {
+                                ctrl.$setValidity('englishAndNumbers', true);
+                                return true;
+                            }
+                        }
+                    });
+                }
+            };
+        });
+    })(login = auth.login || (auth.login = {}));
+})(auth || (auth = {}));
+//function validateNumericInput(evt) {
+//    // right arrow, left arrow, del, backspace, home, end, shift
+//    var arrAllowed = [39, 37, 46, 8, 36, 35, 16];
+//    //support paste
+//    var keyCode = evt.keyCode;
+//    var ctrlDown = evt.ctrlKey || evt.metaKey; // Mac support
+//    if (arrAllowed.indexOf(keyCode) !== -1) {
+//        return true;
+//    }
+//    else if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+//        return true;
+//    }
+//    else if (ctrlDown && keyCode == 86) {
+//        return true;
+//    }
+//    return false;
+//} 
+//# sourceMappingURL=directives.js.map;
+var auth;
+(function (auth) {
+    var login;
+    (function (login) {
+        var LoginDetails = (function () {
+            function LoginDetails() {
+            }
+            return LoginDetails;
+        }());
+        login.LoginDetails = LoginDetails;
+        var KodeyEretzBean = (function () {
+            function KodeyEretzBean() {
+            }
+            return KodeyEretzBean;
+        }());
+        login.KodeyEretzBean = KodeyEretzBean;
+        var CountryType = (function () {
+            function CountryType() {
+            }
+            return CountryType;
+        }());
+        login.CountryType = CountryType;
+        var SendOTPRequest = (function () {
+            function SendOTPRequest() {
+            }
+            return SendOTPRequest;
+        }());
+        login.SendOTPRequest = SendOTPRequest;
+        var SendOtpGuidLoginRequest = (function () {
+            function SendOtpGuidLoginRequest() {
+            }
+            return SendOtpGuidLoginRequest;
+        }());
+        login.SendOtpGuidLoginRequest = SendOtpGuidLoginRequest;
+        var CustomerOtpTarget;
+        (function (CustomerOtpTarget) {
+            CustomerOtpTarget[CustomerOtpTarget["None"] = 0] = "None";
+            CustomerOtpTarget[CustomerOtpTarget["SMS"] = 1] = "SMS";
+            CustomerOtpTarget[CustomerOtpTarget["Mail"] = 2] = "Mail";
+            CustomerOtpTarget[CustomerOtpTarget["IVR"] = 3] = "IVR";
+        })(CustomerOtpTarget = login.CustomerOtpTarget || (login.CustomerOtpTarget = {}));
+        var CustomerSendOtpGuidRequest = (function () {
+            function CustomerSendOtpGuidRequest(sendType, guid) {
+                if (guid === void 0) { guid = null; }
+                this.OtpType = CustomerOtpTarget.None;
+                this.LoginGuid = guid;
+                if (sendType) {
+                    if (sendType === "0")
+                        this.OtpType = CustomerOtpTarget.SMS;
+                    else if (sendType === "1")
+                        this.OtpType = CustomerOtpTarget.Mail;
+                }
+            }
+            return CustomerSendOtpGuidRequest;
+        }());
+        login.CustomerSendOtpGuidRequest = CustomerSendOtpGuidRequest;
+        var SendOTPBean = (function () {
+            function SendOTPBean() {
+            }
+            return SendOTPBean;
+        }());
+        login.SendOTPBean = SendOTPBean;
+        var ValidateIdRequest = (function () {
+            function ValidateIdRequest() {
+            }
+            return ValidateIdRequest;
+        }());
+        login.ValidateIdRequest = ValidateIdRequest;
+        var ValidateIdDataNoRegBean = (function () {
+            function ValidateIdDataNoRegBean() {
+            }
+            return ValidateIdDataNoRegBean;
+        }());
+        login.ValidateIdDataNoRegBean = ValidateIdDataNoRegBean;
+        var ValidateIdDataBean = (function () {
+            function ValidateIdDataBean() {
+            }
+            return ValidateIdDataBean;
+        }());
+        login.ValidateIdDataBean = ValidateIdDataBean;
+        var validateOTPNoRegGuidLoginRequest = (function () {
+            function validateOTPNoRegGuidLoginRequest() {
+            }
+            return validateOTPNoRegGuidLoginRequest;
+        }());
+        login.validateOTPNoRegGuidLoginRequest = validateOTPNoRegGuidLoginRequest;
+        var validateOTPGuidLoginRequest = (function () {
+            function validateOTPGuidLoginRequest() {
+            }
+            return validateOTPGuidLoginRequest;
+        }());
+        login.validateOTPGuidLoginRequest = validateOTPGuidLoginRequest;
+        var validateOTPRequest = (function () {
+            function validateOTPRequest() {
+            }
+            return validateOTPRequest;
+        }());
+        login.validateOTPRequest = validateOTPRequest;
+        var validateOTPNoRegRequest = (function () {
+            function validateOTPNoRegRequest() {
+            }
+            return validateOTPNoRegRequest;
+        }());
+        login.validateOTPNoRegRequest = validateOTPNoRegRequest;
+        var CustomerValidateOtpNoRegRequest = (function () {
+            function CustomerValidateOtpNoRegRequest(otpCode, guid) {
+                if (guid === void 0) { guid = null; }
+                this.LoginGuid = guid;
+                this.OtpCode = otpCode;
+            }
+            return CustomerValidateOtpNoRegRequest;
+        }());
+        login.CustomerValidateOtpNoRegRequest = CustomerValidateOtpNoRegRequest;
+        var CustomerValidateOtpRequest = (function () {
+            function CustomerValidateOtpRequest(otpCode, guid) {
+                if (guid === void 0) { guid = null; }
+                this.LoginGuid = guid;
+                this.OtpCode = otpCode;
+            }
+            return CustomerValidateOtpRequest;
+        }());
+        login.CustomerValidateOtpRequest = CustomerValidateOtpRequest;
+        var ValidateOTPNoRegResponseBean = (function () {
+            function ValidateOTPNoRegResponseBean() {
+            }
+            return ValidateOTPNoRegResponseBean;
+        }());
+        login.ValidateOTPNoRegResponseBean = ValidateOTPNoRegResponseBean;
+        var ValidateOTPResponseBean = (function () {
+            function ValidateOTPResponseBean() {
+            }
+            return ValidateOTPResponseBean;
+        }());
+        login.ValidateOTPResponseBean = ValidateOTPResponseBean;
+        var ValidateOTPBean = (function () {
+            function ValidateOTPBean() {
+            }
+            return ValidateOTPBean;
+        }());
+        login.ValidateOTPBean = ValidateOTPBean;
+        var LoginRequest = (function () {
+            function LoginRequest() {
+            }
+            return LoginRequest;
+        }());
+        login.LoginRequest = LoginRequest;
+        var PerformLoginRequest = (function () {
+            function PerformLoginRequest() {
+            }
+            return PerformLoginRequest;
+        }());
+        login.PerformLoginRequest = PerformLoginRequest;
+        var PerformIsRegisteredRequest = (function () {
+            function PerformIsRegisteredRequest() {
+            }
+            return PerformIsRegisteredRequest;
+        }());
+        login.PerformIsRegisteredRequest = PerformIsRegisteredRequest;
+        var PerformLoginResponse = (function () {
+            function PerformLoginResponse() {
+            }
+            return PerformLoginResponse;
+        }());
+        login.PerformLoginResponse = PerformLoginResponse;
+        var EpiData = (function () {
+            function EpiData() {
+                this.aria = "על מנת להפוך את האתר לנגיש לקורא מסך לחץ alt + 1. על מנת להפסיק הודעה זאת לחץ alt + 2.";
+            }
+            return EpiData;
+        }());
+        login.EpiData = EpiData;
+        var ValidationMessages = (function () {
+            function ValidationMessages() {
+                this.requiredField = 'שדה חובה';
+                this.invalidId = 'ת.ז לא תקינה';
+                this.missingDigits = 'חסרות ספרות';
+                this.onlyEngAllowed = 'יש להזין אנגלית בלבד';
+                this.unRegisteredErrorText = 'משתמש לא רשום';
+                this.userWithNoPasswordErrorText = 'עוד לא בחרת סיסמה. בחר סיסמה בלינק "שכחתי/אין לי סיסמה" או היכנס עם קוד חד פעמי';
+                this.generalErrorText = 'שגיאה כללית'; // todo get from @Html.Translate("/error/generalError")
+                this.loginFailedWithRedirect = "אירעה שגיאה. לחץ כאן";
+            }
+            return ValidationMessages;
+        }());
+        login.ValidationMessages = ValidationMessages;
+        var SendOtpType;
+        (function (SendOtpType) {
+            SendOtpType[SendOtpType["Sms"] = 0] = "Sms";
+            SendOtpType[SendOtpType["Email"] = 1] = "Email";
+        })(SendOtpType = login.SendOtpType || (login.SendOtpType = {}));
+        var CallBackAddRequestBean = (function () {
+            function CallBackAddRequestBean() {
+            }
+            return CallBackAddRequestBean;
+        }());
+        login.CallBackAddRequestBean = CallBackAddRequestBean;
+        var performGuidLoginOtpRequest = (function () {
+            function performGuidLoginOtpRequest() {
+            }
+            return performGuidLoginOtpRequest;
+        }());
+        login.performGuidLoginOtpRequest = performGuidLoginOtpRequest;
+        var performLogonOTPRequest = (function () {
+            function performLogonOTPRequest() {
+            }
+            return performLogonOTPRequest;
+        }());
+        login.performLogonOTPRequest = performLogonOTPRequest;
+        var CustomerLogonOtpRequest = (function () {
+            function CustomerLogonOtpRequest(loginGuid) {
+                this.LoginGuid = loginGuid;
+            }
+            return CustomerLogonOtpRequest;
+        }());
+        login.CustomerLogonOtpRequest = CustomerLogonOtpRequest;
+        var ServiceHeader = (function () {
+            function ServiceHeader() {
+            }
+            return ServiceHeader;
+        }());
+        login.ServiceHeader = ServiceHeader;
+        var ServiceResponse = (function () {
+            function ServiceResponse(service, serviceName) {
+                this.header = service.data.Header;
+                //var tName = arg.prototype.constructor.name;
+                this.content = service.data[serviceName];
+                if (this.content == null)
+                    this.content = service.data["Bean"];
+            }
+            return ServiceResponse;
+        }());
+        login.ServiceResponse = ServiceResponse;
+        //export class ServiceResponse<T> {
+        //    constructor(service: any, arg: { new (): T; }) {
+        //        this.header = service.data.Header;
+        //        var tName = arg.prototype.constructor.name;
+        //        this.content = service.data[tName];
+        //    }
+        //    header: ServiceHeader;
+        //    content: T;
+        //}
+        var CaptchaDetails = (function () {
+            function CaptchaDetails() {
+            }
+            return CaptchaDetails;
+        }());
+        login.CaptchaDetails = CaptchaDetails;
+        var GoogleRecaptchaDetails = (function () {
+            function GoogleRecaptchaDetails() {
+                var _this = this;
+                this.onCreate = function (widgetId) {
+                    _this.widgetId = widgetId;
+                };
+            }
+            return GoogleRecaptchaDetails;
+        }());
+        login.GoogleRecaptchaDetails = GoogleRecaptchaDetails;
+        var WizzWhatsappRequest = (function () {
+            function WizzWhatsappRequest() {
+            }
+            return WizzWhatsappRequest;
+        }());
+        login.WizzWhatsappRequest = WizzWhatsappRequest;
+    })(login = auth.login || (auth.login = {}));
+})(auth || (auth = {}));
+//# sourceMappingURL=loginModels.js.map;
+/*
+19/06
+Poor
+M: 44 / 100
+D: 55 / 100
+*/
+var auth;
+(function (auth) {
+    var login;
+    (function (login) {
+        "use strict";
+        var LoginController = (function () {
+            function LoginController($scope, loginService, $location, returnCodesService, featuresService, $timeout, vcRecaptchaService) {
+                var _this = this;
+                this.$scope = $scope;
+                this.loginService = loginService;
+                this.$location = $location;
+                this.returnCodesService = returnCodesService;
+                this.featuresService = featuresService;
+                this.$timeout = $timeout;
+                this.vcRecaptchaService = vcRecaptchaService;
+                this.isPasswordExpired = false;
+                this.isPasswordExpiredSuccess = false;
+                this.defaultCountryCode = "212"; // default code when not specified by user
+                this.customerContactDetailsRequest = {};
+                this.customerContactDetailsSelectResponse = {};
+                this.customerContactDetailsUpdateResponse = {};
+                this.clientOnlineBankingRequest = {};
+                this.clientOnlineBankingSelectResponse = {};
+                this.clientOnlineBankingUpdateResponse = {};
+                this.validationMessages = new login.ValidationMessages();
+                this.onlineBankingCompanyCode = companyServiceCode === "11" ? 1 : 2;
+                // Google captcha responses
+                this.VcRecaptchaRequiredPassword = new login.GoogleRecaptchaDetails();
+                this.VcRecaptchRequiredExpired = new login.GoogleRecaptchaDetails();
+                this.VcRecaptchaRequiredOtp1 = new login.GoogleRecaptchaDetails();
+                this.VcRecaptchaRequiredOtp2 = new login.GoogleRecaptchaDetails();
+                this.smsFade = false;
+                this.isSmsSent = false;
+                this.showChannelsSection = false;
+                this.isAgreementSection = false;
+                this.isOtpDetailVisible = true;
+                // 3 states are possible:
+                // 0 => don't display, 1 => success, -1 => error
+                this.smsSendSuccess = 0;
+                this.ivrSendSuccess = 0;
+                this.mailSendSuccess = 0;
+                this.smsResent = false;
+                this.loginSuccess = false;
+                this.permStatus = window["permStatus"];
+                this.isGuidLogin = ((this.permStatus || {})["PermissionStatusBean"] || {})["returnCode"] === "0";
+                this.isClubsLogin = window["clubsLogin"];
+                //Digital Client  
+                this.bankingApprove = false;
+                this.agreement = true;
+                this.dualCompany = true;
+                this.bankingAction = true;
+                this.advertisingCode = false;
+                this.updateIvrIndicator = true;
+                this.updateMailIndicator = true;
+                this.updateCellularIndicator = true;
+                this.updateInternetIndicator = true;
+                this.registerInfoFormError = "";
+                this.isEncryptedGenericAllowed = false;
+                this.toggleClassName = function (a) {
+                    this[this.hasClassName(a) ? "removeClassName" : "addClassName"](a);
+                };
+                this.showPanel = function (panelStatus) {
+                    /*window.setTimeout((panelStatus) => {
+        
+                        if (panelStatus == 1 && !this.isOnPasswordSide)
+                            return panelStatus == 1;
+        
+                        if (panelStatus == 2 && this.isOnPasswordSide)
+                            return panelStatus == 2;
+        
+                        return false;
+        
+                    }, 50);*/
+                    if (panelStatus == 1 && !_this.isOnPasswordSide)
+                        return panelStatus == 1;
+                    if (panelStatus == 2 && _this.isOnPasswordSide)
+                        return panelStatus == 2;
+                    return false;
+                };
+                this.pushEloquaContent = function (control, input) {
+                    if (!control.$invalid) {
+                        var eventName = "PersonalAreaLogin";
+                        if (control && control.$name && control.$name.indexOf("SMS") != -1) {
+                            eventName = "PersonalAreaOTPLogin";
+                        }
+                        try {
+                            //Push Eloqua
+                            if (clientGuid && clientGuid.length > 0) {
+                                pushEloqua("PersonalAreaOTPLogin");
+                            }
+                            else {
+                                //User entered ID, send default country code
+                                if (_this.inIdMode) {
+                                    getUserGuid(_this.getCountryCode(), _this.loginDetails.id, eventName, "1");
+                                }
+                                else if (_this.getCountryCode() && _this.loginDetails.passport && _this.loginDetails.passport.length > 0) {
+                                    getUserGuid(_this.getCountryCode(), _this.loginDetails.passport, eventName, "4");
+                                }
+                                $('#selectCountryPassword').attr('title', control.$viewValue.shem_eretz_ivrit);
+                            }
+                        }
+                        catch (e) { }
+                    }
+                };
+                this.otpSuccess = function () {
+                    PushGACode({
+                        'event': 'ScreenView',
+                        'Screen_name': 'PZ/Login/Login_Success/OTP',
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.sendMeOtp = function () {
+                    PushGACode({
+                        'event': 'ScreenView',
+                        'Screen_name': 'PZ/Login/Step_1/OTP/',
+                        'User_action': 'user_click_on_send_me_OTP',
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.HoverLoginMode = function (mode, id) {
+                    PushGACode({
+                        'event': 'ScreenView',
+                        'Screen_name': 'PZ/Login/Step_1/' + mode,
+                        'Passport_or_ID': id == "" ? 'דרכון' : 'תעודת זהות'
+                    });
+                };
+                this.ResendNewLogin = function (mode, action) {
+                    PushGACode({
+                        'event': 'OTP_Screen',
+                        'Screen_name': 'PZ/Login/Step_2/' + mode,
+                        'User_action': 'user_click_on_' + action,
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.getOtpScreen = function () {
+                    PushGACode({
+                        'event': 'ScreenView',
+                        'Screen_name': 'PZ/Login/Step_2/',
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.registeredNewLogin = function (mode) {
+                    var gaObj = new Array();
+                    if (_this.bankingApprove) {
+                        gaObj.push('שיתוף מידע');
+                    }
+                    if (_this.agreement) {
+                        gaObj.push('תנאי שימוש');
+                    }
+                    if ((_this.dualCompanyMarketingAgreement != undefined) && (_this.dualCompanyMarketingAgreement)) {
+                        gaObj.push('מבצעים והטבות דואלי');
+                    }
+                    if ((_this.bankingAction != undefined) && (_this.bankingAction)) {
+                        var bobj = new Array();
+                        bobj.push(' אינטרנט ');
+                        if (_this.updateMailIndicator)
+                            if (_this.updateMailIndicator)
+                                bobj.push(' מייל ');
+                        if (_this.updateCellularIndicator)
+                            bobj.push(' אסאםאס ');
+                        if (_this.updateIvrIndicator)
+                            bobj.push('הודעה קולית  ');
+                        gaObj.push('בנקאות בתקשורת: ' + bobj);
+                        if ((_this.dualCompany != undefined) && (_this.dualCompany)) {
+                            gaObj.push('בנקאות בתקשורת דואלי');
+                        }
+                    }
+                    if ((_this.advertisingCode != undefined) && (_this.advertisingCode)) {
+                        gaObj.push('מבצעים והטבות');
+                    }
+                    PushGACode({
+                        'event': 'Registration',
+                        'Screen_name': 'PZ/Login/Login_Success_first_visit/' + mode,
+                        'User_action': 'user_click_on_approval_' + gaObj,
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.CheckboxScreenNewLogin = function (mode) {
+                    PushGACode({
+                        'event': 'ScreenView',
+                        'Screen_name': 'PZ/Login/Login_Success_first_visit/' + mode,
+                        'Passport_or_ID': _this.inIdMode ? 'תעודת זהות' : 'דרכון'
+                    });
+                };
+                this.performPasswordExpired = function () {
+                    if (_this.isSubmitting == true)
+                        return;
+                    _this.serverErrorPassword = "";
+                    _this.performLoginRequest.isGoogleCaptcha = true;
+                    if (_this.captchaRequiredExpired) {
+                        _this.performLoginRequest.instanceId = _this.VcRecaptchRequiredExpired.response;
+                    }
+                    _this.isSubmitting = true;
+                    _this.performLoginRequest.CODE_CHANGE = "1";
+                    _this.loginService.login(_this.performLoginRequest, currentLogonServiceName)
+                        .then(function (pLoginResponseFull) {
+                        var pLoginResponse = pLoginResponseFull.data;
+                        if (pLoginResponse) {
+                            switch (pLoginResponse.status) {
+                                case "1":
+                                    //success
+                                    PushGACode({
+                                        'event': 'PersonalZoneChangePasswordStep2Success'
+                                    });
+                                    _this.isPasswordExpiredSuccess = true;
+                                    break;
+                                default:
+                                    _this.resetForm(_this.otpLobbyFormPassword);
+                                    _this.serverErrorPassword = pLoginResponse.message;
+                                    _this.performLoginRequest.Sisma = "";
+                                    _this.performLoginRequest.SismaHadasha = "";
+                                    _this.performLoginRequest.confirm = "";
+                                    _this.captchaRequiredExpired = pLoginResponse.isCaptcha == "true";
+                                    PushGACode({
+                                        'PersonalZoneChangePasswordStep1FailName': pLoginResponse.message,
+                                        'event': 'PersonalZoneChangePasswordStep1Fail'
+                                    });
+                                    _this.isSubmitting = false;
+                            }
+                            //end of switch
+                        }
+                        else {
+                            _this.resetForm(_this.otpLobbyFormPassword);
+                            _this.serverErrorPassword = generalErrorText;
+                            PushGACode({
+                                'PersonalZoneChangePasswordStep1FailName': generalErrorText,
+                                'event': 'PersonalZoneChangePasswordStep1Fail'
+                            });
+                        }
+                    })
+                        .finally(function () {
+                        if (_this.captchaRequiredExpired && _this.VcRecaptchRequiredExpired.response) {
+                            _this.vcRecaptchaService.reload(_this.VcRecaptchRequiredExpired.widgetId);
+                        }
+                    });
+                };
+                this.resendingSms = false;
+                this.resendingIvr = false;
+                this.resendingMail = false;
+                this.showSmsLink = true;
+                this.showEmailLink = true;
+                this.showIvrLink = true;
+                this.submitRegisterInfoForm = function () {
+                    _this.registeredNewLogin('OTP');
+                    _this.updaterContanctDetails();
+                    _this.isSubmitting = true;
+                    _this.registerInfoFormError = "";
+                    if (_this.showChannelsSection == true) {
+                        _this.updateClientOnlineBanking().then(function (response) {
+                            _this.isSubmitting = false;
+                            var currentResponse = response.data;
+                            if (currentResponse ||
+                                currentResponse[app.Common.DigitalServicesModule.Constants.ClientOnlineBanking.toBean()]) {
+                                _this.clientOnlineBankingUpdateResponse =
+                                    currentResponse[app.Common.DigitalServicesModule.Constants.ClientOnlineBanking.toBean()];
+                                if (currentResponse.Header.Status != "1" && !_this.clientOnlineBankingUpdateResponse ||
+                                    _this.clientOnlineBankingUpdateResponse.returnCode != "0") {
+                                    _this.registerInfoFormError =
+                                        (_this.clientOnlineBankingUpdateResponse && _this.clientOnlineBankingUpdateResponse.message)
+                                            ? _this.clientOnlineBankingUpdateResponse.message
+                                            : generalErrorText;
+                                    _this.isSubmitting = false;
+                                    return;
+                                }
+                                _this.NewCustomerRegistration();
+                                return;
+                            }
+                            _this.registerInfoFormError = generalErrorText;
+                        });
+                    }
+                    else {
+                        _this.NewCustomerRegistration();
+                    }
+                };
+                this.NewCustomerRegistration = function () {
+                    _this.isSubmitting = true;
+                    /***** initialize newRegister Request ******/
+                    _this.loginService.newRegisterRequest.id = _this.getValidateIdRequest(false).id; //this.loginService.validateIdRequest.id;
+                    _this.loginService.newRegisterRequest.idType = _this.inIdMode ? "1" : "4"; //this.loginService.validateIdRequest.idType;
+                    _this.loginService.newRegisterRequest.countryCode = _this.getCountryCode(); //this.loginService.validateIdRequest.countryCode;
+                    _this.loginService.newRegisterRequest.companyCode = companyServiceCode;
+                    _this.loginService.newRegisterRequest.cardSuffix = _this.loginDetails.card6Digits; //this.loginService.validateIdRequest.cardSuffix;
+                    _this.loginService.newRegisterRequest.userName = _this.loginDetails.userName; //this.loginService.validateIdResponse.ValidateIdDataBean.userName;
+                    /*****NewCustomerRegistration Service ******/
+                    _this.loginService.NewCustomerRegistration().
+                        then(function (response) {
+                        _this.isSubmitting = false;
+                        var responseData = response.data;
+                        if (responseData && responseData.Header && responseData.Header.Status == "1") {
+                            _this.loginService.newRegisterResponse = response.data;
+                            switch (_this.loginService.newRegisterResponse.NewCustomerRegistrationBean.returnCode) {
+                                case "00":
+                                    _this.performLoginOtp();
+                                    break;
+                                default:
+                                    var serviceMessage = (_this.loginService.newRegisterResponse.NewCustomerRegistrationBean.Message) ? (_this.loginService.newRegisterResponse.NewCustomerRegistrationBean.Message) : generalErrorText; //"שגיאה בשירות" + app.Common.DigitalServicesModule.Constants.NewCustomerRegistration;
+                                    _this.registerInfoFormError = serviceMessage;
+                            }
+                        }
+                        else {
+                            _this.registerInfoFormError = generalErrorText;
+                        }
+                    }); /*****End NewCustomerRegistration Service ******/
+                };
+                /******************
+               * Digital Customer
+               *******************/
+                this.SelectCustomerContanctDetails = function () {
+                    _this.customerContactDetailsRequest.countryCode = _this.getCountryCode();
+                    _this.customerContactDetailsRequest.codeZihuy = parseInt(_this.getValidateIdRequest(false).idType);
+                    _this.customerContactDetailsRequest.idNumber = _this.getValidateIdRequest(false).id;
+                    _this.customerContactDetailsRequest.channelCode = _this.dcChannelCode;
+                    _this.customerContactDetailsRequest.actionCode = 0;
+                    _this.customerContactDetailsRequest.companyCode = parseInt(_this.getValidateIdRequest(false).companyCode);
+                    return _this.loginService.CustomerContactDetails(_this.customerContactDetailsRequest);
+                };
+                this.SelectClientOnlineBanking = function () {
+                    _this.clientOnlineBankingRequest.actionCode = 1;
+                    _this.clientOnlineBankingRequest.inputCode = 1;
+                    _this.clientOnlineBankingRequest.companyCode = _this.onlineBankingCompanyCode;
+                    _this.clientOnlineBankingRequest.idCode = parseInt(_this.getValidateIdRequest(false).idType);
+                    _this.clientOnlineBankingRequest.countryCode = _this.getCountryCode();
+                    _this.clientOnlineBankingRequest.idNumber = _this.getValidateIdRequest(false).id;
+                    _this.clientOnlineBankingRequest.cardServiceCode = 0;
+                    _this.clientOnlineBankingRequest.cardPrefix = 0;
+                    _this.clientOnlineBankingRequest.cardNumber = 0;
+                    _this.clientOnlineBankingRequest.channelCode = 3;
+                    _this.clientOnlineBankingRequest.accessLevel = 1;
+                    _this.clientOnlineBankingRequest.updateSource = 9;
+                    return _this.loginService.ClientOnlineBanking(_this.clientOnlineBankingRequest);
+                };
+                this.handleBankingServices = function (toTurnOn) {
+                    if (_this.bankingAction || toTurnOn) {
+                        _this.bankingAction = true;
+                        _this.updateIvrIndicator = _this.updateMailIndicator = _this.updateCellularIndicator = _this.updateInternetIndicator = true;
+                        _this.dualCompany = true;
+                    }
+                    else {
+                        _this.updateIvrIndicator = _this.updateMailIndicator = _this.updateCellularIndicator = false;
+                        _this.dualCompany = false;
+                    }
+                };
+                this.updaterContanctDetails = function () {
+                    _this.registerInfoFormError = "";
+                    _this.customerContactDetailsRequest.actionCode = 2;
+                    _this.customerContactDetailsRequest.mailDeliveryCode = 0;
+                    _this.customerContactDetailsRequest.smsBenefitCode = 0;
+                    _this.customerContactDetailsRequest.smsBenefitCodeIndicator = 0;
+                    _this.customerContactDetailsRequest.mailDeliveryCodeIndicator = 0;
+                    _this.customerContactDetailsRequest.cellphoneStatus = 0;
+                    _this.customerContactDetailsRequest.cellphoneStatusIndicator = 2;
+                    _this.customerContactDetailsRequest.emailStatus = 0;
+                    _this.customerContactDetailsRequest.emailStatusIndicator = 0;
+                    _this.customerContactDetailsRequest.landphoneStatusIndicator = 0;
+                    _this.customerContactDetailsRequest.cellphoneIndicator = 2;
+                    //call to ContactDetails -- first time
+                    _this.loginService.CustomerContactDetails(_this.customerContactDetailsRequest).then(function (response) {
+                        var currentResponse = response.data;
+                        if (currentResponse || currentResponse[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()]) {
+                            _this.customerContactDetailsUpdateResponse = currentResponse[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()];
+                            if (!_this.customerContactDetailsUpdateResponse || _this.customerContactDetailsUpdateResponse.returnCode != "0") {
+                                _this.registerInfoFormError = ((_this.customerContactDetailsUpdateResponse && _this.customerContactDetailsUpdateResponse.message) ? _this.customerContactDetailsUpdateResponse.message : generalErrorText);
+                            }
+                        }
+                        if (_this.advertisingCode || _this.dualCompanyMarketingAgreement) {
+                            //call to ContactDetails -- second time
+                            _this.customerContactDetailsRequest.actionCode = 1;
+                            if (_this.advertisingCode && !_this.dualCompanyMarketingAgreement) {
+                                _this.customerContactDetailsRequest.companyCode = parseInt(companyServiceCode);
+                            }
+                            if (!_this.advertisingCode && _this.dualCompanyMarketingAgreement) {
+                                if (companyServiceCode == "11") {
+                                    _this.customerContactDetailsRequest.companyCode = 77;
+                                }
+                                if (companyServiceCode == "77") {
+                                    _this.customerContactDetailsRequest.companyCode = 11;
+                                }
+                            }
+                            if (_this.customerContactDetailsSelectResponse && _this.customerContactDetailsSelectResponse.showAdvertisingCode != '1' && _this.customerContactDetailsSelectResponse.multicompanyCode == '3') {
+                                if (_this.advertisingCode && _this.dualCompanyMarketingAgreement) {
+                                    _this.customerContactDetailsRequest.companyCode = 99;
+                                }
+                            }
+                            _this.customerContactDetailsRequest.mailDeliveryCode = 1;
+                            _this.customerContactDetailsRequest.smsBenefitCode = 1;
+                            _this.customerContactDetailsRequest.smsBenefitCodeIndicator = 1;
+                            _this.customerContactDetailsRequest.mailDeliveryCodeIndicator = 1;
+                            _this.loginService.CustomerContactDetails(_this.customerContactDetailsRequest).then(function (response1) {
+                                var currentResponse1 = response1.data;
+                                if (currentResponse1 || currentResponse1[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()]) {
+                                    _this.customerContactDetailsUpdateResponse = currentResponse1[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()];
+                                    if (!_this.customerContactDetailsUpdateResponse || _this.customerContactDetailsUpdateResponse.returnCode != "0") {
+                                        _this.registerInfoFormError = ((_this.customerContactDetailsUpdateResponse && _this.customerContactDetailsUpdateResponse.message) ? _this.customerContactDetailsUpdateResponse.message : generalErrorText);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                };
+                this.updateClientOnlineBanking = function () {
+                    _this.clientOnlineBankingRequest.actionCode = 2; //ClientOnlineBankingActionCode.Update;
+                    if (_this.clientOnlineBankingSelectResponse.showBankingComm && _this.clientOnlineBankingSelectResponse.showBankingComm != '1' && _this.customerContactDetailsSelectResponse && _this.customerContactDetailsSelectResponse.multicompanyCode == '3' && _this.dualCompany)
+                        _this.clientOnlineBankingRequest.companyCode = 4;
+                    _this.clientOnlineBankingRequest.accessLevel = 2;
+                    _this.clientOnlineBankingRequest.joiningChannelCode = _this.dcChannelCode;
+                    _this.clientOnlineBankingRequest.channelCode = 3;
+                    _this.clientOnlineBankingRequest.updatingUser = "X0T";
+                    _this.clientOnlineBankingRequest.consentCodeInternet = 2;
+                    _this.clientOnlineBankingRequest.updateIndicationInternet = 1;
+                    _this.clientOnlineBankingRequest.consentCodeFax = 0;
+                    _this.clientOnlineBankingRequest.updateIndicationFax = 0;
+                    //updateIvrIndicator
+                    switch (_this.updateIvrIndicator) {
+                        case true:
+                            _this.clientOnlineBankingRequest.consentCodeIVR = 2;
+                            _this.clientOnlineBankingRequest.updateIndicationIVR = 1;
+                            break;
+                        case false:
+                            _this.clientOnlineBankingRequest.consentCodeIVR = 3;
+                            _this.clientOnlineBankingRequest.updateIndicationIVR = 1;
+                            break;
+                        default:
+                            _this.clientOnlineBankingRequest.consentCodeIVR = 0;
+                            _this.clientOnlineBankingRequest.updateIndicationIVR = 0;
+                    }
+                    //updateMailIndicator
+                    switch (_this.updateMailIndicator) {
+                        case true:
+                            _this.clientOnlineBankingRequest.consentCodeMail = 2;
+                            _this.clientOnlineBankingRequest.updateIndicationMail = 1;
+                            break;
+                        case false:
+                            _this.clientOnlineBankingRequest.consentCodeMail = 3;
+                            _this.clientOnlineBankingRequest.updateIndicationMail = 1;
+                            break;
+                        default:
+                            _this.clientOnlineBankingRequest.consentCodeMail = 0;
+                            _this.clientOnlineBankingRequest.updateIndicationMail = 0;
+                    }
+                    //updateCellularIndicator
+                    switch (_this.updateCellularIndicator) {
+                        case true:
+                            _this.clientOnlineBankingRequest.consentCodeCellular = 2;
+                            _this.clientOnlineBankingRequest.updateIndicationCellular = 1;
+                            break;
+                        case false:
+                            _this.clientOnlineBankingRequest.consentCodeCellular = 3;
+                            _this.clientOnlineBankingRequest.updateIndicationCellular = 1;
+                            break;
+                        default:
+                            _this.clientOnlineBankingRequest.consentCodeCellular = 0;
+                            _this.clientOnlineBankingRequest.updateIndicationCellular = 0;
+                    }
+                    return _this.loginService.ClientOnlineBanking(_this.clientOnlineBankingRequest);
+                };
+                this.validateLastLogin = function (lastLogin) {
+                    var currentDate = new Date();
+                    var lastLoginDate = new Date(lastLogin);
+                    var time_difference = currentDate.getTime() - lastLoginDate.getTime();
+                    var days_difference = time_difference / (1000 * 60 * 60 * 24);
+                    return Math.floor(days_difference);
+                };
+                this.saveQueryStringAndRedirect = function (e) {
+                    event.preventDefault();
+                    if (location.href.toLowerCase().indexOf("tppclientid") > 0) {
+                        var queryString = location.search.split("?")[2].replace("%3d", "=");
+                        sessionStorage.setItem("openBankingQueryString", JSON.stringify({ exp: new Date().getTime() + 10 * 60000, data: queryString }));
+                    }
+                    _this.antiXssRedirect(openBankignUrlToRedirect);
+                };
+                this.checkSessionStorageExpired = function () {
+                    var item = sessionStorage.getItem("openBankingQueryString");
+                    if (item) {
+                        if (JSON.parse(item).exp < new Date().getTime()) {
+                            sessionStorage.removeItem("openBankingQueryString");
+                            return true;
+                        }
+                    }
+                    else {
+                        return true;
+                    }
+                    return false;
+                };
+                //--anti xss secuirty layer
+                this.antiXssRedirect = function (urlToDecode) {
+                    var decodedUrl = decodeURIComponent(urlToDecode);
+                    if (decodedUrl.indexOf("http") === -1 &&
+                        decodedUrl.indexOf("javascript") === -1) {
+                        decodedUrl = "https://" + window.location.host + (decodedUrl.substring(0, 1) === '/' ? decodedUrl : '/' + decodedUrl);
+                    }
+                    _this.isValidUrl(decodedUrl) ? window.location.href = decodedUrl : window.location.href = "/";
+                };
+                angular.element("#DigitalCustomerLoginModule").css("display", "none");
+                angular.element("#DigitalCustomerLoginModule").remove();
+                this.epiData = epiData;
+                this.performLoginRequest = new login.PerformLoginRequest();
+                this.loginDetails = new login.LoginDetails();
+                this.loginDetails.maskedSms = "";
+                if (companyServiceCode == "11") {
+                    this.dcChannelCode = 100;
+                    this.onlineBankingCompanyCode = 1;
+                }
+                else if (companyServiceCode == "77") {
+                    this.dcChannelCode = 102;
+                    this.onlineBankingCompanyCode = 2;
+                }
+                this.otpCodeDetails = new login.LoginDetails();
+                this.facebookMessengerObject = epiData.facebookMessenger[0];
+                this.localFeaturesService = featuresService;
+                if (!!HideSendOtpPasswordAtMailAndIvr && HideSendOtpPasswordAtMailAndIvr == "true") {
+                    this.globalHideForIvrAndMail = true;
+                }
+                else {
+                    this.globalHideForIvrAndMail = false;
+                }
+                this.isEncryptedGenericAllowed = this.IsEncryptedGenericAllowed();
+                this.setInitialDisplay();
+                this.getCountries();
+                this.isGuidLogin && this.localFeaturesService.PushGaCodeForLogin('DetailsTransactionsShortProcessStep1', 'DetailsTransactionsShortProcessType', this.getSendType(this.permStatus['PermissionStatusBean'].sendType));
+                if (this.isSafariOnMacOrIOS()) {
+                    this.deleteAllCookies(window.location.href.indexOf('americanexpress') > -1 ? 'americanexpress.co.il' : 'isracard.co.il');
+                }
+                this.$scope.$watch(function () { return _this.isSmsSent; }, this.onAndroidAutoFill.bind(this));
+            }
+            ;
+            LoginController.prototype.GetParametersFromUrl = function (key) {
+                var parameterValue;
+                var url = this.$location.absUrl();
+                var urlParts = url.split("?");
+                var queryStringParts = urlParts[1].split("&");
+                if (queryStringParts) {
+                    queryStringParts.forEach(function (item) {
+                        var guidParts = item.split("=");
+                        if (guidParts && key == guidParts[0])
+                            parameterValue = guidParts[1];
+                    });
+                }
+                return parameterValue;
+            };
+            LoginController.prototype.IsEncryptedGenericAllowed = function () {
+                var isAllowed = false;
+                if (this.isGuidLogin) {
+                    var permissionIndicator = this.GetParametersFromUrl("permissionInd");
+                    var permissionStatus_1 = this.permStatus['PermissionStatusBean'];
+                    if (permissionStatus_1 && permissionIndicator) {
+                        var filterPermissions = permissionIndicators.filter(function (item) { return permissionStatus_1.permissionLevel == item; });
+                        isAllowed = (filterPermissions.length === 1);
+                    }
+                }
+                return isAllowed;
+            };
+            Object.defineProperty(LoginController.prototype, "IsEncryptedGeneric", {
+                get: function () { return this.isEncryptedGenericAllowed; },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(LoginController.prototype, "IsSMSLoginGuid", {
+                get: function () {
+                    if (this.permStatus && this.permStatus.PermissionStatusBean && this.loginDetails.maskedSms &&
+                        this.permStatus.PermissionStatusBean.sendType == 0)
+                        return true;
+                    return false;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(LoginController.prototype, "IsMailLoginGuid", {
+                get: function () {
+                    if (this.permStatus && this.permStatus.PermissionStatusBean && this.loginDetails.maskedEmail &&
+                        this.permStatus.PermissionStatusBean.sendType == 1)
+                        return true;
+                    return false;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(LoginController.prototype, "PopupEmailMasked", {
+                get: function () {
+                    if (this.otpCodeDetails && this.otpCodeDetails.maskedEmail) {
+                        var index = this.otpCodeDetails.maskedEmail.indexOf("*");
+                        return (index > -1) ? this.otpCodeDetails.maskedEmail : "EmailNotExist";
+                    }
+                    else {
+                        if (this.isEncryptedGenericAllowed)
+                            return "EmailNotExist";
+                    }
+                    return null;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            LoginController.prototype.onAndroidAutoFill = function () {
+                var _this = this;
+                if (!('OTPCredential' in window)) {
+                    return;
+                }
+                if (this.isSmsSent) {
+                    console.log('called navigator');
+                    this.autoFillAc = new AbortController();
+                    navigator['credentials'].get({
+                        otp: { transport: ['sms'] },
+                        signal: this.autoFillAc.signal,
+                    })
+                        .then(function (res) { return _this.loginDetails.otp = res.code; })
+                        .catch(function (err) { return console.log({ navigatorCredetialsErr: err }); });
+                }
+            };
+            LoginController.prototype.isSafariOnMacOrIOS = function () {
+                var userAgent = navigator.userAgent.toLowerCase();
+                return userAgent.indexOf('safari') !== -1 && userAgent.indexOf('chrome') === -1
+                    && (userAgent.indexOf('mac os') !== -1 || userAgent.indexOf('iphone') !== -1 || userAgent.indexOf('ipad') !== -1);
+            };
+            LoginController.prototype.deleteAllCookies = function (domain) {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i];
+                    var name_1 = cookie.split('=')[0];
+                    name_1 = name_1.trim();
+                    if (name_1 && name_1 !== '') {
+                        document.cookie = name_1 + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + domain + "; path=/;";
+                    }
+                }
+                console.log('remove all cookies ');
+            };
+            LoginController.prototype.getSendType = function (sendType) {
+                if (sendType == 0) {
+                    return 'SMS';
+                }
+                else if (sendType == 1) {
+                    return 'Email';
+                }
+                return;
+            };
+            LoginController.prototype.flipView = function () {
+                if ($(".back").hasClass("nowInBack")) {
+                    if ($("#card").hasClass('flipped')) {
+                        $("#card").removeClass('flipped');
+                    }
+                    else {
+                        $("#card").addClass('flipped');
+                    }
+                    $(".back").removeClass("nowInBack");
+                    setTimeout(function () {
+                        $(".front").addClass("nowInBack");
+                    }, 500);
+                }
+                else {
+                    if ($("#card").hasClass('flipped')) {
+                        $("#card").removeClass('flipped');
+                    }
+                    else {
+                        $("#card").addClass('flipped');
+                    }
+                    $(".front").removeClass("nowInBack");
+                    setTimeout(function () {
+                        $(".back").addClass("nowInBack");
+                    }, 500);
+                }
+            };
+            LoginController.prototype.getIsracardFbMessenger = function () {
+                window.open(whatsappBubbleLink);
+            };
+            LoginController.prototype.getAmexFbMessenger = function () {
+                window.open(whatsappBubbleLink);
+            };
+            LoginController.prototype.getMessenger = function () {
+                switch (currentSite) {
+                    case "isracard":
+                        return this.getIsracardFbMessenger();
+                    case "amex":
+                        return this.getAmexFbMessenger();
+                    default:
+                        return null;
+                }
+            };
+            LoginController.prototype.getLoginCookie = function () {
+                var value = "; " + document.cookie;
+                var parts = value.split("; lastLogin=");
+                if (parts.length == 2)
+                    return parts.pop().split(";").shift();
+            };
+            LoginController.prototype.setLoginCookie = function (toPassword) {
+                this.deleteCookie();
+                var date = new Date();
+                //set expiration to 14 days
+                date.setTime(date.getTime() + (14 * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toUTCString();
+                document.cookie = "lastLogin=" + (toPassword ? "password" : "sms") + expires;
+            };
+            LoginController.prototype.deleteCookie = function () {
+                document.cookie = 'lastLogin' + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            };
+            LoginController.prototype.setInitialDisplay = function () {
+                var _this = this;
+                this.HoverLoginMode('OTP', 'id');
+                this.inIdMode = true;
+                if (this.isGuidLogin) {
+                    var sendType = this.permStatus['PermissionStatusBean'].sendType;
+                    this.sendOtpRequest(false, sendType);
+                    this.isSmsSent = true;
+                    this.startWithPassword = false;
+                }
+                else {
+                    this.isOnPasswordSide = false;
+                    this.startWithPassword = this.isOnPasswordSide;
+                    this.setLoginCookie(this.startWithPassword);
+                }
+                //set focus on first control
+                this.$timeout(function () {
+                    var startInput = _this.startWithPassword ?
+                        document.getElementById('otpLoginId_ID') :
+                        document.getElementById('otpLoginId_SMS');
+                    startInput.focus();
+                }, 100);
+            };
+            LoginController.prototype.isOnMobile = function () {
+                var ua = navigator.userAgent, platform = navigator.platform;
+                if (platform.indexOf("iPhone") > -1 || platform.indexOf("iPad") > -1 || platform.indexOf("iPod") > -1) {
+                    //os = "ios";
+                    return true;
+                }
+                else if (ua.indexOf("Android") > -1) {
+                    //os = "android";
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
+            LoginController.prototype.initializePopups = function () {
+                //IVR
+                this.ivrPopup = {};
+                this.ivrPopup.id = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                this.ivrPopup.idType = this.inIdMode ? "1" : "4";
+                this.ivrPopup.countryCode = this.inIdMode ? this.defaultCountryCode : this.selectedCountry;
+                this.ivrPopup.cardNumber = this.loginDetails.card6Digits;
+                this.ivrPopup.onPopuClosed = this.onIvrPopuClosed;
+                //MAIL
+                this.sendOtpPopUpObj = {};
+                this.sendOtpPopUpObj.id = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                this.sendOtpPopUpObj.idType = this.inIdMode ? "1" : "4";
+                this.sendOtpPopUpObj.countryCode = this.inIdMode ? this.defaultCountryCode : this.selectedCountry;
+                this.sendOtpPopUpObj.cardNumber = this.loginDetails.card6Digits;
+                this.sendOtpPopUpObj.onPopuClosed = (this.isEncryptedGenericAllowed) ? this.OnMailGuidPopupClosed : this.onMailPopuClosed;
+            };
+            LoginController.prototype.onIvrPopuClosed = function (serviceResponse) {
+                if (serviceResponse) {
+                    var currentContext = angular.element(".modern-login-block").scope()["vm"];
+                    var res = new login.ServiceResponse(serviceResponse, "CallBackAddRequestBean");
+                    if (!res || !res.header || res.header.Status !== "1") {
+                        currentContext.ivrSendSuccess = -1;
+                    }
+                }
+                currentContext.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.CallBackAddRequest, false);
+                currentContext.ivrSendSuccess = (res.content.returnCode == "0") ? 1 : -1;
+            };
+            LoginController.prototype.onMailPopuClosed = function (serviceResponse) {
+                if (serviceResponse) {
+                    var currentContext = angular.element(".modern-login-block").scope()["vm"];
+                    var res = new login.ServiceResponse(serviceResponse, "SendOTPBean");
+                    //inspect result header
+                    if (!res || !res.header || res.header.Status !== "1") {
+                        currentContext.mailSendSuccess = -1;
+                    }
+                }
+                currentContext.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.SendOTP, false);
+                currentContext.mailSendSuccess = (res.content.returnCode == "0") ? 1 : -1;
+            };
+            LoginController.prototype.OnMailGuidPopupClosed = function (response) {
+                if (response) {
+                    var sendOtpResponse = response.data;
+                    var currentContext = angular.element(".modern-login-block").scope()["vm"];
+                    if (currentContext) {
+                        if (sendOtpResponse && sendOtpResponse.Header && sendOtpResponse.Header.Status === "-5")
+                            currentContext.mailSendSuccess = -1;
+                        else {
+                            if (sendOtpResponse && sendOtpResponse.Header && sendOtpResponse.Header.Status === "1" && sendOtpResponse.SendOTPBean.returnCode === "0")
+                                currentContext.mailSendSuccess = 1;
+                        }
+                    }
+                }
+            };
+            LoginController.prototype.rotateView = function (showPasswordSide) {
+                this.isOnPasswordSide = showPasswordSide;
+                var mode = this.inIdMode ? 'תעודת זהות' : '';
+                (showPasswordSide) ? this.HoverLoginMode('password', mode) : this.HoverLoginMode('OTP', mode);
+                //fix a11y issue
+                setTimeout(function () {
+                    $("#myTransition .connection-with-password-link:not(.nowInBack .connection-with-password-link)").focus();
+                }, 550);
+            };
+            LoginController.prototype.getCountries = function () {
+                var _this = this;
+                if (this.countries == null) {
+                    this.loginService.GetCountries().then(function (result) {
+                        if (result) {
+                            var res = new login.ServiceResponse(result, "KodeyEretzBean");
+                            _this.countries = res.content ? res.content.Table1 : [];
+                        }
+                    });
+                }
+            };
+            LoginController.prototype.initPasswordLogin = function () {
+                var _this = this;
+                if (this.isSubmitting)
+                    return;
+                this.isSubmitting = true;
+                this.serverErrorPassword = '';
+                this.notRegisterServerError = false;
+                var request = this.getValidateIdRequest(true);
+                this.loginService.ValidateIdNoReg(request).then(function (response) {
+                    _this.isSubmitting = false;
+                    var res = new login.ServiceResponse(response, "ValidateIdDataNoRegBean");
+                    //inspect result header
+                    if (!res || !res.header || res.header.Status !== "1") {
+                        _this.serverErrorPassword = _this.validationMessages.generalErrorText;
+                        PushGACode({
+                            'PersonalZonePermanentPasswordEnterFailName': _this.validationMessages.generalErrorText,
+                            'event': 'PersonalZonePermanentPasswordEnterFail'
+                        });
+                        return;
+                    }
+                    var performIsRegisteredRequest = new login.PerformIsRegisteredRequest();
+                    performIsRegisteredRequest.id = _this.loginDetails.id;
+                    performIsRegisteredRequest.idType = _this.inIdMode ? "1" : "4";
+                    //this.loginDetails.userName = res.content.userName;
+                    _this.performLoginRequest.KodMishtamesh = _this.loginDetails.userName;
+                    _this.performLoginRequest.MisparZihuy = _this.inIdMode ? _this.loginDetails.id : _this.loginDetails.passport;
+                    _this.performLoginRequest.countryCode = _this.getCountryCode();
+                    _this.performLoginRequest.idType = _this.inIdMode ? "1" : "4";
+                    _this.performLoginRequest.Sisma = _this.loginDetails.password;
+                    _this.performLoginRequest.cardSuffix = _this.loginDetails.card6Digits;
+                    //inspect response return code
+                    switch (res.content.returnCode) {
+                        case "1":
+                            //validate ID success - perform login
+                            //generate login request
+                            _this.loginService.ValidateIsRegistered(performIsRegisteredRequest, "IsRegisterNoReg").then(function (response) {
+                                if (response.data.IsRegisterNoRegBean.returnCode == "7") {
+                                    _this.notRegisterServerError = true;
+                                    _this.serverErrorPassword = (res.content && res.content.message) ? res.content.message : _this.validationMessages.userWithNoPasswordErrorText;
+                                    _this.resetForm(_this.otpLobbyFormPassword);
+                                    return;
+                                }
+                                else {
+                                    var loginRequest = new login.LoginRequest();
+                                    loginRequest.KodMishtamesh = _this.loginDetails.userName;
+                                    loginRequest.MisparZihuy = _this.inIdMode ? _this.loginDetails.id : _this.loginDetails.passport;
+                                    loginRequest.countryCode = _this.getCountryCode();
+                                    loginRequest.idType = _this.inIdMode ? "1" : "4";
+                                    loginRequest.Sisma = _this.loginDetails.password;
+                                    loginRequest.cardSuffix = _this.loginDetails.card6Digits;
+                                    loginRequest.isGoogleCaptcha = true;
+                                    if (_this.captchaRequiredPassword) {
+                                        loginRequest.instanceId = _this.VcRecaptchaRequiredPassword.response;
+                                    }
+                                    //perform the login operation
+                                    _this.loginService.login(loginRequest, currentLogonServiceName).then(function (response) {
+                                        var responseData = response.data;
+                                        if (responseData.isCaptcha == "true") {
+                                            _this.captchaRequiredPassword = true;
+                                        }
+                                        switch (responseData.status) {
+                                            case "1":
+                                                //login success
+                                                _this.loginSuccess = true;
+                                                _this.setLoginCookie(true);
+                                                if (urlRedirect) {
+                                                    PushGACode({
+                                                        'event': 'PersonalZonePermanentPasswordEnterSuccess'
+                                                    });
+                                                    //--marketingApprovalPopup                                                
+                                                    if (responseData.lastLoginDate) {
+                                                        var lastLoginDaysDiff = _this.validateLastLogin(responseData.lastLoginDate.toString());
+                                                        var epiMinDays = _this.epiData.MinNumDays !== null ? parseInt(_this.epiData.MinNumDays) : -1;
+                                                        if (epiMinDays < lastLoginDaysDiff) {
+                                                            window.localStorage.setItem("ls_marketingApprovalPopup", "true");
+                                                        }
+                                                        else {
+                                                            window.localStorage.setItem("ls_marketingApprovalPopup", "false");
+                                                        }
+                                                    }
+                                                    //---------
+                                                    if (urlRedirect && window.location.href.indexOf("returnUrl") > 0 && window.location.href.indexOf("service.americanexpress") > 0) {
+                                                        try {
+                                                            if (location.href.split('returnUrl=')) {
+                                                                urlRedirect = location.href.split('returnUrl=')[1].replace("#/", "#");
+                                                                urlRedirect = urlRedirect.replace("https:/s", "https://s");
+                                                            }
+                                                        }
+                                                        catch (e) {
+                                                        }
+                                                    }
+                                                    _this.antiXssRedirect(urlRedirect);
+                                                }
+                                                else {
+                                                    window.location.href = "/";
+                                                }
+                                                break;
+                                            case "3":
+                                                _this.isPasswordExpired = true;
+                                                PushGACode({
+                                                    'event': 'PersonalZoneChangePasswordStep1'
+                                                });
+                                                angular.element("#card").removeClass("flipped");
+                                                break;
+                                            case "2":
+                                            default:
+                                                PushGACode({
+                                                    'PersonalZonePermanentPasswordEnterFailName': responseData.message,
+                                                    'event': 'PersonalZonePermanentPasswordEnterFail'
+                                                });
+                                                _this.resetForm(_this.otpLobbyFormPassword);
+                                                _this.serverErrorPassword = responseData.message;
+                                                break;
+                                        }
+                                    });
+                                }
+                            });
+                            break;
+                        case "4":
+                            //password expired
+                            _this.performLoginRequest.Sisma = "";
+                            _this.isPasswordExpired = true;
+                            $('#PasswordExpiredSecondTtl').focus();
+                            angular.element("#card").removeClass("flipped");
+                            break;
+                        case "49":
+                            //password expired
+                            _this.performLoginRequest.Sisma = "";
+                            _this.isPasswordExpired = true;
+                            _this.serverErrorPassword = _this.validationMessages.userWithNoPasswordErrorText;
+                            _this.resetForm(_this.otpLobbyFormPassword);
+                            break;
+                        case "7":
+                            _this.notRegisterServerError = true;
+                            _this.serverErrorPassword = res.content.message;
+                            _this.resetForm(_this.otpLobbyFormPassword);
+                            break;
+                        default:
+                            if (res.content.returnCode == "5") {
+                                PushGACode({
+                                    'PersonalZoneLockedAccountLoginFailName': 'PermanentPassword',
+                                    'event': 'PersonalZoneLockedAccountLoginFail'
+                                });
+                            }
+                            _this.resetForm(_this.otpLobbyFormPassword);
+                            _this.serverErrorPassword = res.content.message;
+                            _this.captchaRequiredPassword = (_this.captchaRequiredPassword || res.content.isCaptcha == "true");
+                            break;
+                    }
+                }).finally(function () {
+                    if (!_this.loginSuccess)
+                        _this.isSubmitting = false;
+                    if (_this.captchaRequiredPassword) {
+                        _this.vcRecaptchaService.reload(_this.VcRecaptchaRequiredPassword.widgetId);
+                    }
+                });
+            };
+            LoginController.prototype.resetForm = function (form) {
+                this.loginDetails = new login.LoginDetails();
+                form.$setPristine();
+                form.$setUntouched();
+                form.$submitted = false;
+            };
+            LoginController.prototype.initSmsLogin = function () {
+                var _this = this;
+                if (this.isSubmitting)
+                    return;
+                this.isSubmitting = true;
+                this.serverErrorOtp1 = '';
+                var request = this.getValidateIdRequest(false);
+                this.loginService.ValidateIdNoReg(request).then(function (response) {
+                    _this.isSubmitting = false;
+                    var res = new login.ServiceResponse(response, "ValidateIdDataNoRegBean");
+                    //inspect result header
+                    if (!res || !res.header || res.header.Status !== "1") {
+                        _this.serverErrorOtp1 = _this.validationMessages.generalErrorText;
+                        PushGACode({
+                            'PersonalZoneSMSLoginEnterFailName': _this.validationMessages.generalErrorText,
+                            'event': 'PersonalZoneSMSLoginEnterFail'
+                        });
+                        return;
+                    }
+                    _this.captchaRequiredOtp1 = (_this.captchaRequiredOtp1 || res.content.isCaptcha == "true");
+                    //this.loginDetails.userName = res.content.userName;
+                    //inspect response return code
+                    switch (res.content.returnCode) {
+                        //success
+                        case "1":
+                        case "4":
+                            _this.captchaRequiredOtp1 = false;
+                            //clear captcha entries
+                            _this.loginDetails.userInputSms = _this.loginDetails.userInputPassword = "";
+                            _this.getOtpScreen();
+                            //PushGACode({
+                            //    'event': 'PersonalZoneSMSLoginStep1'
+                            //});
+                            _this.sendOtpRequest(false);
+                            break;
+                        default:
+                            if (res.content.returnCode == "5") {
+                                PushGACode({
+                                    'PersonalZoneLockedAccountLoginFailName': 'SMSLogin',
+                                    'event': 'PersonalZoneLockedAccountLoginFail'
+                                });
+                            }
+                            else {
+                                PushGACode({
+                                    'PersonalZoneSMSLoginEnterFailName': res.content.message,
+                                    'event': 'PersonalZoneSMSLoginEnterFail'
+                                });
+                            }
+                            _this.serverErrorOtp1 = res.content.message;
+                            _this.isSubmitting = false;
+                            break;
+                    }
+                }).catch(function (reason) {
+                    _this.isSubmitting = false;
+                }).finally(function () {
+                    if (_this.captchaRequiredOtp1) {
+                        _this.vcRecaptchaService.reload(_this.VcRecaptchaRequiredOtp1.widgetId);
+                    }
+                });
+            };
+            LoginController.prototype.performLoginOtp = function () {
+                var _this = this;
+                var loginRequest;
+                if (this.isGuidLogin) {
+                    loginRequest = new login.performGuidLoginOtpRequest();
+                    loginRequest.KodEretz = this.permStatus['PermissionStatusBean'].idCountry;
+                    loginRequest.KodMedina = this.permStatus['PermissionStatusBean'].idCountry;
+                    loginRequest.countryCode = this.permStatus['PermissionStatusBean'].idCountry;
+                }
+                else {
+                    loginRequest = new login.performLogonOTPRequest();
+                    loginRequest.MisparZihuy = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                    loginRequest.KodZihuy = this.loginDetails.idType;
+                    loginRequest.KodMishtamesh = this.loginDetails.userName;
+                    loginRequest.idType = this.inIdMode ? "1" : "4";
+                    loginRequest.cardSuffix = this.loginDetails.card6Digits;
+                    loginRequest.instanceId = this.captchaRequiredOtp2 ? this.VcRecaptchaRequiredOtp2.response : loginRequest.instanceId;
+                    loginRequest.KodEretz = this.loginDetails.countryCode;
+                    loginRequest.countryCode = this.loginDetails.countryCode;
+                }
+                if (this.isEncryptedGenericAllowed) {
+                    var guid = this.GetParametersFromUrl("guid");
+                    if (guid)
+                        loginRequest = new auth.login.CustomerLogonOtpRequest(guid);
+                    else if (this.isGuidLogin) {
+                        loginRequest = new auth.login.CustomerValidateOtpRequest("");
+                    }
+                    else
+                        loginRequest = new auth.login.CustomerValidateOtpNoRegRequest("");
+                }
+                loginRequest.isGoogleCaptcha = true;
+                this.isSubmitting = true;
+                this.loginService.loginOtp(loginRequest).then(function (logonOTPResponseFull) {
+                    _this.isSubmitting = false;
+                    var logonOTPResponse = logonOTPResponseFull.data;
+                    if (logonOTPResponseFull && logonOTPResponseFull.data.Header) {
+                        logonOTPResponse = logonOTPResponseFull.data.PerformLogonBean;
+                        var currentWindow = window;
+                        currentWindow.urlRedirect = logonOTPResponse.url;
+                    }
+                    switch (logonOTPResponse.status) {
+                        case "1":
+                            if (urlRedirect) {
+                                //--marketingApprovalPopup
+                                if (logonOTPResponse.lastLoginDate) {
+                                    var lastLoginDaysDiff = _this.validateLastLogin(logonOTPResponse.lastLoginDate.toString());
+                                    var epiMinDays = _this.epiData.MinNumDays !== null ? parseInt(_this.epiData.MinNumDays) : -1;
+                                    if (epiMinDays < lastLoginDaysDiff) {
+                                        window.localStorage.setItem("ls_marketingApprovalPopup", "true");
+                                    }
+                                    else {
+                                        window.localStorage.setItem("ls_marketingApprovalPopup", "false");
+                                    }
+                                }
+                                //GA
+                                _this.localFeaturesService.PushGaCodeForLogin(_this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Success' : 'PersonalZoneSMSLoginStep2Success');
+                                //isEncrypted
+                                if (!_this.isEncryptedGenericAllowed) {
+                                    if (urlRedirect && window.location.href.indexOf("returnUrl") > 0 && window.location.href.indexOf("service.americanexpress") > 0) {
+                                        try {
+                                            if (location.href.split('returnUrl=')) {
+                                                urlRedirect = location.href.split('returnUrl=')[1].replace("#/", "#");
+                                                urlRedirect = urlRedirect.replace("https:/s", "https://s");
+                                            }
+                                        }
+                                        catch (e) { }
+                                    }
+                                }
+                                var urlToDecode = "";
+                                //openBankingLogic
+                                if (!_this.checkSessionStorageExpired() && sessionStorage.getItem("openBankingQueryString") && (urlRedirect.toLowerCase().indexOf("openbanking") > 0)) {
+                                    var tppClientId = "";
+                                    var item = sessionStorage.getItem("openBankingQueryString");
+                                    if (item) {
+                                        tppClientId = JSON.parse(item).data;
+                                    }
+                                    var openBankUrl = urlRedirect.charAt(urlRedirect.length - 1) == "/" ? urlRedirect.substring(0, urlRedirect.length - 1) + "?" + tppClientId : urlRedirect + "?" + tppClientId;
+                                    urlToDecode = openBankUrl;
+                                    sessionStorage.removeItem("openBankingQueryString");
+                                }
+                                else {
+                                    urlToDecode = urlRedirect;
+                                }
+                                _this.antiXssRedirect(urlToDecode);
+                            }
+                            else {
+                                window.location.href = "/";
+                            }
+                            break;
+                        case "3":
+                            if (_this.isEncryptedGenericAllowed) {
+                                var url = _this.$location.absUrl();
+                                var urlParts = url.split("?");
+                                if (urlParts) {
+                                    var guid = _this.GetParametersFromUrl("guid");
+                                    var wizStatusID = _this.GetParametersFromUrl("permissionInd");
+                                    if (guid && wizStatusID && logonOTPResponseFull.data && logonOTPResponseFull.data.PerformlogonBean) {
+                                        var redirectUrl = "";
+                                        if (logonOTPResponseFull.data.PerformlogonBean.returnCode != "0")
+                                            redirectUrl = urlParts[0] + "?guid=" + guid + "&WizStatusId=" + wizStatusID + "&ErrorCode=" + logonOTPResponseFull.data.PerformlogonBean.returnCode;
+                                        else
+                                            redirectUrl = urlParts[0] + "?guid=" + guid + "&WizStatusId=" + wizStatusID;
+                                        _this.antiXssRedirect(redirectUrl);
+                                    }
+                                }
+                            }
+                            else {
+                                //password expired
+                                _this.isPasswordExpired = true;
+                                angular.element("#card").removeClass("flipped");
+                            }
+                            _this.loginDetails.otp = "";
+                            _this.isSubmitting = false;
+                            break;
+                        default:
+                            _this.serverErrorOtp2 = logonOTPResponse.message;
+                            var msgName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1FailName';
+                            var eventName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1Fail';
+                            _this.localFeaturesService.PushGaCodeForLogin(eventName, msgName, logonOTPResponse.message);
+                            _this.loginDetails.otp = "";
+                            _this.isSubmitting = false;
+                            _this.registerInfoFormError = _this.validationMessages.loginFailedWithRedirect;
+                            break;
+                    }
+                }).catch(function (reason) {
+                    _this.loginDetails.otp = "";
+                    _this.isSubmitting = false;
+                }).finally(function () {
+                    if (!_this.loginSuccess)
+                        //todo - popup
+                        _this.isSubmitting = false;
+                });
+            };
+            LoginController.prototype.loginOtp = function () {
+                var _this = this;
+                if (this.isSubmitting)
+                    return;
+                this.isSubmitting = true;
+                if (this.autoFillAc) {
+                    this.autoFillAc.abort();
+                    this.autoFillAc = null;
+                }
+                var validateOtpNoRegRequest;
+                if (this.isGuidLogin) {
+                    validateOtpNoRegRequest = new login.validateOTPNoRegGuidLoginRequest();
+                    validateOtpNoRegRequest.kodChevra = this.permStatus['PermissionStatusBean'].companyId;
+                    validateOtpNoRegRequest.countryCode = this.permStatus['PermissionStatusBean'].idCountry;
+                }
+                else {
+                    validateOtpNoRegRequest = new login.validateOTPNoRegRequest();
+                    validateOtpNoRegRequest.cardSuffix = this.loginDetails.card6Digits;
+                    validateOtpNoRegRequest.id = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                    validateOtpNoRegRequest.idType = this.inIdMode ? "1" : "4";
+                    validateOtpNoRegRequest.kodChevra = companyServiceCode;
+                    validateOtpNoRegRequest.countryCode = this.getCountryCode();
+                }
+                if (this.isEncryptedGenericAllowed) {
+                    var guid = this.GetParametersFromUrl("guid");
+                    if (guid)
+                        validateOtpNoRegRequest = new auth.login.CustomerValidateOtpNoRegRequest(this.loginDetails.otp, guid);
+                    else
+                        validateOtpNoRegRequest = new auth.login.CustomerValidateOtpNoRegRequest(this.loginDetails.otp);
+                }
+                else {
+                    validateOtpNoRegRequest.otp = this.loginDetails.otp;
+                    validateOtpNoRegRequest.isGoogleCaptcha = true;
+                    validateOtpNoRegRequest.instanceId = this.captchaRequiredOtp2 ? this.VcRecaptchaRequiredOtp2.response : validateOtpNoRegRequest.instanceId;
+                }
+                //this.loginService.ValidateOtp(validateOtpRequest).then((response) => {
+                this.loginService.ValidateOtpNoReg(validateOtpNoRegRequest, this.isGuidLogin).then(function (response) {
+                    _this.isSubmitting = false;
+                    var res = undefined;
+                    if (_this.isGuidLogin) {
+                        res = new login.ServiceResponse(response, "ValidateOTPBean");
+                    }
+                    else {
+                        res = new login.ServiceResponse(response, "ValidateOTPNoRegBean");
+                    }
+                    //inspect result header
+                    if (!res || !res.header || res.header.Status !== "1") {
+                        _this.serverErrorOtp2 = _this.validationMessages.generalErrorText;
+                        var msgName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1FailName';
+                        var eventName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1Fail';
+                        _this.localFeaturesService.PushGaCodeForLogin(eventName, msgName, _this.serverErrorOtp2);
+                    }
+                    if (_this.isGuidLogin) {
+                        _this.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.ValidateOTP, false);
+                    }
+                    else {
+                        _this.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.ValidateLoginOtpNoReg, false);
+                    }
+                    _this.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.ValidateOTP, false);
+                    //Inform whatsapp when OTP faild - only for el with permissionInd = 15
+                    if (_this.isGuidLogin) {
+                        var permissionInd = _this.GetParametersFromUrl("permissionInd");
+                        if (permissionInd != null && permissionInd == "15") {
+                            if (res.content.returnCode == "1" || res.content.returnCode == "33" || res.content.returnCode == "34") {
+                                var guid = _this.GetParametersFromUrl("guid");
+                                _this.loginService.StartWhatsappConversation(guid, permissionInd);
+                            }
+                        }
+                    }
+                    switch (res.content.returnCode) {
+                        case "9":
+                            _this.loginDetails.otp = "";
+                            if (_this.isEncryptedGenericAllowed)
+                                break;
+                        case "0":
+                            // success OTP
+                            _this.otpSuccess();
+                            _this.performLoginOtp();
+                            break;
+                        case "7":
+                            //success OTP and Unregister user
+                            _this.isSubmitting = true;
+                            _this.otpSuccess();
+                            _this.SelectCustomerContanctDetails().then(function (response) {
+                                _this.isSubmitting = false;
+                                var currentResponse = response.data;
+                                if (currentResponse && currentResponse[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()]) {
+                                    _this.customerContactDetailsSelectResponse = currentResponse[app.Common.DigitalServicesModule.Constants.ContanctDetails.toBean()];
+                                    if (_this.customerContactDetailsSelectResponse.showAdvertisingCode != '1') {
+                                        _this.advertisingCode = true;
+                                    }
+                                    else {
+                                        _this.advertisingCode = false;
+                                    }
+                                    _this.isSubmitting = true;
+                                }
+                                _this.SelectClientOnlineBanking().then(function (response1) {
+                                    _this.isSubmitting = false;
+                                    _this.CheckboxScreenNewLogin('OTP');
+                                    var currentResponse1 = response1.data;
+                                    if (currentResponse1 && currentResponse1[app.Common.DigitalServicesModule.Constants.ClientOnlineBanking.toBean()]) {
+                                        _this.clientOnlineBankingSelectResponse = currentResponse1[app.Common.DigitalServicesModule.Constants.ClientOnlineBanking.toBean()];
+                                        if (_this.clientOnlineBankingSelectResponse.returnCode == "-1") {
+                                            _this.isSubmitting = false;
+                                            _this.serverErrorOtp2 = _this.validationMessages.generalErrorText;
+                                            return;
+                                        }
+                                        if (_this.clientOnlineBankingSelectResponse && _this.clientOnlineBankingSelectResponse.showBankingComm != '1') {
+                                            _this.showChannelsSection = true;
+                                        }
+                                        else {
+                                            _this.isSubmitting = false;
+                                        }
+                                    }
+                                    _this.isSubmitting = false;
+                                    _this.isAgreementSection = true;
+                                });
+                            });
+                            //this.isAgreementSection = true;
+                            break;
+                        default:
+                            var msgName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1FailName';
+                            var eventName = _this.isGuidLogin ? 'DetailsTransactionsShortProcessStep1Fail' : 'PersonalZoneSMSLoginStep1Fail';
+                            _this.localFeaturesService.PushGaCodeForLogin(eventName, msgName, _this.validationMessages.generalErrorText);
+                            _this.serverErrorOtp2 = res.content.message;
+                            _this.loginDetails.otp = "";
+                            _this.captchaRequiredOtp2 = (_this.captchaRequiredOtp2 || res.content.isCaptcha == "true");
+                            break;
+                    }
+                }).catch(function (reason) {
+                    _this.serverErrorOtp2 = _this.validationMessages.generalErrorText;
+                    _this.isSubmitting = false;
+                }).finally(function () {
+                    if (!_this.loginSuccess)
+                        _this.isSubmitting = false;
+                    if (_this.captchaRequiredOtp2) {
+                        _this.vcRecaptchaService.reload(_this.VcRecaptchaRequiredOtp2.widgetId);
+                    }
+                });
+            };
+            LoginController.prototype.getIsRegisteredRequest = function () {
+                var request = new login.ValidateIdRequest();
+                request.id = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                return request;
+            };
+            LoginController.prototype.getValidateIdRequest = function (withPassword) {
+                var request = new login.ValidateIdRequest();
+                request.id = this.inIdMode ? this.loginDetails.id : this.loginDetails.passport;
+                request.idType = this.inIdMode ? "1" : "4"; // 1 - israeli passport, 4 - international passport
+                request.cardSuffix = this.loginDetails.card6Digits;
+                request.sisma = this.loginDetails.password;
+                request.checkLevel = "1";
+                request.companyCode = companyServiceCode;
+                request.countryCode = this.loginDetails.countryCode = this.getCountryCode();
+                request.isGoogleCaptcha = true;
+                if (withPassword && this.captchaRequiredPassword) {
+                    request.instanceId = this.VcRecaptchaRequiredPassword.response;
+                }
+                if (!withPassword && this.captchaRequiredOtp1) {
+                    request.instanceId = this.VcRecaptchaRequiredOtp1.response;
+                }
+                return request;
+            };
+            LoginController.prototype.sendOtpResponseHandler = function (response, sendType) {
+                var _this = this;
+                var res = new login.ServiceResponse(response, "SendOTPBean");
+                var smsMasked = res.content.smsMasked;
+                var emailMasked = res.content.emailMasked;
+                var customerOtpResponse = res;
+                var smsMasked = res.content.smsMasked;
+                var emailMasked = res.content.emailMasked;
+                var response = res;
+                if (!smsMasked) {
+                    smsMasked = response.content.SMSPhoneMasked;
+                }
+                else {
+                    console.log("smsMasked", smsMasked);
+                }
+                if (!emailMasked) {
+                    emailMasked = response.content.EmailMasked;
+                }
+                else {
+                    console.log("emailMasked", emailMasked);
+                }
+                this.otpCodeDetails.maskedSms = smsMasked;
+                this.otpCodeDetails.maskedEmail = emailMasked;
+                if (res && res.header && res.header.Status == "1" && res.content.returnCode == "0") {
+                    this.loginDetails.maskedSms = smsMasked;
+                    this.loginDetails.maskedEmail = emailMasked;
+                    this.manageOtpLinksDisplay(res, app.Common.DigitalServicesModule.Constants.SendOTP, sendType == login.SendOtpType.Email);
+                    !this.isGuidLogin && PushGACode({ 'event': 'PersonalZoneSMSLoginEnterSuccess' });
+                    this.initializePopups();
+                    this.smsSendSuccess = (res.content.returnCode == "0") ? 1 : -1;
+                    this.smsFade = true;
+                    this.isSmsSent = true;
+                    this.$timeout(function () {
+                        var input = document.getElementById('otpInput');
+                        input.focus();
+                    }, 100);
+                }
+                else {
+                    if (this.isEncryptedGenericAllowed) {
+                        var url = this.$location.absUrl();
+                        var urlParts = url.split("?");
+                        var guid = this.GetParametersFromUrl("guid");
+                        var wizStatusID = this.GetParametersFromUrl("permissionInd");
+                        var redirectUrl = null;
+                        if (guid && wizStatusID && res.header.Status !== "-5") {
+                            redirectUrl = urlParts[0] + "?guid=" + guid + "&WizStatusId=" + wizStatusID;
+                            if (res.content.returnCode !== "2")
+                                redirectUrl = redirectUrl + "&ErrorCode=" + res.content.returnCode;
+                            this.antiXssRedirect(redirectUrl);
+                        }
+                        else {
+                            this.initializePopups();
+                            this.serverErrorOtp1 = (res.content && res.content.message) ? res.content.message : this.validationMessages.generalErrorText;
+                            this.serverErrorOtp2 = (res.content && res.content.message) ? res.content.message : this.validationMessages.generalErrorText;
+                            this.isOtpDetailVisible = false;
+                            this.showSmsLink = (res.content.smsMasked) ? true : false;
+                            this.showIvrLink = false;
+                            this.showEmailLink = (res.content.emailMasked) ? true : false;
+                        }
+                    }
+                    else {
+                        var returnCodeRequest = new app.Common.ReturnCodesModule.ReturnCodeRequest(app.Common.DigitalServicesModule.Constants.SendOTP.toBean(), res.content.returnCode, "ErrorPageID");
+                        this.returnCodesService.getMessage(returnCodeRequest).then(function (response) {
+                            var msg = response["message"];
+                            if (msg == null || msg == "") {
+                                _this.serverErrorOtp1 = _this.validationMessages.generalErrorText;
+                                _this.serverErrorOtp2 = _this.validationMessages.generalErrorText;
+                            }
+                            else {
+                                _this.serverErrorOtp1 = msg;
+                                _this.serverErrorOtp2 = msg;
+                            }
+                        });
+                    }
+                }
+            };
+            LoginController.prototype.sendOtpRequest = function (isResend, sendType) {
+                var _this = this;
+                if (sendType === void 0) { sendType = login.SendOtpType.Sms; }
+                if (isResend && sendType == login.SendOtpType.Sms) {
+                    this.resendingSms = true;
+                }
+                var request;
+                if (this.isGuidLogin) {
+                    request = new auth.login.SendOtpGuidLoginRequest();
+                    request.countryCode = this.permStatus['PermissionStatusBean'].idCountry;
+                    request.kodChevra = this.permStatus['PermissionStatusBean'].companyId;
+                }
+                else {
+                    request = new auth.login.SendOTPRequest();
+                    request.id = (this.inIdMode ? this.loginDetails.id : this.loginDetails.passport);
+                    request.idType = this.inIdMode ? "1" : "4";
+                    request.cardSuffix = this.loginDetails.card6Digits;
+                    request.countryCode = this.getCountryCode();
+                    request.kodChevra = companyServiceCode;
+                }
+                if (this.isEncryptedGenericAllowed) {
+                    this.showIvrLink = false;
+                    this.globalHideForIvrAndMail = false;
+                    var url = this.$location.absUrl();
+                    var urlParts = url.split("?");
+                    var guid = this.GetParametersFromUrl("guid");
+                    if (guid)
+                        request = new auth.login.CustomerSendOtpGuidRequest(sendType.toString(), guid);
+                    else
+                        request = new auth.login.CustomerSendOtpGuidRequest(sendType.toString());
+                }
+                else {
+                    request.sendBySMS = (sendType == login.SendOtpType.Sms).toString();
+                    request.sendByEmail = (sendType == login.SendOtpType.Email).toString();
+                }
+                //send otp
+                this.isSubmitting = true;
+                this.loginService.SendOtp(request)
+                    .then(function (response) { _this.sendOtpResponseHandler(response, sendType); })
+                    .catch(function (reason) {
+                    _this.isSubmitting = false;
+                    _this.serverErrorOtp1 = _this.serverErrorOtp2 = _this.validationMessages.generalErrorText;
+                })
+                    .finally(function () {
+                    _this.resendingSms = _this.isSubmitting = false;
+                    _this.smsResent = (isResend && sendType == login.SendOtpType.Sms) ? true : _this.smsResent;
+                });
+            };
+            LoginController.prototype.getCountryCode = function () {
+                if (this.inIdMode) {
+                    return this.defaultCountryCode;
+                }
+                var cCode = this.selectedCountry == null ? this.defaultCountryCode : this.selectedCountry;
+                return cCode;
+            };
+            LoginController.prototype.reloadCaptchaImage = function (inputId) {
+                var captchaElemet = document.getElementById(inputId);
+                if (captchaElemet) {
+                    var captchaObj = captchaElemet["Captcha"];
+                    if (captchaObj) {
+                        captchaObj.ReloadImage();
+                    }
+                }
+            };
+            Object.defineProperty(LoginController.prototype, "MaskDetails", {
+                get: function () {
+                    return "";
+                },
+                enumerable: true,
+                configurable: true
+            });
+            LoginController.prototype.manageOtpLinksDisplay = function (serviceResponse, serviceName, sendingEmail) {
+                if (!!serviceName && serviceName == app.Common.DigitalServicesModule.Constants.SendOTP) {
+                    switch (serviceResponse.content.returnCode) {
+                        case "33": //fail
+                        case "99":
+                            this.showEmailLink = false;
+                            if (!sendingEmail) {
+                                this.showIvrLink = false;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    if (!this.otpCodeDetails.maskedSms && this.isEncryptedGenericAllowed)
+                        this.showSmsLink = false;
+                    if (!this.otpCodeDetails.maskedEmail) {
+                        this.showEmailLink = false;
+                    }
+                    if (!sendingEmail && !this.otpCodeDetails.maskedEmail || serviceResponse.content.smsMasked == "000") {
+                        this.showIvrLink = false;
+                    }
+                }
+                else if (serviceName == app.Common.DigitalServicesModule.Constants.ValidateOTP
+                    && (serviceResponse.content.returnCode == "33")) {
+                    this.showEmailLink = false;
+                    this.showIvrLink = false;
+                }
+            };
+            LoginController.prototype.isValidUrl = function (decodedUrl) {
+                try {
+                    if (decodedUrl.indexOf("https://") === 0 || decodedUrl.indexOf("http://") === 0 &&
+                        decodedUrl.split('/')[2].length > 2 &&
+                        decodedUrl.split('/')[2].match('[^A-Za-z0-9\.\-]') == null) {
+                        var subdomainToCheck = decodedUrl.split('/')[2];
+                        var domainToCheck = subdomainToCheck.split('.').length > 3 ?
+                            subdomainToCheck.replace(subdomainToCheck.split('.')[0] + ".", "") :
+                            subdomainToCheck;
+                        if (allowedDomainsForReturnUrl.indexOf(';' + domainToCheck + ';') !== -1) {
+                            return true;
+                        }
+                    }
+                }
+                catch (e) {
+                    console.log("error occured", e);
+                    return false;
+                }
+            };
+            return LoginController;
+        }());
+        LoginController.$inject = ["$scope", "loginService", "$location", "app.Common.ReturnCodesModule.Service", "app.Common.FeaturesModule.FeatureServices", "$timeout", "vcRecaptchaService"];
+        login.LoginController = LoginController;
+        angular.module("app.personalArea.authModule").controller("app.personalArea.authModule.loginController", LoginController);
+    })(login = auth.login || (auth.login = {}));
+})(auth || (auth = {}));
+//# sourceMappingURL=loginController.js.map;
+var auth;
+(function (auth) {
+    var login;
+    (function (login) {
+        var LoginService = (function () {
+            function LoginService(digitalServices) {
+                var _this = this;
+                this.digitalServices = digitalServices;
+                this.newRegisterRequest = {};
+                this.validateIdRequest = {};
+                //******************REGISTER******************
+                this.NewCustomerRegistration = function () {
+                    return _this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.NewCustomerRegistration, _this.newRegisterRequest);
+                };
+                this.GetCountries = function () {
+                    return _this.digitalServices.useSimpleGetHandler(app.Common.DigitalServicesModule.Constants.GetCountries, '');
+                };
+                ///******************DIGITAL CUSTOMER******************
+                this.CustomerContactDetails = function (data) {
+                    return _this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.MaskedContactDetails, data);
+                };
+                this.ClientOnlineBanking = function (data) {
+                    return _this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.ClientOnlineBanking, data);
+                };
+            }
+            LoginService.prototype.ValidateId = function (request) {
+                return this.digitalServices.useSimplePostHandlerJsoncontentType(app.Common.DigitalServicesModule.Constants.ValidateIdDataForLogin, request);
+            };
+            LoginService.prototype.ValidateIdNoReg = function (request) {
+                return this.digitalServices.useSimplePostHandlerJsoncontentType(app.Common.DigitalServicesModule.Constants.ValidateIdDataNoReg, request);
+            };
+            LoginService.prototype.ValidateIsRegistered = function (request, serviceName) {
+                //return this.digitalServices.useSimplePostHandlerJsoncontentType(app.Common.DigitalServicesModule.Constants.ValidateIsRegister, request);
+                return this.digitalServices.useSimplePostHandler(serviceName, request);
+            };
+            //login(request: classes.otpLogin.PerformLoginRequest, serviceName: string): ng.IPromise<any> {
+            LoginService.prototype.login = function (request, serviceName) {
+                return this.digitalServices.useSimplePostHandler(serviceName, request);
+            };
+            LoginService.prototype.loginOtp = function (request) {
+                var performLogonRequest = request;
+                if (performLogonRequest.LoginGuid)
+                    return this.digitalServices.usePostProcessServiceHandler("PerformLogon", ObjecttoParams(performLogonRequest), "CustomerOtpService", "");
+                var performLoginService = request instanceof login.performGuidLoginOtpRequest
+                    ? app.Common.DigitalServicesModule.Constants.PerformGuidLoginOtp
+                    : app.Common.DigitalServicesModule.Constants.PerformLogonOtpNoReg;
+                return this.digitalServices.useSimplePostHandler(performLoginService, request);
+            };
+            LoginService.prototype.SendOtp = function (request) {
+                var customerOtpRequest = request;
+                if (customerOtpRequest.OtpType)
+                    return this.digitalServices.usePostProcessServiceHandler("SendOtpGuid", ObjecttoParams(customerOtpRequest), "CustomerOtpService", "");
+                var sendOtpService = request instanceof login.SendOtpGuidLoginRequest
+                    ? app.Common.DigitalServicesModule.Constants.SendOtpGuidLogin
+                    : app.Common.DigitalServicesModule.Constants.SendOTP;
+                return this.digitalServices.useSimplePostHandler(sendOtpService, request);
+            };
+            LoginService.prototype.ValidateOtpNoReg = function (request, isguid) {
+                var customerOtpRequest = request;
+                if (customerOtpRequest.OtpCode)
+                    return this.digitalServices.usePostProcessServiceHandler("ValidateOtpGuid", ObjecttoParams(customerOtpRequest), "CustomerOtpService", "");
+                if (isguid)
+                    return this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.ValidateOtpGuidLogin, request);
+                var validateOtpNoRegService = request instanceof login.validateOTPGuidLoginRequest
+                    ? app.Common.DigitalServicesModule.Constants.ValidateOtpGuidLogin
+                    : app.Common.DigitalServicesModule.Constants.ValidateLoginOtpNoReg;
+                return this.digitalServices.useSimplePostHandler(validateOtpNoRegService, request);
+            };
+            LoginService.prototype.ValidateOtp = function (request) {
+                var customerOtpRequest = request;
+                if (customerOtpRequest.OtpCode)
+                    return this.digitalServices.usePostProcessServiceHandler("ValidateOtpGuid", ObjecttoParams(customerOtpRequest), "CustomerOtpService", "");
+                var validateOtpService = request instanceof login.validateOTPGuidLoginRequest
+                    ? app.Common.DigitalServicesModule.Constants.ValidateOtpGuidLogin
+                    : app.Common.DigitalServicesModule.Constants.ValidateLoginOtp;
+                return this.digitalServices.useSimplePostHandler(validateOtpService, request);
+            };
+            //In case of whatsapp login 
+            //Send OTP response to setWizzWhatsapp Java service.
+            //OtpResponseStatus 1 - otp success, OtpResponseStatus 0 - otp failed
+            //Status 1 - otp login success, Status 2 - otp login faild
+            //Token is static.
+            LoginService.prototype.StartWhatsappConversation = function (guid, permissionId) {
+                if (!guid) {
+                    return;
+                }
+                var whatsappServiceRequest = new login.WizzWhatsappRequest();
+                whatsappServiceRequest.userGuid = guid;
+                whatsappServiceRequest.status = 2;
+                return this.digitalServices.startWhatsappConversation(whatsappServiceRequest);
+            };
+            return LoginService;
+        }());
+        LoginService.$inject = ["app.Common.DigitalServicesModule.DigitalServices"];
+        login.LoginService = LoginService;
+        angular.module("app.personalArea.authModule").service("loginService", LoginService);
+    })(login = auth.login || (auth.login = {}));
+})(auth || (auth = {}));
+//# sourceMappingURL=loginService.js.map;

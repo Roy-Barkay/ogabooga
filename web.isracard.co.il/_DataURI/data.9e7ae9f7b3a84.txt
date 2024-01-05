@@ -1,0 +1,1 @@
+(function(){debugger;self.onmessage=function(e){self.postMessage("hi")}})()

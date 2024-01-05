@@ -1,0 +1,14 @@
+function _initializerDefineProperty(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+module.exports = _initializerDefineProperty;
+module.exports["default"] = module.exports, module.exports.__esModule = true;//# sourceURL=[module]
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTguanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9ub2RlX21vZHVsZXMvQGJhYmVsL3J1bnRpbWUvaGVscGVycy9pbml0aWFsaXplckRlZmluZVByb3BlcnR5LmpzP2M4NmYiXSwic291cmNlc0NvbnRlbnQiOlsiZnVuY3Rpb24gX2luaXRpYWxpemVyRGVmaW5lUHJvcGVydHkodGFyZ2V0LCBwcm9wZXJ0eSwgZGVzY3JpcHRvciwgY29udGV4dCkge1xuICBpZiAoIWRlc2NyaXB0b3IpIHJldHVybjtcbiAgT2JqZWN0LmRlZmluZVByb3BlcnR5KHRhcmdldCwgcHJvcGVydHksIHtcbiAgICBlbnVtZXJhYmxlOiBkZXNjcmlwdG9yLmVudW1lcmFibGUsXG4gICAgY29uZmlndXJhYmxlOiBkZXNjcmlwdG9yLmNvbmZpZ3VyYWJsZSxcbiAgICB3cml0YWJsZTogZGVzY3JpcHRvci53cml0YWJsZSxcbiAgICB2YWx1ZTogZGVzY3JpcHRvci5pbml0aWFsaXplciA/IGRlc2NyaXB0b3IuaW5pdGlhbGl6ZXIuY2FsbChjb250ZXh0KSA6IHZvaWQgMFxuICB9KTtcbn1cblxubW9kdWxlLmV4cG9ydHMgPSBfaW5pdGlhbGl6ZXJEZWZpbmVQcm9wZXJ0eTtcbm1vZHVsZS5leHBvcnRzW1wiZGVmYXVsdFwiXSA9IG1vZHVsZS5leHBvcnRzLCBtb2R1bGUuZXhwb3J0cy5fX2VzTW9kdWxlID0gdHJ1ZTsiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==
+//# sourceURL=webpack-internal:///18

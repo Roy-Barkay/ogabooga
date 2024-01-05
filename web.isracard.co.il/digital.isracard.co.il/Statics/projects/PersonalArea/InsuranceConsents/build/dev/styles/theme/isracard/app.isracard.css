@@ -1,0 +1,277 @@
+/*Assistant font-face family*/
+@font-face {
+  font-family: "Assistant";
+  font-weight: 200;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-ExtraLight.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-ExtraLight.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Assistant";
+  font-weight: 300;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-Light.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Assistant";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-Regular.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Assistant";
+  font-weight: 600;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-SemiBold.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-SemiBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Assistant";
+  font-weight: 700;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-Bold.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Assistant";
+  font-weight: 800;
+  font-display: swap;
+  src: url("/Statics/projects/DigitalCard/build/dev/assets/fonts/assistant/Assistant-ExtraBold.ttf") format("truetype"), url(/assets/fonts/assistant/Assistant-ExtraBold.ttf) format("truetype");
+}
+[dir] body {
+  font-family: "Assistant", sans-serif;
+}
+
+.wide-page {
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 800px) {
+  .wide-page {
+    width: 900px;
+    height: 700px;
+  }
+}
+@media (max-width: 500px) {
+  .wide-page {
+    width: 100%;
+  }
+}
+
+.modal-header .close {
+  color: gray;
+  font-size: 35px;
+}
+
+.showAsPageClass {
+  visibility: hidden !important;
+}
+
+.closeModal {
+  border-bottom: 1px solid white !important;
+  height: 40px;
+  padding-top: 2% !important;
+  background-color: white;
+  border-radius: 8px;
+}
+@media (min-width: 800px) {
+  .closeModal {
+    margin-right: 92% !important;
+  }
+}
+@media (max-width: 500px) {
+  .closeModal {
+    margin-right: 85% !important;
+    margin-top: 50%;
+  }
+}
+
+.closePage {
+  border-bottom: 1px solid white !important;
+  height: 70px;
+  padding-top: 2% !important;
+  background-color: white;
+  visibility: hidden;
+}
+
+.modal-backdrop.fade.show {
+  opacity: 0.5;
+}
+
+.modal-body {
+  padding: 0px;
+}
+.modal-body .img-div {
+  background-repeat: no-repeat;
+  width: 159px;
+  height: 105px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4%;
+  text-decoration: underline;
+  background-size: contain;
+}
+
+.modal-open {
+  padding-right: 0px !important;
+}
+.modal-open .modal {
+  opacity: 1 !important;
+  outline: 1px solid transparent;
+}
+
+.fade .modal-backdrop .show {
+  opacity: 0.5 !important;
+}
+
+.modal-dialog {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 800px) {
+  .modal-dialog {
+    width: 700px;
+    margin-top: 8%;
+  }
+}
+@media (max-width: 500px) {
+  .modal-dialog {
+    width: 100%;
+    margin-top: 3%;
+  }
+}
+
+.insuranceConsentModal {
+  text-align: center;
+  overflow: hidden;
+}
+@media (min-width: 800px) {
+  .insuranceConsentModal {
+    margin-top: 8%;
+  }
+}
+@media (max-width: 500px) {
+  .insuranceConsentModal {
+    margin-top: 15%;
+  }
+}
+.insuranceConsentModal .modal-content {
+  border-radius: 8px;
+}
+@media (min-width: 800px) {
+  .insuranceConsentModal .modal-content {
+    min-height: 600px;
+  }
+}
+@media (max-width: 500px) {
+  .insuranceConsentModal .modal-content {
+    width: 320x;
+    min-height: 45vh;
+  }
+}
+
+.insuranceWrapper {
+  background-color: white;
+  margin: 2% auto;
+  width: 87%;
+  text-align: center;
+  font-family: "Assistant";
+}
+.insuranceWrapper .insuranceImgWrapper .insuranceImg {
+  width: 139px;
+  height: 100px;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+.insuranceWrapper .insuranceContent {
+  width: 100%;
+  margin: 0 auto;
+}
+.insuranceWrapper .insuranceContent .insuranceMainHeader {
+  font-size: 26px;
+  font-weight: 600;
+}
+.insuranceWrapper .insuranceContent .insuranceSubHeader {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 31px;
+}
+.insuranceWrapper .insuranceContent .insuranceMainText {
+  font-size: 17px;
+  font-weight: 100;
+  font-weight: 300;
+}
+.insuranceWrapper .btnsWrapper {
+  outline: 1px solid white !important;
+  margin: 44px auto;
+}
+@media only screen and (min-width: 800px) {
+  .insuranceWrapper .btnsWrapper {
+    width: 69%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .insuranceWrapper .btnsWrapper {
+    width: 100%;
+  }
+}
+.insuranceWrapper .btnsWrapper .btnGeneric {
+  outline: 1px solid white !important;
+  width: 100%;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnApprove {
+  outline: 1px solid white !important;
+  display: block;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnApprove .btnLabel {
+  padding-top: 12px;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnApprove:hover {
+  text-decoration: none;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnCancel {
+  outline: 1px solid white !important;
+  display: block;
+  height: 50px;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  padding-top: 9px;
+  cursor: pointer;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnCancel .btnLabel {
+  padding-top: 12px;
+}
+.insuranceWrapper .btnsWrapper .btnGeneric .insuranceBtnCancel:hover {
+  text-decoration: none;
+}
+.insuranceWrapper .insuranceMainHeader {
+  color: #020d74;
+}
+.insuranceWrapper .insuranceSubHeader {
+  color: #020338;
+}
+.insuranceWrapper .insuranceMainText {
+  color: #020338;
+}
+
+.btnsWrapper .btnGeneric .insuranceBtnApprove {
+  background-color: #4338fc;
+  color: white;
+  border: 1px solid #4338fc;
+}
+.btnsWrapper .btnGeneric .insuranceBtnApprove:hover {
+  color: white;
+}
+.btnsWrapper .btnGeneric .insuranceBtnCancel {
+  background-color: white;
+  color: #4338fc;
+}
+.btnsWrapper .btnGeneric .insuranceBtnCancel:hover {
+  color: #4338fc;
+}

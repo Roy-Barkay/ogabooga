@@ -1,0 +1,272 @@
+(function () {
+    var app = angular.module('app.Common.FeaturesModule', ['app.Common.DigitalServicesModule']);
+})();
+/// <reference path="../DigitalServices/DigitalServiceRequests.ts" />
+var app;
+(function (app) {
+    var Common;
+    (function (Common) {
+        var FeaturesModule;
+        (function (FeaturesModule) {
+            'use strict';
+            // import CreditCardListResponse = app.Common.Features.Classes.CreditCardListResponse;
+            //  import ServiceConstants = app.Common.DigitalServicesModule.Constants;
+            var FeatureServices = (function () {
+                function FeatureServices(digitalServices, returnCodesService) {
+                    var _this = this;
+                    this.digitalServices = digitalServices;
+                    this.returnCodesService = returnCodesService;
+                    this.getCreditCards = function () {
+                        //return this.digitalServices.useGetHandler(ServiceConstants.CardsList_102Digital, "");
+                        if (_this.storedResults) {
+                            return _this.storedResults;
+                        }
+                        else {
+                            _this.storedResults = _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.CardsList_102Digital, "");
+                            return _this.storedResults;
+                        }
+                        //return this.digitalServices.useGetHandler(ServiceConstants.CardsList_102, "");
+                    };
+                    this.getCards = function (dataRequest) {
+                        return (_this.digitalServices.useGetHandler("GetCardsListForRepayment", ObjecttoParams(dataRequest)));
+                    };
+                    this.getCardMoreInfo = function (dataRequest) {
+                        return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.CardInfoEnrichment, ObjecttoParams(dataRequest));
+                    };
+                    this.ValidateCaptcha = function (captchaId, captchaInstanceId, userInput) {
+                        return _this.digitalServices.useGetHandlerExternal(app.Common.DigitalServicesModule.Constants.ValidateCaptchaUrl, "captchaId=" + captchaId + "&instanceId=" + captchaInstanceId + "&userInput=" + userInput);
+                    };
+                    this.ValidateGoogleRecaptcha = function (recaptchaResponse) {
+                        return _this.digitalServices.useGetHandlerExternal(app.Common.DigitalServicesModule.Constants.ValidateGoogleRecaptchaUrl, "recaptchaResponse=" + recaptchaResponse);
+                    };
+                    this.sendSmtpMail = function (dataRequest) {
+                        return _this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.sendSmtpMail, ObjecttoParams(dataRequest));
+                        // usePostHandler
+                    };
+                    this.CallBackAddReqest = function (data) {
+                        return _this.digitalServices.useSimpleGetHandler(app.Common.DigitalServicesModule.Constants.CallBackAddRequest, data);
+                    };
+                    this.SendSmtpMailByProcess = function (dataRequest, Id, serviceProcessName, isObjectToParams, isFileAttached) {
+                        if (isObjectToParams === void 0) { isObjectToParams = true; }
+                        if (isFileAttached === void 0) { isFileAttached = false; }
+                        if (isObjectToParams) {
+                            return _this.digitalServices.usePostProcessServiceHandler(app.Common.DigitalServicesModule.Constants.sendSmtpMail, ObjecttoParams(dataRequest), serviceProcessName, Id);
+                        }
+                        else {
+                            if (!isFileAttached) {
+                                return _this.digitalServices.usePostProcessServiceHandler(app.Common.DigitalServicesModule.Constants.sendSmtpMail, dataRequest, serviceProcessName, Id);
+                            }
+                            else {
+                                return _this.digitalServices.usePostProcessServiceFileHandler(app.Common.DigitalServicesModule.Constants.sendSmtpMail, dataRequest, serviceProcessName, Id);
+                            }
+                        }
+                    };
+                    this.getReturnCodeMessage = function (serviceName, returnCode) {
+                        _this.messageRequest.serviceName = serviceName;
+                        _this.messageRequest.returnCode = returnCode;
+                        return _this.returnCodesService.getMessage(_this.messageRequest).then(function (response) {
+                            var message = response["message"];
+                            if (message != null && message != "") {
+                                return message;
+                            }
+                            else {
+                                return _this.defaultServiceError;
+                            }
+                        });
+                    };
+                    this.GetInsuranceConsentData = function () {
+                        var serviceFullUrl = '/services/ProxyRequestHandler.ashx?reqName=' + app.Common.DigitalServicesModule.Constants.GetCustomerIsurentsConsent;
+                        return _this.digitalServices.usePostHandlerExternal(serviceFullUrl, "");
+                    };
+                    this.UpdateCardList = function () {
+                        return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.CardsList_102Digital, "sessionOp=CLEARSESSION");
+                    };
+                    this.OpswatFileUpload = function (data) {
+                        return _this.digitalServices.usePostProcessServiceFileHandler("", data, app.Common.DigitalServicesModule.Constants.OpswatFileUpload, "");
+                    };
+                    this.ValidateRecaptcha = function (captchaResponse) {
+                        var queryParams = "captchaResponse=" + captchaResponse;
+                        var response = _this.digitalServices.useGetHandlerExternal(app.Common.DigitalServicesModule.Constants.ValidateRecaptcha, queryParams);
+                        return response;
+                    };
+                    this.mfCreditPoolReqGet = function (queryParams) {
+                        return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.MfCreditPoolReq, ObjecttoParams(queryParams));
+                    };
+                    this.mfCreditPoolReqSet = function (queryParams) {
+                        return _this.digitalServices.useSimplePostHandler(app.Common.DigitalServicesModule.Constants.MfCreditPoolReq, queryParams);
+                    };
+                    this.pushGaCode = function (eventsPairs) {
+                        PushGACode(eventsPairs);
+                    };
+                    this.getCashBackEvent = function () {
+                        return _this.digitalServices.useGetHandler(app.Common.DigitalServicesModule.Constants.getCashBackEvent, "");
+                    };
+                    this.PushGaCodeForLogin = function (eventName, messageName, messageText) {
+                        var permStatus = window["permStatus"];
+                        var isGuidLogin = ((permStatus || {})["PermissionStatusBean"] || {})["returnCode"] === "0";
+                        var payload = isGuidLogin
+                            ? { "event": eventName, 'ProcessName': permStatus["PermissionStatusBean"].permissionLevel }
+                            : { "event": eventName };
+                        if (messageName && messageText) {
+                            payload[messageName] = messageText;
+                        }
+                        PushGACode(payload);
+                    };
+                }
+                return FeatureServices;
+            }());
+            FeatureServices.$inject = ["app.Common.DigitalServicesModule.DigitalServices", "app.Common.ReturnCodesModule.Service"];
+            FeaturesModule.FeatureServices = FeatureServices;
+            angular.module('app.Common.FeaturesModule').service('app.Common.FeaturesModule.FeatureServices', ["app.Common.DigitalServicesModule.DigitalServices", app.Common.FeaturesModule.FeatureServices]);
+        })(FeaturesModule = Common.FeaturesModule || (Common.FeaturesModule = {}));
+    })(Common = app.Common || (app.Common = {}));
+})(app || (app = {}));
+//# sourceMappingURL=services.js.map
+(function () {
+    var appFilter = angular.module("FilterModule", ['ngSanitize', 'ui.select']);
+})();
+var Uni;
+(function (Uni) {
+    var Directives;
+    (function (Directives) {
+        var uniFilter = (function () {
+            // Usage:
+            // <div uni-filter>
+            //must provide: card-index-model ='...' and holder-id-model = '...'
+            function uniFilter(featureService, $compile, $templateRequest) {
+                var _this = this;
+                this.featureService = featureService;
+                this.$compile = $compile;
+                this.$templateRequest = $templateRequest;
+                //Load default values into dropdowns time
+                this._fillCreditCardList = function (response) {
+                    //Init Data
+                    _this.availableCards = _this.availableCards.copyObj(response);
+                };
+                this.restrict = 'EA';
+                this.link = function (scope, element, attrs, ctrls) {
+                    var allCreditCards = _this.featureService.getCreditCards().then(function (results) {
+                        return results;
+                    }).then(function (results) {
+                        //clears the arrays--> this is very important to run here, otherwise it doesn't clear the array if the directice is called more than once
+                        _this.availableHolders = new Array();
+                        _this.availableCards = new app.Common.Features.Classes.CreditCardListResponse();
+                        //end clear
+                        _this._fillCreditCardList(results[app.Common.DigitalServicesModule.Constants.CardsList_102Digital.toBean()]);
+                        var grouped = groupBy(_this.availableCards.AllCards, "holderId");
+                        var holdersIds = "";
+                        for (var i = 0; i < grouped.length; i++) {
+                            //going over all group holders, taking only first from each group
+                            _this.availableHolders[i] = new app.Common.Features.Classes.GroupedCardList(grouped[i][0].userName, grouped[i][0].holderId);
+                            holdersIds = holdersIds + grouped[i][0].holderId + ", ";
+                            //going inside a group to get all the card indexes
+                            for (var j = 0; j < grouped[i].length; j++) {
+                                _this.availableHolders[i].cardIndexes.push(grouped[i][j].cardIndex);
+                            }
+                        }
+                        var cardsIds = "";
+                        for (var j = 0; j < _this.availableCards.AllCards.length; j++) {
+                            cardsIds = cardsIds + _this.availableCards.AllCards[j].cardIndex + ", ";
+                        }
+                        var allClientsRow = new app.Common.Features.Classes.GroupedCardList("כל הלקוחות", "");
+                        var allCardsRow = new app.Common.Features.Classes.CreditCardsList("כל הכרטיסים");
+                        allCardsRow.holderId = holdersIds;
+                        _this.availableHolders.unshift(allClientsRow);
+                        _this.availableCards.AllCards.unshift(allCardsRow);
+                        scope["nameTitle"] = 'נבחר כל הלקוחות';
+                        scope["cardTitle"] = 'נבחר כל הכרטיסים';
+                        scope["holdersIds"] = holdersIds;
+                        scope["allCards"] = _this.availableCards.AllCards;
+                        scope["holdersGroup"] = _this.availableHolders;
+                        scope["allCardsRow"] = allCardsRow;
+                        scope["allClientsRow"] = allClientsRow;
+                        scope["uniNameChange"] = function (selectedName) {
+                            $("#sr-only-alert-text").html(" נבחר " + selectedName);
+                            scope["nameTitle"] = " נבחר " + selectedName;
+                        };
+                        scope["uniCardChange"] = function (selectedHolderId, selectedHolderName) {
+                            $("#sr-only-alert-text").html(" נבחר " + selectedHolderName);
+                            scope["cardTitle"] = " נבחר " + selectedHolderName;
+                            var arr = attrs["holderIdModel"].split(".");
+                            if (!(selectedHolderId) || selectedHolderId == "" || selectedHolderId.indexOf(",") > 0) {
+                                selectedHolderId = "";
+                            }
+                            switch (arr.length) {
+                                case 1:
+                                    if (scope[arr[0]]) {
+                                        scope[arr[0]] = selectedHolderId;
+                                    }
+                                case 2:
+                                    if (scope[arr[0]]) {
+                                        scope[arr[0]][arr[1]] = selectedHolderId;
+                                    }
+                                    break;
+                                case 3:
+                                    if (scope[arr[0]] && scope[arr[0]][arr[1]]) {
+                                        scope[arr[0]][arr[1]][arr[2]] = selectedHolderId;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                            return true;
+                        };
+                        scope["keepFocusEnabled"] = function (select) {
+                            if (select.focusser)
+                                select.focusser.removeAttr("disabled");
+                            return;
+                        };
+                        //*** start template loading ***
+                        // this.$templateRequest(staticsDir + "/projects/Common/uniFilter/uniFilter.html?test="+Date.now().toFixed(), false).then((html) => {
+                        //   
+                        //
+                        // });   
+                        //replaceing html ng-model binds:
+                        var html = '<div class="custom-select-box">\
+                                <div class="ui-select-custom">\
+                                <ui-select ng-model="holderIdModel_replace"                   style="width: 100%;"     ng-attr-customtitle="{{nameTitle}}" title="בחר לקוח"                   ng-change="uniNameChange($select.selected.userName) && holderIdChange_replace"                  ng-disabled="disabled"                   onfocus="blur();"                   onkeypress="return false;" ng-click="keepFocusEnabled($select)" ng-keyup="keepFocusEnabled($select);">\
+                                <ui-select-match placeholder="כל הלקוחות">                {{$select.selected.userName}}            </ui-select-match>\
+                                <ui-select-choices  repeat="holder.holderId as holder in holdersGroup" ng-hide="!$select.open" null-option="allClientsRow" loose-null>\
+                                <div>{{holder.userName }}</div>\
+                                </ui-select-choices>\
+                                </ui-select>\
+                                </div>\
+                                </div>\
+                                <div class="custom-select-box">\
+                                <div class="ui-select-custom">\
+                                <ui-select ng-model="cardIndexModel_replace"                   style="width: 100%;"             ng-attr-customtitle="{{cardTitle}}" title="בחר כרטיס"                   ng-change="uniCardChange($select.selected.holderId, $select.selected.displayName()) && cardIndexChange_replace"                   ng-disabled="disabled"                   onfocus="blur();"                   onkeypress="return false;" ng-click="keepFocusEnabled($select)" ng-keyup="keepFocusEnabled($select);">\
+                                <ui-select-match placeholder="כל הכרטיסים">                {{$select.selected.displayName()}}            </ui-select-match>\
+                                <ui-select-choices repeat="card.cardIndex as card in allCards | filter:{cardName: $select.search, holderId: holderIdModel_replace}" ui-disable-choice="card.isActive == false" ng-hide="!$select.open" null-option="allClientsRow" loose-null>\
+                                <div style="display:inline-block;">\
+                                <span style="float:right; margin-left:5px;">{{card.cardName}} </span>\
+                                <span style="float:right; margin-left:5px;" ng-show="card.cardNumber">- {{card.cardNumber}}</span>\
+                                <span ng-show="card.isActive==false"> - מבוטל</span>\
+                                </div>\
+                                </ui-select-choices>\
+                                </ui-select>\
+                                </div>\
+                                </div>';
+                        html = html.replace(/holderIdModel_replace/g, attrs["holderIdModel"]).replace(/cardIndexModel_replace/g, attrs["cardIndexModel"]);
+                        if (attrs["holderIdChange"])
+                            html = html.replace(/holderIdChange_replace/g, attrs["holderIdChange"]);
+                        if (attrs["cardIndexChange"])
+                            html = html.replace(/cardIndexChange_replace/g, attrs["cardIndexChange"]);
+                        var template = angular.element(html);
+                        element.prepend(template);
+                        _this.$compile(element.contents())(scope);
+                    });
+                };
+                $("body").find("#sr-only-alert-text").remove();
+                $("body").append("<span id='sr-only-alert-text' class='sr-only' role='alert' aria-live=\"polite\"></span>");
+            }
+            return uniFilter;
+        }());
+        Directives.uniFilter = uniFilter;
+        angular
+            .module('FilterModule')
+            .directive('uniFilter', ['app.Common.FeaturesModule.FeatureServices', '$compile', '$templateRequest', function (featureServices, $compile, $templateRequest) { return new Uni.Directives.uniFilter(featureServices, $compile, $templateRequest); }]);
+        // .directive('uniTable', ['$templateRequest', '$compile', ($templateRequest, $compile) => { return new Uni.Directives.uniTable($templateRequest, $compile) }]);
+        // ******** End adding to module **********
+    })(Directives = Uni.Directives || (Uni.Directives = {}));
+})(Uni || (Uni = {}));
+//# sourceMappingURL=uniFilterDirective.js.map

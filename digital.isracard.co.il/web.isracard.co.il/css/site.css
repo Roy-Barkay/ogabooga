@@ -1,0 +1,127 @@
+/*general errors view*/
+[data-site] {
+    --primary-color: #4338fc;
+    --text-color: #020d74;
+}
+[data-site="amex"] {
+    --primary-color: #006fcf;
+    --text-color: #00175a;
+}
+
+
+.error-scrren {
+    overflow-y: hidden;
+    padding-top: 0;
+}
+
+    .error-scrren .main-app-container {
+        display: none;
+    }
+
+div#errorsview-general {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 99999;
+    box-shadow: 7px -2px 5px 0px #fafafa;
+    background-color: #fafafa;
+    text-align: center;
+    min-height: 100vh;
+    color: #4a4453;
+    font-size: 18px;
+}
+
+    div#errorsview-general .content {
+        margin: 5% 0% 1%;
+    }
+
+    div#errorsview-general .wrapper {
+        margin: 6% 0%;
+    }
+
+    .button {
+        color: white;
+        background-color: var(--primary-color);
+        width: 339px;
+        height: 50px;
+        display: flex;
+        border: 0px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .buttonPopap {
+        margin-top: 120px;
+        color: white;
+        background-color: var(--primary-color);
+        width: 339px;
+        height: 50px;
+        display: flex;
+        border: 0px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .errorspan {
+        font-size: 30px;
+        color: var(--text-color);
+        font-weight: bold;
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+@media (max-width: 768px) {
+    div #errorsview-general {
+        justify-content: flex-start;
+        padding-top: 30%;
+    }
+
+        div#errorsview-general #generalError {
+            margin: 16% 0%;
+        }
+}
+
+/* The Modal (background) */
+.modal {
+    align-items: center;
+    justify-content: center;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 60px;
+    border-radius: 8px;
+   /* border: 1px solid #888; */
+    width: 50%; /* Could be more or less, depending on screen size */
+    max-width: 514px;
+    height: 437px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

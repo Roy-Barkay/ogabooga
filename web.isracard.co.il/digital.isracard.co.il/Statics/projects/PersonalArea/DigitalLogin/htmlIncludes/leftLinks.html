@@ -1,0 +1,35 @@
+<h1 class="title">
+    <img src="/Statics/css/themes/isracard/img/modern-login/user-icon.png" title="" alt="" />
+    כניסה לחשבון שלי
+</h1>
+<div class="list-container">
+    <!--vm.loginDetails.id: {{vm.loginDetails.id}}<br />
+    vm.currentForm: {{vm.currentFormObj.$name}}-->
+    <h1 ng-bind="vm.epiData.PromotionTitle"></h1>
+    <ul>
+        <li ng-repeat="item in vm.epiData.promotionItems">
+            <div class="img-div">
+                <img ng-src="{{item.Value}}" title="" alt-="" />
+            </div>
+            <div class="text-div">{{item.Key}}</div>
+        </li>
+    </ul>
+
+    <!-- Design for the following -->
+
+
+</div>
+    <div class="light-border">
+
+    </div>
+    <div class="messenger-div" tabindex="0" arial-label="ישראכרט לשירותך במסנג'ר" role="button" ng-click="vm.getMessenger()">
+        <div class="img-div">
+            <img ng-src="{{vm.facebookMessengerObject.Value}}" title="" alt="" />
+        </div>
+        <div class='text-div'>
+        <span>
+        {{vm.facebookMessengerObject.Key}}
+        </span>    
+        </div>
+    </div>
+

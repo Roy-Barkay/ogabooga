@@ -1,0 +1,1 @@
+{"Header":{"Status":"1","Message":null},"GetCustomerGuidBean":{"id":"208598946","customerGUID":"4C7CBB889F3D15B5E053043F14AC5179","stage":null,"returnCode":null,"message":null,"returnMessage":null,"displayProperties":null,"tablePageNum":"0","isError":"false","isCaptcha":"false","isButton":"false","bcKey":null,"siteName":null,"requestNumber":null}}

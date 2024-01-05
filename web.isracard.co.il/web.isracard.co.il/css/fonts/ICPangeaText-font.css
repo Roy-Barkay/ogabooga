@@ -1,0 +1,37 @@
+/* TODO: remove css after global install */
+.ui-modal,
+.ui-main{
+    font-family: ICPangeaText;
+}
+
+/*  font-weight:300 -> Light */
+@font-face {
+    font-family: 'ICPangeaText';
+    src: url('ICPangeaText-LightWeb.woff2') format('woff2'), url('ICPangeaText-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*  font-weight:900 -> Medium */
+@font-face {
+    font-family: 'ICPangeaText';
+    src: url('ICPangeaText-MediumWeb.woff2') format('woff2'), url('ICPangeaText-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*  font-weight:400 -> Regular */
+@font-face {
+    font-family: 'ICPangeaText';
+    src: url('ICPangeaText-RegularWeb.woff2') format('woff2'), url('ICPangeaText-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*  font-weight:600 -> SemiBold */
+@font-face {
+    font-family: 'ICPangeaText';
+    src: url('ICPangeaText-SemiBoldWeb.woff2') format('woff2'), url('ICPangeaText-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
