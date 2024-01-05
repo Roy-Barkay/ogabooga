@@ -1,0 +1,12 @@
+{
+	"RLT Isolate unicode": {
+		"prefix": "rtlstart",
+		"body": ["\u2067"],
+		"description": "start unicode RTL Isolation"
+	},
+	"RLT Isolate unicode end": {
+		"prefix": "rtlend",
+		"body": ["\u2069"],
+		"description": "end unicode RTL Isolation"
+	},
+}

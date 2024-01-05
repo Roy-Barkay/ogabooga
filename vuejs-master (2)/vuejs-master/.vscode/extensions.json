@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "antfu.unocss",
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    "lokalise.i18n-ally"
+  ],
+  "unwantedRecommendations": [
+    "voorjaar.windicss-intellisense",
+    "bradlc.vscode-tailwindcss",
+    "octref.vetur"
+  ]
+}

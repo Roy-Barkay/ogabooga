@@ -1,0 +1,16 @@
+{
+  "eslint.format.enable": true,
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#f170a6",
+    "titleBar.activeForeground": "#fff",
+    "statusBar.background": "#f170a6",
+    "statusBar.foreground": "#fff"
+  },
+  "i18n-ally.keystyle": "flat",
+  "editor.renderControlCharacters": false,
+  "i18n-ally.sourceLanguage": "fa",
+  "i18n-ally.localesPaths": [
+    "src/datasource/I18n/translations"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+}
