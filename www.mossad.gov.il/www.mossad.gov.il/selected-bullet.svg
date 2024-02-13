@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>B5500F4F-6323-4CC2-A236-7F90153818B5</title>
+    <defs>
+        <linearGradient x1="-34.9949576%" y1="147.474508%" x2="326.656569%" y2="-180.432995%" id="linearGradient-1">
+            <stop stop-color="#03AAFE" offset="0%"></stop>
+            <stop stop-color="#2714FE" offset="22.9649257%"></stop>
+            <stop stop-color="#4717FF" offset="71.9842657%"></stop>
+            <stop stop-color="#7D1AFF" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-7.1%" y="-7.1%" width="114.3%" height="114.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-0.3%" y="-0.3%" width="100.5%" height="100.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-0.3%" y="-0.3%" width="100.7%" height="100.7%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-0.5%" y="-0.5%" width="101.1%" height="101.1%" filterUnits="objectBoundingBox" id="filter-5">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="About-Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="About-3---v4" transform="translate(-1773.000000, -388.000000)" stroke="url(#linearGradient-1)">
+            <g id="Side-Menu" transform="translate(1573.000000, 235.000000)">
+                <g id="Group-5" transform="translate(54.000000, 154.000000)">
+                    <g id="Group-10" transform="translate(147.000000, 0.000000)">
+                        <circle id="Oval-Copy-6" stroke-width="3" filter="url(#filter-2)" cx="48.5" cy="48.5" r="10.5"></circle>
+                        <circle id="Oval-Copy-7" stroke-width="0.5" opacity="0.100000001" filter="url(#filter-3)" cx="49" cy="49" r="49"></circle>
+                        <circle id="Oval-Copy-7" stroke-width="0.5" opacity="0.5" filter="url(#filter-4)" cx="49" cy="49" r="36"></circle>
+                        <circle id="Oval-Copy-7" stroke-width="0.5" filter="url(#filter-5)" cx="49" cy="49" r="23"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

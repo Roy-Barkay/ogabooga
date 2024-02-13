@@ -1,0 +1,220 @@
+.page-content.about-page {
+    background: url(/mapi.svg), url(/about-circles-bg.svg), url(/about-circles-bg.svg), url(/about-circles-bg.svg),
+        #222123;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    background-position: 0 0, 10rem 12rem, 26rem 14rem, 13rem 25rem, 50%;
+    background-size: 40%, 3.5%, 3.5%, 3.5%, 100%;
+}
+.about-tabs .react-tabs__tab-panel {
+    display: flex;
+}
+
+.about-tabs .react-tabs__tab-panel > div {
+    width: 100%;
+}
+
+.about-tabs .react-tabs__tab-panel img.about-icon {
+    max-width: 24rem;
+    max-height: 24rem;
+}
+
+.about-tab-content li {
+    line-height: 2;
+}
+
+.about-tab-content {
+    display: block;
+    text-align: start;
+    color: $white;
+    margin-bottom: 3rem;
+}
+
+.about-tab-content h2 {
+    color: $white;
+    margin-top: 6rem;
+    font-size: 2rem;
+    max-width: 50rem;
+}
+
+.about-tab-content h2:first-child {
+    color: $white;
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.about-tab-content > p,
+.about-tab-content > div,
+.about-tab-content > span {
+    color: $white;
+    text-align: justify;
+    max-width: 50rem;
+    font-size: 1.125rem;
+}
+
+.about-tabs .react-tabs {
+    display: flex;
+    padding-inline-start: 3rem;
+}
+
+.about-tabs ul.react-tabs__tab-list {
+    margin: 0;
+    padding: 0;
+    width: 26.875rem;
+}
+
+.about-tabs {
+    margin-top: 6rem;
+    padding-bottom: 7.25rem;
+}
+
+.about-tabs .about-tab-content {
+    padding-inline-start: 4.125rem;
+    padding-inline-end: 4.125rem;
+}
+
+.about-tabs .react-tabs__tab-panel--selected {
+    width: calc(100% - 26.875rem);
+}
+
+.about-tabs .react-tabs__tab {
+    filter: blur(2px);
+    transition: 1.5s;
+    font-family: 'Simpler Black';
+    font-size: rem-calc(28);
+    margin-bottom: 4rem;
+    opacity: 0.5;
+    color: $white;
+}
+
+.about-tabs .react-tabs__tab--selected {
+    filter: blur(0);
+    font-size: rem-calc(28);
+    opacity: 1;
+}
+
+.about-tabs .react-tabs li.react-tabs__tab {
+    position: relative;
+    padding-inline-start: 1.75rem;
+    cursor: pointer;
+    max-width: 20rem;
+
+    &::marker {
+        color: transparent;
+    }
+}
+
+.about-tabs .react-tabs li.react-tabs__tab::before {
+    transition: 2s;
+}
+
+.about-tabs .react-tabs li.react-tabs__tab::before {
+    content: ' ';
+    background-color: $white;
+    height: 0.9rem;
+    width: 0.9rem;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.85rem;
+    inset-inline-start: -2.05rem;
+    box-shadow: none;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+.about-tabs .react-tabs li.react-tabs__tab::after {
+    height: 0.9rem;
+    width: 0.9rem;
+    transition: 0.5s ease-in-out;
+    content: ' ';
+    background: transparent;
+    background: url('/selected-bullet.svg');
+    background-size: contain;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.9rem;
+    inset-inline-start: -2.05rem;
+    box-shadow: none;
+    transition: 3s;
+}
+
+.about-tabs .react-tabs li.react-tabs__tab--selected::before {
+    background-color: $defaultBg;
+    border: 2px solid $defaultBg;
+    top: calc(0.9rem - 2px);
+    inset-inline-start: calc(-2.05rem - 2px);
+}
+
+.about-tabs .react-tabs li.react-tabs__tab--selected::after {
+    height: 6rem;
+    width: 6rem;
+    top: -1.6rem;
+    inset-inline-start: -4.6rem;
+}
+
+.mobile-about {
+    display: none;
+}
+
+@media (max-width: $tablet) {
+    .about-tabs .react-tabs {
+        display: none;
+    }
+    .about-tab-content > h2 {
+        font-size: 8.75rem;
+        margin-top: 6rem;
+        max-width: none;
+    }
+
+    .about-tab-content > h2:first-child {
+        font-size: 8.75rem;
+        margin-top: 0;
+    }
+
+    .about-tab-content {
+        margin-bottom: 30rem;
+    }
+
+    .about-tab-content img {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    .about-tab-content > p,
+    .about-tab-content > div,
+    .about-tab-content > span {
+        color: $white;
+        text-align: justify;
+        max-width: none;
+        font-size: 5.5rem;
+        font-family: 'Simpler Light';
+        padding: 0 !important;
+    }
+
+    .about-tab-content iframe {
+        width: 100% !important;
+        height: 300px;
+    }
+
+    .about-tabs img.about-icon {
+        max-width: 75%;
+        max-height: 75%;
+        margin: 0 auto 10rem;
+    }
+
+    .mobile-about {
+        display: block;
+        text-align: center;
+    }
+
+    .about-tab-content h3 {
+        font-size: 6rem;
+        color: $white;
+    }
+
+    .about-tab-content ul {
+        font-size: 5.5rem;
+        font-family: 'Simpler Light';
+        color: $white;
+    }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11.8125001px" height="21.5px" viewBox="0 0 11.8125001 21.5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Facebook Icon Hover</title>
+    <defs>
+        <linearGradient x1="36.706543%" y1="100%" x2="63.293457%" y2="1.11022302e-14%" id="linearGradient-1">
+            <stop stop-color="#851AFF" offset="0%"></stop>
+            <stop stop-color="#4E18FF" offset="22.4291475%"></stop>
+            <stop stop-color="#4317FF" offset="37.4766566%"></stop>
+            <stop stop-color="#4913FF" offset="49.2996078%"></stop>
+            <stop stop-color="#2812FE" offset="60.4829352%"></stop>
+            <stop stop-color="#2B0FFE" offset="62.5788323%"></stop>
+            <stop stop-color="#0A33FE" offset="73.4617795%"></stop>
+            <stop stop-color="#045DFE" offset="83.9187109%"></stop>
+            <stop stop-color="#02BEFE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Home-Page-Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Home-page--2" transform="translate(-118.093750, -575.250000)" stroke="url(#linearGradient-1)" stroke-width="1.5">
+            <g id="Social-Sticky" transform="translate(89.000000, 459.000000)">
+                <g id="Icons" transform="translate(14.000000, 14.000000)">
+                    <g id="Facebook" transform="translate(0.000000, 92.000000)">
+                        <path d="M24.2734375,14.3203125 L26.15625,14.3203125 L26.15625,11.140625 C25.8320313,11.0976562 24.7148438,11 23.4140625,11 C20.6992187,11 18.8398437,12.65625 18.8398437,15.6992187 L18.8398437,18.5 L15.84375,18.5 L15.84375,22.0546875 L18.8398437,22.0546875 L18.8398437,31 L22.5117188,31 L22.5117188,22.0546875 L25.3867188,22.0546875 L25.84375,18.5 L22.5117188,18.5 L22.5117188,16.0507812 C22.5117188,15.0234375 22.796875,14.3203125 24.2734375,14.3203125 Z" id="Facebook-Icon-Hover"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

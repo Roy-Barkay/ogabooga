@@ -1,0 +1,158 @@
+.rohm-footer {
+    min-height: 17.5rem;
+    background: url('/horizontal-line.png'), url('/horizontal-line.png'), url('/vertical-line.png'),
+        linear-gradient(
+            45deg,
+            #851aff 0%,
+            #4e18ff 16.47%,
+            #4317ff 32.11%,
+            #2812fe 47.49%,
+            #2b0ffe 61.54%,
+            #0a33fe 72.03%,
+            #045dfe 85.4%,
+            #02befe 100%
+        );
+    background-position: calc(13.1% - 6.25rem) 0%, calc(42.1% - 6.25rem) 80%, calc(100% - 6.25rem), right top;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    background-size: calc(28% - 6.25rem), calc(28% - 6.25rem), calc(27.6% - 6.25rem), contain;
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(31, 31, 31, 0.33);
+    padding: 64px 6.25rem;
+    display: flex;
+
+    li {
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            padding-bottom: 0.185rem;
+            border-bottom: 0.125rem solid transparent;
+            transition: border-bottom 0s ease-out;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    & > div {
+        flex: 1 50%;
+        display: flex;
+        flex-direction: column;
+    }
+    .links-section {
+        list-style-type: none;
+        padding: 0 0 0 0;
+        margin: 0;
+        text-align: start;
+        li {
+            margin-bottom: 2.5rem;
+            padding: 0;
+            padding-inline-start: 2.75rem;
+            width: 50%;
+            box-sizing: border-box;
+            display: inline-block;
+            a {
+                color: $white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-family: 'Simpler Regular';
+            }
+        }
+    }
+    .apply-section {
+        flex: 1 50%;
+        padding: 0;
+        padding-inline-start: 4.375rem;
+        padding-inline-end: 3.125rem;
+        text-align: start;
+        color: white;
+        box-sizing: border-box;
+        h3 {
+            font-size: 2.75rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            text-align: start;
+            width: 100%;
+            max-width: 32rem;
+            margin: auto;
+            margin-inline-start: 0;
+            font-family: 'Simpler Black';
+        }
+        p {
+            max-width: 33rem;
+            font-size: 1.75rem;
+            line-height: 1.5;
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+            margin: auto;
+            margin-inline-start: 0;
+            font-family: 'Simpler Regular';
+        }
+
+        .footer-link {
+            color: $white;
+            font-size: 2rem;
+            text-decoration: none;
+            font-family: 'Simpler Regular';
+            margin-top: 1.5rem;
+            display: block;
+            width: fit-content;
+            align-items: center;
+            cursor: pointer;
+            img {
+                width: 1.75rem;
+                height: 1.75rem;
+                margin-inline-start: 1rem;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .rohm-footer {
+        flex-wrap: wrap;
+        flex-direction: row;
+        background-position: calc(20.1% - 6.25rem) 0%, calc(100.1% - 6.25rem) 80%, calc(100% - 6.25rem), right top;
+        background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+        background-size: calc(50% - 6.25rem), calc(50% - 6.25rem), calc(49.6% - 6.25rem), contain;
+        .apply-section {
+            flex: 1 1 100%;
+            order: -1;
+            display: flex;
+            flex-direction: column;
+            align-items: initial;
+            margin-bottom: 15rem;
+            padding: 0;
+            h3 {
+                font-size: 7.2rem;
+                max-width: none;
+                padding: 0;
+                margin-bottom: 3rem;
+            }
+            p {
+                max-width: 607px;
+                font-size: 5.6rem;
+                font-family: 'Simpler Light';
+                margin-bottom: 5rem;
+            }
+            .footer-link {
+                font-size: 5.6rem;
+                img {
+                    width: 5rem;
+                    height: 5rem;
+                    margin-inline-start: 3rem;
+                }
+            }
+        }
+
+        .links-section {
+            li {
+                width: 100%;
+                a {
+                    font-size: 4.75rem;
+                    font-family: 'Simpler Light';
+                    line-height: 2.5;
+                }
+            }
+        }
+    }
+}

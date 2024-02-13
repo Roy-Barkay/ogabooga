@@ -1,0 +1,140 @@
+.reasons {
+    height: calc(100vh - 5.625rem - 7.5rem);
+    text-align: start;
+    padding: 3.75rem 6.25rem;
+    overflow: hidden;
+    box-sizing: content-box;
+    background: url('/vertical-line.png'), #000;
+    background-position: calc(100% - 6.25rem);
+    background-size: calc(27.6% - 6.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .react-tabs__tab-panel {
+        flex: 1 70%;
+        display: none;
+    }
+
+    .react-tabs__tab-panel.react-tabs__tab-panel--selected {
+        display: flex;
+        align-items: center;
+    }
+
+    .react-tabs__tab-panel.react-tabs__tab-panel--selected p {
+        flex: 1 60%;
+        color: white;
+        font-size: 2rem;
+    }
+
+    .react-tabs__tab-panel.react-tabs__tab-panel--selected div {
+        flex: 1 40%;
+        color: white;
+        text-align: center;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .react-tabs {
+        display: flex;
+        color: $white;
+
+        .react-tabs li,
+        .react-tabs h2 {
+            color: $white;
+            cursor: pointer;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 1.25rem 0;
+            &::before {
+                content: ' ';
+                background-color: #41455c;
+                height: 1.25rem;
+                width: 1.25rem;
+                display: block;
+                border-radius: 0.625rem;
+                position: absolute;
+                top: 27px;
+                inset-inline-start: -2.5rem;
+                box-shadow: none;
+                transition: box-shadow 0.5s ease-in-out;
+            }
+            &.react-tabs__tab--selected::before {
+                content: ' ';
+                background-color: #41455c;
+                height: 0.5rem;
+                width: 0.5rem;
+                display: block;
+                position: absolute;
+                top: 2rem;
+                inset-inline-start: -2.5rem;
+                border: double 0.5rem transparent;
+                border-radius: 37px;
+                background-image: linear-gradient(#050821, #050821), linear-gradient(to top right, #3d09bc, #04b7fb);
+                background-origin: border-box;
+                background-clip: content-box, border-box;
+                box-shadow: 0px 0px 2.5rem 45px #18248b;
+                z-index: -1;
+            }
+        }
+    }
+}
+
+.reasons-mobile {
+    display: none;
+}
+
+@media (max-width: $tablet) {
+    .reasons {
+        height: auto;
+        padding-top: 30rem;
+        padding-bottom: 30rem;
+        padding-inline-end: 6.25rem;
+        padding-inline-start: 6.25rem;
+        background-size: calc(49.6% - 6.25rem);
+    }
+
+    .reasons-tabs {
+        display: none;
+    }
+
+    .reasons-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        margin: 0;
+        padding: 0;
+        li {
+            position: relative;
+        }
+        h3 {
+            color: $white;
+            font-size: 7.4rem;
+            z-index: 1;
+            position: relative;
+        }
+        lottie-player {
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+        }
+        p {
+            color: #acacac;
+            font-size: 5rem;
+            font-family: 'Simpler Light';
+            z-index: 1;
+            position: relative;
+        }
+        li {
+            padding-top: 3rem;
+            background-size: 50%;
+            background-repeat: no-repeat;
+        }
+    }
+}

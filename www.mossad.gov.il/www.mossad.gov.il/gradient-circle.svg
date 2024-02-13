@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="723px" height="723px" viewBox="0 0 723 723" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>0FC14A49-2E6C-405E-9153-3CA3DE279A22</title>
+    <defs>
+        <linearGradient x1="1.45015705e-13%" y1="100%" x2="100%" y2="8.51995375e-15%" id="linearGradient-1">
+            <stop stop-color="#1E1AFF" offset="0%"></stop>
+            <stop stop-color="#411CFF" offset="17.3001779%"></stop>
+            <stop stop-color="#6A1EFF" offset="37.2366786%"></stop>
+            <stop stop-color="#4E4AFF" offset="54.3553647%"></stop>
+            <stop stop-color="#3274FE" offset="70.8751581%"></stop>
+            <stop stop-color="#1A9AFE" offset="85.6838941%"></stop>
+            <stop stop-color="#02BEFE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="1.45015705e-13%" y1="100%" x2="100%" y2="8.51995375e-15%" id="linearGradient-2">
+            <stop stop-color="#1E1AFF" offset="0%"></stop>
+            <stop stop-color="#411CFF" offset="17.3001779%"></stop>
+            <stop stop-color="#6A1EFF" offset="37.2366786%"></stop>
+            <stop stop-color="#4E4AFF" offset="54.3553647%"></stop>
+            <stop stop-color="#3274FE" offset="70.8751581%"></stop>
+            <stop stop-color="#1A9AFE" offset="85.6838941%"></stop>
+            <stop stop-color="#02BEFE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="1.45015705e-13%" y1="100%" x2="100%" y2="8.51995375e-15%" id="linearGradient-3">
+            <stop stop-color="#1E1AFF" offset="0%"></stop>
+            <stop stop-color="#411CFF" offset="17.3001779%"></stop>
+            <stop stop-color="#6A1EFF" offset="37.2366786%"></stop>
+            <stop stop-color="#4E4AFF" offset="54.3553647%"></stop>
+            <stop stop-color="#3274FE" offset="70.8751581%"></stop>
+            <stop stop-color="#1A9AFE" offset="85.6838941%"></stop>
+            <stop stop-color="#02BEFE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Home-Page-Desktop" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd" stroke-dasharray="0,5" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Home-page" transform="translate(-524.000000, -5740.000000)">
+            <g id="Graphics/Oval-stroks_Black" transform="translate(0.000000, 5400.499977)">
+                <g id="Group" transform="translate(131.271850, 18.296350)">
+                    <g id="Group-2" transform="translate(393.560500, 321.931300)">
+                        <path d="M586.196,360.738 C586.196,485.255 485.255,586.195 360.739,586.195 C236.222,586.195 135.281,485.255 135.281,360.738 C135.281,236.221 236.222,135.281 360.739,135.281 C485.255,135.281 586.196,236.221 586.196,360.738 Z" id="Stroke-33" stroke="url(#linearGradient-1)" opacity="0.5"></path>
+                        <path d="M721.477,360.738 C721.477,559.968 559.969,721.476 360.739,721.476 C161.508,721.476 0,559.968 0,360.738 C0,161.508 161.508,4.54747351e-13 360.739,4.54747351e-13 C559.969,4.54747351e-13 721.477,161.508 721.477,360.738 Z" id="Stroke-37" stroke="url(#linearGradient-2)" opacity="0.154345"></path>
+                        <path d="M442.4308,360.738 C442.4308,405.855 405.8558,442.43 360.7388,442.43 C315.6208,442.43 279.0468,405.855 279.0468,360.738 C279.0468,315.621 315.6208,279.046 360.7388,279.046 C405.8558,279.046 442.4308,315.621 442.4308,360.738 Z" id="Stroke-39" stroke="url(#linearGradient-3)" opacity="0.7"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

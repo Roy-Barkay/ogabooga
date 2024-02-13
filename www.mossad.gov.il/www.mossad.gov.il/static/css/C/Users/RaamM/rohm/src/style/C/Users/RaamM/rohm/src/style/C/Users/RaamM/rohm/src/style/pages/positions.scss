@@ -1,0 +1,133 @@
+.search-position {
+    margin-top: 3.125rem;
+    margin-bottom: 3.125rem;
+}
+
+.search-position h1 {
+    font-family: 'Simpler Bold';
+    color: $white;
+    font-size: 2rem;
+}
+
+.search-position input {
+    box-sizing: border-box;
+    height: 3.375rem;
+    width: 53rem;
+    border: 1px solid #cccccc;
+    border-radius: 3px 5px 5px 3px;
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    color: #394053;
+    font-size: 1.2rem;
+    font-family: 'Simpler Regular';
+}
+
+.positions-dashboard h2 {
+    color: $white;
+    font-size: 2rem;
+    font-family: 'Simpler Bold';
+}
+
+.positions-dashboard {
+    margin-bottom: 7.5rem;
+}
+
+.no-results {
+    font-size: 1.5rem;
+    margin: 2rem 0 2rem;
+    color: $white;
+
+    h3 {
+        font-size: rem-calc(24);
+    }
+
+    h4 {
+        font-size: rem-calc(20);
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-top: 0;
+        font-size: rem-calc(20);
+        max-width: rem-calc(454);
+        font-weight: 100;
+        font-family: 'Simpler Light';
+        line-height: rem-calc(29);
+
+        a {
+            color: $white;
+            font-family: 'Simpler Regular';
+            font-weight: 500;
+            margin-inline-start: rem-calc(7);
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .mobile-actions {
+        .mobile-filter {
+            color: $white;
+            img {
+                filter: invert(1);
+            }
+        }
+    }
+    .positions-filters {
+        .position-filter-label {
+            color: $defaultBg;
+        }
+        .radio-label {
+            [type='radio']:checked:before {
+                content: ' ';
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                display: block;
+                position: absolute;
+                background: $defaultBg;
+                z-index: 2;
+            }
+
+            [type='radio']:after {
+                border: 2px solid $defaultBg;
+                background: $white;
+            }
+
+            span {
+                color: $defaultBg;
+            }
+        }
+        .remove-all {
+            button {
+                color: $defaultBg;
+            }
+        }
+    }
+
+    .no-results {
+        font-size: 1.5rem;
+        margin: 2rem 0 2rem;
+        color: $white;
+
+        h3 {
+            font-size: rem-calc(90);
+        }
+
+        h4 {
+            font-size: rem-calc(72);
+            margin-bottom: 0;
+        }
+
+        p {
+            font-size: rem-calc(72);
+            max-width: 100%;
+            line-height: rem-calc(100);
+
+            a {
+                color: $white;
+                font-family: 'Simpler Regular';
+                margin-inline-start: rem-calc(20);
+            }
+        }
+    }
+}

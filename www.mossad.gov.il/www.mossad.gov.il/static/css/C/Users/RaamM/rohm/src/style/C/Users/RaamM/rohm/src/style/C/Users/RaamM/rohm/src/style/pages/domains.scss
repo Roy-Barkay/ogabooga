@@ -1,0 +1,104 @@
+.domain-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-bottom: 7.25rem;
+
+    li {
+        flex: 1 calc(25% - 1.25rem);
+        max-width: calc(25% - 0.9rem);
+        box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.11);
+        min-height: 12rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        position: relative;
+
+        .domain-link {
+            display: flex;
+            flex-direction: column;
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+            padding-inline-start: 1.5rem;
+            padding-inline-end: 1rem;
+            text-decoration: none;
+            background: $white;
+            transition: 0.5s;
+            height: 100%;
+            box-sizing: border-box;
+            z-index: 1;
+            position: relative;
+
+            .domain-icon {
+                width: 2.5rem;
+                max-height: 2.5rem;
+                margin: auto;
+                margin-inline-end: 0;
+            }
+            h3 {
+                margin: 0;
+                font-size: 1.75rem;
+                color: #3c3c3c;
+                font-family: 'Simpler Black';
+            }
+            p {
+                margin: 0;
+                margin-top: 1rem;
+                font-size: 1.15rem;
+                color: #6b7280;
+            }
+
+            &:hover,
+            &:focus {
+                background: transparent;
+
+                h3,
+                p {
+                    color: $white;
+                }
+                .domain-icon {
+                    filter: invert(1);
+                }
+            }
+        }
+        .domain-background {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 0;
+            opacity: 0.5;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .domain-buttons {
+        li {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 100%;
+            max-width: 100%;
+            .domain-link {
+                padding: 6rem;
+                padding-inline-start: 5.5rem;
+
+                .domain-icon {
+                    width: 12.5rem;
+                    max-height: 12.5rem;
+                }
+                h3 {
+                    font-size: 7.75rem;
+                }
+                p {
+                    font-family: 'Simpler Light';
+                    margin-top: 2rem;
+                    font-size: 6.15rem;
+                }
+            }
+        }
+    }
+}

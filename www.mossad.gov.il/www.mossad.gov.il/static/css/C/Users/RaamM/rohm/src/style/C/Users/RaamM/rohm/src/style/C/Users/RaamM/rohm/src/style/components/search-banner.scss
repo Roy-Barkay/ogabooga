@@ -1,0 +1,268 @@
+.search-banner {
+    background: url('/horizontal-line.png'), url('/horizontal-line.png'), url('/vertical-line.png'),
+        url('/gradiant-for-hero.png');
+    background-position: calc(13.1% - 6.25rem) 80%, calc(100% - 6.1rem) 10%, calc(100% - 6.25rem), right top;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    background-size: calc(28% - 6.25rem), calc(28% - 6.25rem), calc(27.6% - 6.25rem), contain;
+    box-sizing: border-box;
+    height: calc(100vh - 5.625rem);
+    padding: 0 8.5rem;
+    text-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    h2 {
+        color: $white;
+        font-size: 3.75rem;
+        font-family: 'Simpler Black';
+        line-height: 5rem;
+        max-width: 50.125rem;
+        overflow: hidden;
+        margin: 0;
+        white-space: break-spaces;
+    }
+
+    .search-label {
+        color: $white;
+        font-size: 1.75rem;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    input {
+        height: 4rem;
+        width: 33.3125rem;
+        border-radius: 5px;
+        background-color: #121212;
+        font-size: 1.75rem;
+        padding: 15px 1.25rem;
+        border: 1px solid $white;
+        color: $white;
+        box-sizing: border-box;
+        font-family: 'Simpler Regular';
+
+        &::placeholder {
+            color: $white;
+            font-family: 'Simpler Regular';
+        }
+    }
+    button {
+        margin-inline-start: -4rem;
+        z-index: 2;
+        position: relative;
+        width: 1.875rem;
+        height: 1.875rem;
+        vertical-align: top;
+        margin-top: 1rem;
+        color: white;
+        background: transparent;
+        border: 0;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    .search-div {
+        opacity: 0;
+        img {
+            width: 2rem;
+        }
+
+        .search-div {
+            opacity: 0;
+        }
+
+        &.show {
+            opacity: 0;
+            animation: fadeIn 3s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 33.3125rem;
+            gap: 1.25rem 1.56rem;
+            margin-top: 15px;
+        }
+    }
+
+    .image-container {
+        overflow: visible;
+        max-height: 29vh;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .cat {
+        margin: 4px;
+        border-radius: 5px;
+        background-color: #1f1f1f;
+        overflow: hidden;
+        float: left;
+        text-align: center;
+        padding: 0.5rem 1.25rem;
+        display: block;
+        color: $white;
+        font-size: 1.375rem;
+        cursor: pointer;
+        text-decoration: none;
+        &:hover,
+        &:focus {
+            background-color: #474747;
+        }
+    }
+    #videoBackground {
+        width: 100vw;
+        height: 116vh;
+        position: absolute;
+        top: -150px;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        z-index: -1;
+        object-fit: cover;
+        border: 0;
+    }
+
+    .play {
+        box-sizing: border-box;
+        height: 37px;
+        position: absolute;
+        inset-inline-end: 8rem;
+        bottom: 6.25rem;
+
+        border-color: transparent transparent transparent $white;
+        transition: 100ms all ease;
+        will-change: border-width;
+        cursor: pointer;
+        z-index: 2;
+        top: auto;
+
+        // play state
+        border-style: solid;
+        border-width: 18px 0 18px 30px;
+
+        // paused state
+        &.pause {
+            border-style: double;
+            border-width: 0px 0 0px 30px;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: $tablet) {
+    .search-banner {
+        background: url('/horizontal-line.png'), url('/horizontal-line.png'), url('/vertical-line.png');
+        background-position: calc(20.1% - 6.25rem) 80%, calc(100% - 6.2rem) 10%, calc(100% - 6.25rem);
+        background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+        background-size: calc(50% - 6.25rem), calc(50% - 6.25rem), calc(49.6% - 6.25rem);
+        height: 100vh;
+        text-align: center;
+        padding: 11.25rem 6.5rem;
+
+        h2 {
+            max-width: 100%;
+            font-size: 17.625rem;
+            line-height: 1;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        input {
+            width: 100%;
+            font-size: 5rem;
+            border-radius: 1.5rem;
+            padding-inline-start: 5rem;
+            background-color: #000000b5;
+            height: 13rem;
+            max-width: none;
+            font-family: 'Simpler Light';
+
+            &::placeholder {
+                font-family: 'Simpler Light';
+                color: #acacac;
+            }
+        }
+
+        button {
+            position: absolute;
+            inset-inline-end: 7rem;
+            top: 2rem;
+        }
+
+        .search-label {
+            display: none;
+        }
+
+        .search-div {
+            position: relative;
+
+            .auto-complete {
+                width: 100%;
+            }
+            .auto-complete-dropdown {
+                width: 100%;
+                max-height: none;
+                ul {
+                    max-height: 66rem;
+                    li {
+                        a {
+                            color: white;
+                            text-decoration: none;
+                            padding: 3.7rem;
+                            display: block;
+                            cursor: pointer;
+                            font-size: 5rem;
+                            text-align: start;
+                        }
+                    }
+                }
+            }
+
+            img {
+                width: 6rem;
+            }
+
+            .tags {
+                max-width: 100%;
+                justify-content: center;
+            }
+            .cat {
+                border-radius: 0px;
+                background-color: #181818;
+                border-radius: 1.5rem;
+                color: $white;
+                font-size: 4.375rem;
+                padding: 2rem 4rem;
+                display: block;
+            }
+        }
+
+        #videoBackground {
+            top: 0;
+            width: 600vw;
+            height: 139vh;
+            right: -120rem;
+        }
+    }
+    html:lang(en) {
+        .search-banner #videoBackground {
+            left: -120rem;
+            right: auto;
+        }
+    }
+}
