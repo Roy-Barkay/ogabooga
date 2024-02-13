@@ -1,0 +1,329 @@
+@media (min-width: 518px) {
+	.hsg-dl-horizontal > dd { min-height: 22px; }
+}
+
+.moneyFormat
+{
+	direction:ltr;
+}
+
+
+/* cubes topics icons. 
+ ========================================================================== */
+[class*='hsg-icon-t-'] {
+  background: url("../../../../assets/images/sprite-topics.png") no-repeat top left;
+  width: 29px;
+  height: 29px;
+}
+.hsg-icon-t-mortgage {
+  background-position: 0 0;
+}
+.hsg-icon-t-health {
+  background-position: -39px 0;
+}
+.hsg-icon-t-nursing {
+  background-position: -78px 0;
+}
+.hsg-icon-t-pensia {
+  background-position: -117px 0;
+}
+.hsg-icon-t-property-insurance {
+  background-position: -156px 0;
+  height: 30px;
+}
+.hsg-icon-t-savings {
+  background-position: -195px 0;
+}
+.hsg-icon-t-sickness {
+  background-position: -234px 0;
+}
+.hsg-icon-t-teeth {
+  background-position: -273px 0;
+  width: 30px;
+  height: 30px;
+}
+.hsg-icon-t-work-insurance {
+  background-position: -313px 0;
+}
+.hsg-icon-t-work-disable {
+  background-position: -352px 0;
+}
+.hsg-icon-t-accident {
+  background-position: -391px 0;
+}
+.hsg-icon-t-apartment {
+  background-position: -430px 0;
+}
+.hsg-icon-t-business {
+  background-position: -469px 0;
+}
+.hsg-icon-t-car {
+  background-position: -508px 0;
+}
+.hsg-icon-t-death {
+  background-position: -547px 0;
+}
+.hsg-icon-t-fund {
+  background-position: -586px 0;
+}
+.hsg-icon-t-gemel {
+  background-position: -625px 0;
+}
+
+
+
+
+[class*='child-icon']
+{
+    background: url("../../../../assets/images/sprite-topics.png") no-repeat top left;
+    width: 29px;
+    height: 29px;
+    background-position: -741px 0;
+}
+
+
+[class*='hsg-icon-t-'] {
+  background: url("../../../../assets/images/sprite-topics.png") no-repeat top left;
+  width: 29px;
+  height: 29px;
+}
+.hsg-icon-t-20 {
+  background-position: 0 0;
+}
+.hsg-icon-t-99 {
+  background-position: -39px 0;
+}
+.hsg-icon-t-200 {
+  background-position: -78px 0;
+}
+.hsg-icon-t-70 {
+  background-position: -117px 0;
+}
+.hsg-icon-t-71 {
+  background-position: -117px 0;
+}
+.hsg-icon-t-property-insurance {
+  background-position: -156px 0;
+  height: 30px;
+}
+.hsg-icon-t-11 {
+  background-position: -195px 0;
+}
+.hsg-icon-t-60 {
+  background-position: -234px 0;
+}
+.hsg-icon-t-teeth {
+  background-position: -273px 0;
+  width: 30px;
+  height: 30px;
+}
+.hsg-icon-t-13 {
+  background-position: -313px 0;
+}
+.hsg-icon-t-80 {
+  background-position: -352px 0;
+}
+.hsg-icon-t-10 {
+  background-position: -391px 0;
+}
+.hsg-icon-t-21 {
+  background-position: -430px 0;
+}
+.hsg-icon-t-23 {
+  background-position: -469px 0;
+}
+.hsg-icon-t-22 {
+  background-position: -508px 0;
+}
+.hsg-icon-t-14 {
+  background-position: -547px 0;
+}
+.hsg-icon-t-62 {
+  background-position: -586px 0;
+}
+.hsg-icon-t-61 {
+  background-position: -625px 0;
+}
+.hsg-icon-t-63 {
+  background-position: -390px 0;
+}
+.hsg-icon-t-24 {
+  background-position: -547px 0;
+}
+.hsg-icon-t-100 {
+  background-position: -472px 0;
+}
+.hsg-icon-t-101 {
+  background-position: -472px 0;
+}
+.hsg-icon-t-90 {
+  background-position: 0px 0;
+}
+.hsg-icon-t-110 {
+    background-position: -660px 0;
+}
+.hsg-icon-t-102 {
+    background-position: -472px 0;
+}
+.hsg-icon-t-91 {
+    background: url("../../../../assets/images/Home1x.png") no-repeat top left;
+    width: 29px;
+    height: 29px;
+}
+.hsg-icon-t-40 {
+    background: url("../../../../assets/images/Tooth1x.png") no-repeat top left;
+    width: 29px;
+    height: 29px;
+}
+
+
+.site-icon-info {
+    background-image: url("../images/Icons_Actions_Info.png");
+    background-position: -9px -10px;
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+.site-icon-info:hover {
+	background-position: -56px -10px;
+}
+
+.hsg-icon-modal-close
+{
+	cursor:pointer !important;	
+}
+
+.hsg-strip:first-child.ng-hide + .hsg-strip
+{
+	margin-top: 0;	
+}
+
+[class*="hsg-c-"].ng-hide, [class*="hsg-ec-"].ng-hide > * {
+	padding-bottom: 0;
+}
+
+.strip-cancel {
+    background-image: url("../../../../assets/images/x.jpg");
+    background-position: 0 0;
+    width: 25px;
+    height: 32px;
+    display: block;
+}
+
+
+.hsg-strip + .hsg-strip {
+	margin-top: 0;
+}
+
+.hsg-strip:not(.ng-hide) ~ .hsg-strip:not(.ng-hide) {
+	margin-top: 8px;
+}
+
+.ie8 .hsg-strip + .hsg-strip {
+	margin-top: 8px;
+}
+
+.hsg-cube-item h4 {
+    margin: 0;
+    color: #003f80;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.c-msg {
+	background-color: #c6d2df;
+	height: 100%;
+	overflow: hidden;
+}
+
+.c-msg__icon {
+	width: 240px;
+	height: 100%;
+	display: table-cell;
+	position: relative;
+	overflow: hidden;
+}
+
+.c-icon {
+	background-image: url(../../../../assets/images/doctor.svg);
+	background-repeat: no-repeat;
+	background-color: #c6d2df;
+	background-size: cover;
+	background-position: right top;
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 173px;
+    width: 320px;
+}
+
+.c-msg .c-msg__body {
+	padding: 15px;
+	display: table-cell;
+	background-color: #c6d2df;
+}
+
+
+
+
+
+.hsg-button {
+    display: inline-block;
+    font-family: "mfw_protocolharel", Arial;
+    vertical-align: middle;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    line-height: 40px;
+    min-height: 40px;
+    font-size: 20px;
+    min-width: 100px;
+    padding: 0 12px;
+    background: #eee;
+    color: #006cb2;
+    border-radius: 0;
+    -webkit-transition: background .5s;
+}
+
+.hsg-button-primary {
+    background-color: #006cb2;
+    color: #fff;
+}
+
+.hsg-button-primary:hover, 
+.hsg-button-primary:focus {
+    background-color: #00568e;
+    color: #fff;
+}
+
+.c-msg {
+	display: table;
+    width: 100%;
+}
+
+.c-title {
+	font-size: 30px;
+    font-weight: 300;
+    color: #003f80;
+    line-height: 1;
+}
+
+.c-subtitle {
+	color: #003f80;
+	font-size: 18px;
+}
+
+.hsg-cube-item h4.longtext{
+    white-space:inherit;
+}
+
+

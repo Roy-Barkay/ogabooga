@@ -1,0 +1,371 @@
+body{
+    background-color: #cae2fe;
+}
+.sc-mainwrapper{
+    max-width: 980px;
+    direction: rtl;
+}
+.cc-header{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #003c7f;
+}
+.cc-slide{
+display: flex;
+justify-content: center;
+direction: rtl;
+}
+.slick-next, .slick-prev{
+    color: #2d76cb;
+}
+svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit:hover{
+color: #2d76cb;
+} 
+/* .sc-card{
+        direction: rtl;
+        max-width: 264px;
+        max-height: 318px;
+        margin: 15px 10px 10px 10px;
+        padding-right: 24px;
+        padding-bottom: 20px;
+        padding-left: 24px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px 0 rgba(119, 119, 119, 0.3);
+        background-color: #fff;
+        
+}
+.cc-icon-container{
+    width: 100%;
+    padding-top: 23px;
+    padding-bottom: 24px;
+
+
+} */
+img.sc-icon{
+    text-align: right;
+    right: 0;
+}
+.cc-card-title {
+    margin-bottom: 8px;
+    max-width: 165px;
+    font-size: 24px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.04;
+    letter-spacing: normal;
+    text-align: right;
+    color: #003f80;
+    margin-top: 25px;
+}
+/* .sc-card-body{
+    max-width: 214px;
+    max-height: 40px;
+    font-size: 18px;
+    margin-bottom: 24px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: right;
+    color: #003c7f;
+} */
+.slick-dots li button  {
+    background-color:transparent;
+    border:1px solid #2d76cb;    
+    height:14px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    width:14px;
+}
+
+.slick-dots li.slick-active button:before  {
+    background-color:#2d76cb;
+    border:1px solid #2d76cb;
+    color: transparent;    
+    height:14px;
+    width:14px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    opacity: 1;
+    
+}
+.slick-dots li button:before  {
+    color: transparent;    
+}
+
+.CategoryDiv {
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    width: 100%;
+    color: #2d76cb;
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 4px;
+    display: flex !important;
+    flex-direction: row;
+    align-content: stretch;
+    border-bottom: solid 0.3px;
+    justify-content: center;
+    font-size: 1rem;
+    direction: rtl;
+    line-height: 1.4
+    
+}
+
+
+
+.slick-slider{
+    padding-bottom: 12px;
+   
+}
+/* .CategoryDiv:focus {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    width: 196px;
+    color: #2d76cb;
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 6px;
+     border-bottom: solid 2px;
+     display: flex;
+    flex-direction: row;
+    align-content: stretch;
+} */
+
+.card{
+    width: 209px;
+    height: 264px;
+    /* margin: 32px 14px 21px; */
+    padding: 11px;
+    padding-top: 14px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgb(119 119 119 / 30%);
+    background-color: #fff;
+    position: relative;
+    margin-left: 6px;
+    margin-right: 0px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    overflow: hidden;
+    background-size: 100%;
+    margin: 10px 10px;
+}
+
+.cardTitle{
+   
+   
+   
+    /* font-family: MFProtocolHarel; */
+    font-size: 21px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #003f80;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.cardBody{
+   
+    height: 100px;
+    margin: 8px 0;
+    /* font-family: MFProtocolHarel; */
+    font-size: 16px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: right;
+    color: #003c7f;
+   
+    margin-bottom: 17px!important;
+}
+
+.cardBody>a{
+    width: 216px;
+   
+    margin: 8px 0;
+    /* font-family: MFProtocolHarel; */
+    font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: right;
+    color: #2d76cb;
+    font-weight: 500;
+}
+
+.cardBodyTxt{
+    margin-bottom: 6px; 
+    text-align: right;
+    overflow: hidden;
+    text-overflow: clip;
+    max-height: 86px;
+}
+/* .slick-list{
+    overflow: inherit !important;
+} */
+.secondBtn>button{
+    position: absolute;
+    bottom: 27px;
+    right: 9%;
+    width: 82%;
+}
+
+.CategoryDivActive{
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    width: 100%;
+    color: #2d76cb;
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 4px;
+     border-bottom: solid 2px;
+     display: flex !important;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.4;
+    direction: rtl;
+
+}
+.cc-icon{
+        max-width: 34px;
+        max-height: 20px;
+        margin-left: 8px;
+        width: max-content;
+        height: max-content;
+}
+
+/* .slick-dots{
+    direction: rtl;
+} */
+@media screen and (max-width:980px) {
+    /* .sc-mainwrapper{
+        max-width: auto;
+    } */
+    .cc-slide{
+        display: flex;
+        justify-content: flex-end;
+
+    }
+    /* .sc-card{
+        direction: rtl;
+        max-width: 264px;
+        max-height: 318px;
+        margin: 15px 10px 10px 10px;
+        padding-right: 24px;
+        padding-bottom: 20px;
+        padding-left: 24px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px 0 rgba(119, 119, 119, 0.3);
+        background-color: #fff;
+        
+    } */
+    .CategoryDiv {
+        border: none;
+        background-color: transparent;
+        /* font-weight: bold; */
+        width: 100%;
+        color: #2d76cb;
+        cursor: pointer;
+        text-align: center;
+        padding-bottom: 0px;
+        border-bottom: solid 1px;
+        display: flex !important;
+        flex-direction: row;
+        align-content: stretch;
+        justify-content: center;
+        font-size: 13px;
+        direction: rtl;
+    padding-bottom: 5px;
+        line-height: 1.4;
+    }
+    .CategoryDivActive{
+        border: none;
+        background-color: transparent;
+        font-weight: bold;
+        width: 100%;
+        color: #2d76cb;
+        cursor: pointer;
+        text-align: center;
+        padding-bottom: 0px;
+         border-bottom: solid 2px;
+         display: flex !important;
+        flex-direction: row;
+        align-content: stretch;
+        justify-content: center;
+        font-size: 13px;
+        line-height: 1.4;
+        direction: rtl;
+       
+    padding-bottom: 5px;
+    }
+
+    .cardTitle{
+        font-size: 17px;
+
+    }
+    .card{
+        width: 198px;
+    }
+    .MuiButton-label{
+        font-size: 13px;
+    }
+    
+    .cardFirstBtn>button{
+        right: 5%;
+        width: 91%;
+    }
+   
+}
+@media screen and (max-width:500px) {
+
+    .cardFirstBtn>button{
+        right: 5%;
+        width: 91%;
+    }
+    /* .card{
+        width: 221px;
+    } */
+}
+@media screen and (max-width:380px) {
+
+    .cardFirstBtn>button{
+        right: 5%;
+        width: 91%;
+    }
+    /* .card{
+        width: 186px;
+    } */
+}
+@media screen and (max-width:361px) {
+
+    
+    .card{
+        width: 178px;
+    }
+}

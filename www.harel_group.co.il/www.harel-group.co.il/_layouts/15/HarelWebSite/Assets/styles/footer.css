@@ -1,0 +1,167 @@
+/* line 30, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot {
+  position: relative;
+  z-index: 2;
+}
+
+/* line 9, /Users/kisin/developer/html/harel/src/assets/styles/scss/globals/mixins.scss */
+.h-foot .h-container:before, .h-foot .h-container:after {
+  content: " ";
+  display: table;
+}
+
+/* line 14, /Users/kisin/developer/html/harel/src/assets/styles/scss/globals/mixins.scss */
+.h-foot .h-container:after {
+  clear: both;
+}
+
+/* line 38, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #004080;
+  color: #fff;
+  text-align: center;
+  min-height: 36px;
+}
+
+/* line 47, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__nav li {
+  display: inline-block;
+  padding: 8px 30px 5px 30px;
+}
+
+/* line 53, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot a {
+  color: #fff;
+  white-space: nowrap;
+  transition: 0.3s color;
+}
+
+/* line 60, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__links {
+  background-color: #022447;
+  padding-top: 20px;
+}
+
+/* line 9, /Users/kisin/developer/html/harel/src/assets/styles/scss/globals/mixins.scss */
+.h-foot__links:before, .h-foot__links:after {
+  content: " ";
+  display: table;
+}
+
+/* line 14, /Users/kisin/developer/html/harel/src/assets/styles/scss/globals/mixins.scss */
+.h-foot__links:after {
+  clear: both;
+}
+
+/* line 68, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__text {
+  float: none;
+  clear: both;
+  display: block;
+  font-size: 12px;
+  padding-top: 10px;
+  color: #828282;
+}
+
+/* line 78, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__group {
+  margin-bottom: 20px;
+  float: right;
+  width: 25%;
+  padding: 0 4px;
+}
+
+@media (max-width: 765px) {
+  /* line 78, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+  .h-foot__group {
+    width: 50%;
+  }
+}
+
+@media (max-width: 518px) {
+  /* line 78, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+  .h-foot__group {
+    width: 100%;
+  }
+}
+
+/* line 92, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__group ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* line 98, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__group li + li {
+  margin-top: 6px;
+}
+
+/* line 102, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__group h4 {
+  color: #eee;
+  font-weight: bold;
+}
+
+/* line 107, /Users/kisin/developer/html/harel/src/assets/styles/scss/modules/foot.scss */
+.h-foot__group a {
+  color: #bfbfbf;
+}
+
+
+
+
+
+
+.h-foot {
+    font-size: 15px;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.h-foot a:hover,
+.h-foot a:focus {
+    text-decoration: underline;
+}
+
+.h-foot__group h4 {
+    color: #eee;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.h-foot * {
+    box-sizing: border-box;
+}
+
+.h-foot .h-container {
+    padding: 0 15px;
+}
+
+
+
+.h-foot__nav {
+    padding-top: 5px;
+}
+
+.h-foot__nav li {
+    padding: 4px 30px 4px 30px;
+}
+
+.h-foot__group a {
+    white-space: normal;
+}
+
+.h-foot__group a img {
+    max-width: 100%;
+    display: block;
+}
+
+.h-foot .h-container {
+    max-width: 980px;
+    margin: 0 auto;
+}

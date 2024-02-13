@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="ie9" lang="he" dir="rtl"> <![endif]-->
+<!--[if IE 8]>
+<html class="ie8" lang="he" dir="rtl"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="" lang="he" dir="rtl"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>הראל שלי | ראשי</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link href="../front/assets/images/favicon.ico" rel="icon" type="image/ico"/>
+    <!--link href="../front/assets/styles/hsg.0.2.0.css?v=1.0.6.0" rel="stylesheet" type="text/css"/-->
+    <link href="../front/assets/styles/hsg-iframe.0.2.0.css?v=1.0.2.0" rel="stylesheet" type="text/css">
+    <link href="../front/modules/clientView/view/css/custom-style.css?v=1.0.9.0" rel="stylesheet" type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="../front/assets/scripts/vendors/html5shiv.min.js" type="text/javascript"></script>
+    <script src="../front/assets/scripts/vendors/selectivizr-min.js" type="text/javascript"></script>
+    <script src="../front/assets/scripts/vendors/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <style>
+        .site-banner {
+            text-align: center;
+            padding: 30px;
+            margin: 10px;
+        }
+
+        .with-border {
+            position: relative;
+        }
+
+        .with-border:after {
+            content: " ";
+            display: block;
+            height: 18px;
+            width: 1px;
+            background-color: #ccc;
+            position: absolute;
+            top: 3px;
+            left: 20px;
+        }
+
+        @media (max-width: 518px) {
+            .with-border:after {
+                display: none;
+            }
+        }
+
+        .ng-cloak {
+            display: none;
+        }
+    </style>
+
+
+
+</head>
+<body data-ng-app="hrl" data-ng-controller="clientViewController" class="ng-cloak">
+
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WJFD7X" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-WJFD7X');</script>
+<script type="text/javascript">
+
+    dataLayer.push({
+        ApplicationType: 'clientView'
+    });
+</script>
+
+
+
+
+
+
+<div class="hsg-top" style="display:none;">
+    <div class="hsg-top-container">
+        <ul class="hsg-top-list">
+            <li class="hsg-top-logo"><a href="#"><img alt="הראל" src="../front/assets/images/logo.png"/></a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div data-ng-show="!finishedLoading" id="imgload" class="imgload" style="text-align:center; padding-bottom:20px;">
+    <img id="preloadImg" src="../front/modules/clientView/view/images/ajax-loader.gif"/>
+</div>
+
+<div data-ng-show="finishedLoading" class="hsg-container">
+
+
+    <!-- start of header -->
+    <div class="hsg-header">
+        <div class="hsg-header-title">
+            <h1 data-hrl-bo="header">הראל שלי</h1>
+            <h2 style="display:none">המידע נכון לתאריך: {{getCurrentDate()}}</h2>
+        </div>
+        <div class="hsg-header-actions">
+            <!--
+            <ul class="hsg-actions">
+              <li><a target="_blank" href="pdf.html" title="pdf"><i class="hsg-icon-print"></i></a></li>
+            </ul>
+            -->
+            <h2 style="display:none">המידע נכון לתאריך: {{getCurrentDate()}}</h2>
+        </div>
+    </div>
+    <!-- end of header -->
+
+
+    <div class="hsg-g" data-ng-show="showClientDetails">
+        <div class="hsg-c-12">
+
+            <!-- start of personal details strip -->
+            <div class="hsg-strip hsg-strip-close" data-hrl-bo="personalDetailsStrip" data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="personalDetailsStrip">פרטים אישיים</h3>
+                    <div class="hsg-strip-sub-title">
+                        <a href="javascript:;" data-ng-click="onLinkPortalClickByName('personalInfo')" class="hsg-h5" data-hrl-bo="updatePersonalInfoLink">
+                            עדכן פרטים
+                            <i class="hsg-icon-arrow-light-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-head">
+                        <ul class="hsg-list-inline hsg-list-inline-large-side hsg-h5 hsg-text-primary-1">
+                            <li class="with-border fullName" data-hrl-bo="personalInfoFullName">{{clientDetails.fullName}}</li>
+                            <li>
+                                מספר זהות:
+                                <span class="tz" data-hrl-bo="personalInfoTz">{{clientDetails.userId}}</span>
+                            </li>
+                            <li class="hsg-display-block">
+                                כניסה אחרונה:
+                                <span>{{clientDetails.lastPortalEntry}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hsg-strip-body">
+
+                        <!-- start of visible/hidden row -->
+                        <div class="hsg-g hsg-hidden-large">
+                            <div class="hsg-c-12">
+                                <ul class="hsg-list-inline hsg-list-inline-large-side hsg-h5 hsg-text-primary-1">
+                                    <li class="with-border" data-hrl-bo="personalInfoFullName">{{clientDetails.fullName}}</li>
+                                    <li>
+                                        מספר זהות:
+                                        <span data-hrl-bo="personalInfoTz">{{clientDetails.userId}}</span>
+                                    </li>
+                                    <li class="hsg-display-block">
+                                        כניסה אחרונה:
+                                        <span>{{clientDetails.lastPortalEntry}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end of visible/hidden row -->
+
+                        <hr class="hsg-hidden-large">
+
+                        <div class="hsg-g" data-hsg-grid-margin>
+                            <div class="hsg-c-small-7">
+                                <dl class="hsg-dl-horizontal">
+                                    <dt>דואר אלקטרוני:</dt>
+                                    <dd data-hrl-bo="personalDetailsEmail">{{clientDetails.email}}</dd>
+                                    <dt>טלפון:</dt>
+                                    <dd data-hrl-bo="personalDetailsHomephone">{{clientDetails.homephone}}</dd>
+                                    <dt>טלפון נוסף:</dt>
+                                    <dd data-hrl-bo="personalDetailsMobilephone">{{clientDetails.mobilephone}}</dd>
+                                    <dt>מין:</dt>
+                                    <dd data-hrl-bo="personalDetailsGender">{{clientDetails.sex}}</dd>
+                                    <dt>מצב משפחתי:</dt>
+                                    <dd data-hrl-bo="personalDetailsFamilyStatus">{{clientDetails.familyStatus}}</dd>
+                                </dl>
+                            </div>
+                            <div class="hsg-c-small-5">
+                                <dl class="hsg-dl-horizontal">
+                                    <dt>עיר:</dt>
+                                    <dd data-hrl-bo="personalDetailsCityName">{{clientDetails.cityName}}</dd>
+                                    <dt>רחוב:</dt>
+                                    <dd data-hrl-bo="personalDetailsStreetName">{{clientDetails.streetName}}</dd>
+                                    <dt>מספר בית:</dt>
+                                    <dd data-hrl-bo="personalDetailsStreetNumber">{{clientDetails.streetNumber}}</dd>
+                                    <dt>מיקוד:</dt>
+                                    <dd data-hrl-bo="personalDetailsZipCode">{{clientDetails.zipCode}}</dd>
+                                    <dt>תאריך לידה:</dt>
+                                    <dd data-hrl-bo="personalDetailsBirthDate">{{clientDetails.birthDate}}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of personal details strip -->
+
+
+        </div>
+    </div>
+
+
+    <div class="hsg-g" data-ng-show="!showClientDetails" >
+        <div class="hsg-c-12">
+
+            <!-- start of personal details strip -->
+            <div class="hsg-strip">
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title">פרטים אישיים</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-list-inline hsg-list-inline-large-side hsg-h5 hsg-text-primary-1">
+                            <li class="with-border fullName">{{mursheFullName}}</li>
+                            <li>
+                                מספר זהות:
+                                <span class="tz">{{mursheTz}}</span>
+                            </li>
+                            <li class="hsg-display-block">
+                                כניסה אחרונה:
+                                <span>{{lastPortalEntry}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end of personal details strip -->
+
+
+        </div>
+    </div>
+
+
+
+    <div class="hsg-g">
+        <div class="hsg-c-12" data-ng-show="displayCampain">
+            <div class="c-msg">
+                <div class="c-msg__icon"><div class="c-icon"></div></div>
+                <div class="c-msg__body">
+                    <div class="c-title">
+                        בתאריך 31/12/2017 הסתיים ביטוח הסיעוד הקבוצתי שלך
+                    </div>
+                    <div class="c-subtitle">
+                        באפשרותך להמשיך את הביטוח באופן פרטי
+                    </div>
+                    <div class="hsg-text-left hsg-margin">
+                        <button class="hsg-button hsg-button-primary" data-ng-click="onLinkPorsheySiudlClick()">להצעה מותאמת אישית</button>
+                    </div>
+                </div>
+            </div>
+            <!--div class="hsg-strip">
+                <div class="hsg-strip-side">
+                    <h3 class="hsg-strip-title">הודעה ללקוח</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <p>
+                           בתאריך 25/12/2017 מסתיים ביטוח הסיעוד שלך במסגרת הקבוצתית.
+באפשרותך להמשיך את הביטוח באופן פרטי, להצעה מותאמת אישית <a>לחץ כאן</a>.
+
+
+                        </p>
+                    </div>
+                </div>
+            </div-->
+        </div>
+    </div>
+
+    <div class="hsg-g topicsStrips" data-ng-show="noStripsToShow">
+        <div class="hsg-c-12">
+
+            <!-- start of pension savings strip -->
+            <div data-ng-show="products[4].length > 0" id="pension" class="hsg-strip hsg-strip-no-padding"
+                 data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" >{{products[4][0].sectionName}}</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-cubes hsg-cubes-links">
+
+                            <li class="cube6" data-ng-repeat="product in products[4] | orderBy:'sectionOrder'">
+                                <a href="javascript:;" data-ng-click="onCubeClick(product)" class="hsg-cube-item">
+                                    <i class="{{'hsg-icon-t-' + product.xtopicId}}"></i>
+                                    <h4 aria-level="3" title="{{product.xTopicName}}">{{product.xTopicName}}</h4>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of pension savings strip -->
+
+            <!-- start of investment savings strip -->
+            <div data-ng-show="products[1].length > 0" id="savings" class="hsg-strip hsg-strip-no-padding"
+                 data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title">{{products[1][0].sectionName}}</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-cubes hsg-cubes-links">
+                            <li class="cube1" data-ng-repeat="product in products[1] | orderBy:'sectionOrder'">
+                                <a href="javascript:;" data-ng-click="onCubeClick(product)" class="hsg-cube-item">
+                                    <i class="{{'hsg-icon-t-' + product.xtopicId}}"></i>
+                                    <h4 aria-level="3" title="{{product.xTopicName}}">{{product.xTopicName}}</h4>
+                                    <p data-ng-if="product.xtopicId != 100" class="moneyFormat">{{product.policyDetails}}</p>
+                                    <p data-ng-if="product.xtopicId == 100" >{{product.policyDetails}}</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of investment savings strip -->
+
+            <!-- start of pension savings strip -->
+            <div data-ng-show="products[2].length > 0" id="pensionSavings" class="hsg-strip hsg-strip-no-padding"
+                 data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="pensionSavingStrip">{{products[2][0].sectionName}}</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-cubes hsg-cubes-links">
+
+                            <li class="cube2" data-ng-repeat="product in products[2] | orderBy:'sectionOrder'">
+                                <a href="javascript:;" data-ng-click="onCubeClick(product)" class="hsg-cube-item" >
+                                    <i class="{{'hsg-icon-t-' + product.xtopicId}}"></i>
+                                    <h4 aria-level="3" data-hrl-bo="pensionSavingsCube{{$index}}" title="{{product.xTopicName}}">{{product.xTopicName}}</h4>
+                                	<p data-ng-if="product.xtopicId != 100" class="moneyFormat">{{product.policyDetails}}</p>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of pension savings strip -->
+
+            <!-- start of insurance covers strip -->
+            <div data-ng-show="products[3].length > 0" id="covers" class="hsg-strip hsg-strip-no-padding"
+                 data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="insuranceCoverageStrip">{{products[3][0].sectionName}}</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-cubes hsg-cubes-links">
+
+                            <li class="cube3" data-ng-repeat="product in products[3] | orderBy:'sectionOrder' ">
+                                <a href="javascript:;" data-ng-click="onCubeClick(product)" class="hsg-cube-item">
+                                    <i class="{{'hsg-icon-t-' + product.xtopicId}}"></i>
+                                    <h4 aria-level="3" data-hrl-bo="insuranceCoverageCube{{$index}}" title="{{product.xTopicName}}">{{product.xTopicName}}</h4>
+                                    <p title="{{product.policyDetails}}">{{product.policyDetails}}</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of insurance covers strip -->
+
+            <!-- start of loans strip -->
+            <div data-ng-show="products[6].length > 0" id="loans" class="hsg-strip hsg-strip-no-padding"
+                 data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="loansStrip" >{{products[6][0].sectionName}}</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body">
+                        <ul class="hsg-cubes hsg-cubes-links">
+
+                            <li class="cube3" data-ng-repeat="product in products[6] | orderBy:'sectionOrder' ">
+                                <a href="javascript:;" data-ng-click="onCubeClick(product)" class="hsg-cube-item">
+                                    <i class="{{'hsg-icon-t-' + product.xtopicId}}"></i>
+                                    <h4 data-ng-class="{'longtext': product.xtopicId == 100 || product.xtopicId == 90} " aria-level="3" data-hrl-bo="loansCube{{$index}}" title="{{product.xTopicName}}">{{product.xTopicName}}</h4>
+                                    <p title="{{product.policyDetails}}">{{product.policyDetails}}</p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of loans strip -->
+
+
+
+            <!-- start of claims strip -->
+            <div id="claims" data-ng-show="hasClaims" class="hsg-strip" data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="claims">תביעות</h3>
+                    <div class="hsg-strip-sub-title">
+                        <a href="javascript:;" data-ng-click="onLinkPortalClickByName('newClaim')" class="hsg-h5" data-hrl-bo="newClaimRequestLink">
+                            הגשת תביעה חדשה
+                            <i class="hsg-icon-arrow-light-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-head" data-hrl-bo="claimsListArrow">
+                        <h5 class="hsg-text-primary-3">
+                            סך הכול
+                            <span class="hsg-h2" data-hrl-bo="claimNumber">{{claims.length}}</span>
+                            תביעות
+                        </h5>
+                    </div>
+                    <div class="hsg-strip-body">
+                        <div class="hsg-table-responsive" data-hsg-table-fade>
+                            <div class="hsg-table-responsive-content">
+                                <table class="hsg-table hsg-table-horizontal-lines hsg-table-head-primary">
+                                    <thead>
+                                    <tr>
+                                        <th data-hrl-bo="claimArea">תחום</th>
+                                        <th data-hrl-bo="claimNumber">מספר תביעה</th>
+                                        <!-- th>מספר פוליסה</th> -->
+                                        <th data-hrl-bo="claimType">סוג</th>
+                                        <th data-hrl-bo="claimOpenDate">תאריך פתיחה</th>
+                                        <th data-hrl-bo="claimStatus">סטטוס</th>
+                                        <th data-hrl-bo="claimDetailedInfo">מידע מפורט</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="claim"
+                                        data-ng-repeat="claim in claims | orderBy:convertDate:true | limitTo:rowsLimit">
+                                        <td>{{claim.workspace}}</td>
+                                        <td data-ng-if="isTopicInShowList(claim)" ><a href="javascript:;"
+                                                                                      data-ng-click="onLinkPortalClickByNameWithParams(claim,'claimNumber','?CLAIM_NUMBER='+claim.claimNumber+'&CLAIM_DOMAIN_ID='+claim.areaReportId)">{{claim.claimNumber}} </a>
+                                        </td>
+
+                                        <td data-ng-if="!isTopicInShowList(claim)" >{{claim.claimNumber}}
+                                        </td>
+
+                                        <!-- <td>{{claim.policyNumber}}</td> -->
+                                        <td>{{claim.claimType}}</td>
+                                        <td>{{claim.eventDate}}</td>
+                                        <td>{{claim.claimStatus}}</td>
+                                        <td data-ng-if="isTopicInShowList(claim)"  ><a title="מידע מפורט לתביעה {{claim.claimNumber}}" href="javascript:;"
+                                                                                       data-ng-click="onLinkPortalClickByNameWithParams(claim,'claimNumber','?CLAIM_NUMBER='+claim.claimNumber+'&CLAIM_DOMAIN_ID='+claim.areaReportId)"
+                                                                                       class="hsg-display-inline-block"><i class="site-icon-info"></i></a></td>
+                                        <td data-ng-if="!isTopicInShowList(claim)" ></td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="hsg-text-left">
+                            <a href="javascript:;" data-ng-click="onLinkPortalClickByName('claimArchive')">
+                                כל התביעות
+                                <i class="hsg-icon-arrow-left"></i>
+                            </a>
+                        </div>
+                        <div data-ng-if="siudInd" class="hsg-text-left">
+                            <a   href="javascript:;" data-ng-click="onLinkPortalClickByName('siud')">
+                                רשימת תביעות סיעוד מושלם ופרסונל
+                                <i class="hsg-icon-arrow-left"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="noclaims" data-ng-show="noClaimsFound" class="hsg-strip" data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title">תביעות</h3>
+                    <div class="hsg-strip-sub-title">
+                        <a href="javascript:;" data-ng-click="onLinkPortalClickByName('newClaim')" class="hsg-h5">
+                            הגשת תביעה חדשה
+                            <i class="hsg-icon-arrow-light-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body" style="display: block;">
+                        <h5 data-ng-if="!siudInd" class="hsg-text-primary-3">
+                            לא נמצאו תביעות
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <!-- end of claims strip -->
+
+            <!-- start of client requests strip -->
+            <div id="requests" data-ng-show="hasRequests" class="hsg-strip" data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="customerRequest">בקשות לקוח</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-head" data-hrl-bo="requestListArrow">
+                        <h5 class="hsg-text-primary-3">
+                            סך הכול
+                            <span class="hsg-h2" data-hrl-bo="requestNumber">{{requests.length}}</span>
+                            בקשות
+                        </h5>
+                    </div>
+                    <div class="hsg-strip-body">
+                        <div class="hsg-table-responsive" data-hsg-table-fade>
+                            <div class="hsg-table-responsive-content">
+                                <table class="hsg-table hsg-table-horizontal-lines hsg-table-head-primary">
+                                    <thead>
+                                    <tr>
+                                        <th data-hrl-bo="requestType">סוג הבקשה</th>
+                                        <th data-hrl-bo="requestArea">תחום</th>
+                                        <th data-hrl-bo="leftDocuments">מסמכים להשלמה</th>
+                                        <th data-hrl-bo="leftDays">ימים בהמתנה</th>
+                                        <th data-hrl-bo="requestStatus">סטטוס</th>
+                                        <th data-hrl-bo="requestDetailedInfo">מידע מפורט</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="request" data-ng-repeat="request in requests | limitTo:rowsLimit">
+                                        <td>
+                                            <a href="javascript:;"
+                                               data-ng-click="onLinkPortalClickByNameWithParams(null,'detailedApplication','?Source_id='+request.sourceId+'&Mispar_Pniya='+request.misparPniya+'&Czehut='+request.czehut+'&Mispar_Polisa='+request.misparPolisa+'&Mispar_tvia='+request.misparTvia+'&Mispar_Halvaa='+request.misparHalvaa+'&Mispar_kupa='+request.misparKupa+'&Request_id_source='+request.requestIdSource+'&THMPLS='+request.thmpls+'&Mispar_Bakash_NT='+request.misparBakashNT+'&Business_Process='+request.businessProcess)">
+                                                {{request.requestType}}
+                                            </a>
+                                        </td>
+                                        <td>{{request.workspace}}</td>
+                                        <td>{{request.isHosarim}}</td>
+                                        <td>{{request.daysOfWait}}</td>
+                                        <td>{{request.requestStatus}}</td>
+                                        <td>
+                                            <a title="מידע מפורט לבקשה " href="javascript:;"
+                                               class="hsg-display-inline-block"
+                                               data-ng-click="onLinkPortalClickByNameWithParams(null,'detailedApplication','?Source_id='+request.sourceId+'&Mispar_Pniya='+request.misparPniya+'&Czehut='+request.czehut+'&Mispar_Polisa='+request.misparPolisa+'&Mispar_tvia='+request.misparTvia+'&Mispar_Halvaa='+request.misparHalvaa+'&Mispar_kupa='+request.misparKupa+'&Request_id_source='+request.requestIdSource+'&THMPLS='+request.thmpls+'&Mispar_Bakash_NT='+request.misparBakashNT+'&Business_Process='+request.businessProcess)">
+                                                <i class="site-icon-info"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="hsg-text-left">
+                            <a href="javascript:;" data-ng-click="onLinkPortalClickByName('applicationArchive')">
+                                ארכיון בקשות לקוח
+                                <i class="hsg-icon-arrow-left"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of client requests strip -->
+
+
+
+        </div>
+    </div>
+
+
+    <div class="hsg-g" data-ng-show="showMurshe">
+        <div class="hsg-c-12" >
+            <div class="hsg-strip">
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title">חשבונות נוספים</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <ul class="hsg-cubes hsg-cubes-links">
+
+                        <li data-ng-repeat="murshe in mursheList">
+                            <a href="javascript:;" data-ng-click="onMursheLinkPortalClick(murshe)" class="hsg-cube-item" title="{{murshe.firstName}}" alt="{{murshe.firstName}}">
+                                <i class="child-icon"></i>
+                                <h2>{{murshe.firstName}}</h2>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="hsg-g" data-ng-show="showActions" >
+        <div class="hsg-c-12">
+            <!-- Information $ Actions -->
+            <div id="actionAndInfo"  class="hsg-strip" data-hsg-strip-collapse>
+                <div class="hsg-strip-side">
+                    <h3 aria-level="2" class="hsg-strip-title" data-hrl-bo="additionalInfo">מידע נוסף</h3>
+                </div>
+                <div class="hsg-strip-content">
+                    <div class="hsg-strip-body" style="display: block;">
+                        <div class="hsg-g">
+
+                            <div class="hsg-c-medium-6" data-ng-repeat="action in actions">
+                                <a href="javascript:;" data-ng-click="onLinkPortalClickByName(action.url)"
+                                   class="hsg-link-arrow">
+                                    {{action.title}}
+                                    <i class="hsg-icon-arrow-left"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div data-ng-show="finishedLoading" class="hsg-footer">
+    <div class="hsg-footer-container">
+        <ul class="hsg-footer-links">
+            <li><a href="#">דף הבית</a></li>
+            <li><a href="#">צור קשר</a></li>
+            <li><a href="#">תנאי שימוש</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="hsg-app-bg"></div>
+<script src="../front/assets/scripts/vendors/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="../front/assets/scripts/hsg.0.2.0.js" type="text/javascript"></script>
+<!--[if lte IE 9]>
+<script src="../front/assets/scripts/vendors/jquery.html5-placeholder-shim.js" type="text/javascript"></script>
+<![endif]-->
+
+<!-- Angular files -->
+<script src="../front/lib/angular.js"></script>
+<script src="../front/lib/angular-cookies.js"></script>
+<script src="../front/app.js"></script>
+<script src="../front/lib/pm.js"></script>
+<!-- Common utils files -->
+<script src="../front/common/utils.js?v=1.1.0"></script>
+<script src="../front/common/directive/selectOptionsClass/directive/selectOptionsClass.js"></script>
+<script src="../front/common/directive/onChangeHsgSelect/directive/onChangeHsgSelect.js"></script>
+<script src="../front/modules/clientView/controller/clientViewController.js?v=1.0.34.0"></script>
+<script src="../front/modules/clientView/service/clientViewFactory.js?v=1.0.7.0"></script>
+<script src="../front/assets/scripts/harel-client-scripts-wrapper.js" type="text/javascript"></script>
+
+</body>
+</html>

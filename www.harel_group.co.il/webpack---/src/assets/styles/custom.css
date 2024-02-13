@@ -1,0 +1,84 @@
+
+.nav_new .menu_panel .menu_panel_inner >ul >li.submenu em.menu_arrow,
+.nav_new .user_button em {
+	height: 15px !important;
+}
+
+
+.h-field {
+	font-size: 15px;
+}
+
+.h-field input[type=password], 
+.h-field input[type=text], 
+.h-field input[type=file], 
+.h-field select, 
+.h-field textarea {
+	border: 0;
+}
+
+.h-field .focused {
+	border: 0 !important;
+    opacity: 1;
+}
+
+
+.h-modal__close:hover {
+	border-color: transparent !important;
+	background-color: transparent !important;
+}
+
+.h-modal__dialog.focused,
+.h-modal__close.focused,
+.h-button.focused {
+	border: 0 !important;
+	opacity: 1 !important;
+}
+
+.h-modal__content {
+    font-size: 15px;
+    max-height: calc(100% - 0.1px) !important;
+}
+
+.h-field__element::-webkit-input-placeholder {
+    opacity: 0 !important;
+}
+
+.h-field__element::-moz-placeholder {
+    opacity: 0 !important;
+}
+
+.h-field__element:-ms-input-placeholder {
+    opacity: 0 !important;
+}
+
+.h-field__element::placeholder {
+    opacity: 0 !important;
+}
+
+.h-field.is-focused .h-field__element::-webkit-input-placeholder {
+    opacity: 1 !important;
+}
+
+.h-field.is-focused .h-field__element::-moz-placeholder {
+    opacity: 1 !important;
+}
+
+.h-field.is-focused .h-field__element:-ms-input-placeholder {
+    opacity: 1 !important;
+}
+
+.h-field.is-focused .h-field__element::placeholder {
+    opacity: 1 !important;
+}
+
+.h-modal__bg {
+	z-index: 999999 !important;
+}
+
+.h-modal__position{
+    z-index: 9999999 !important;
+}
+.nav_new .megamenu a {
+    box-sizing: content-box;
+}

@@ -1,0 +1,13 @@
+#business_card .column li {
+    width: 48%;
+    min-height: 25px;
+}
+ul.harelLiArrows li {
+    min-height: 32px;
+}
+#business_card .column ul {
+    width: 100%;
+}
+.all_wrapper_inner .content .ms-clear {
+    clear:none;
+}

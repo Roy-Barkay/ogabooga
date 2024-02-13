@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'mfw_protocolharel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: normal;
+  src:
+    local('mfw_protocolharel'),
+    url('https://new.harel-net.co.il/files/hsg/fonts/MFW_ProtocolHarel-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'mfw_protocolharel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src:
+    local('mfw_protocolharel'),
+    url('https://new.harel-net.co.il/files/hsg/fonts/MFW_ProtocolHarel-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'mfw_protocolharel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: bold;
+  src:
+    local('mfw_protocolharel'),
+    url('https://new.harel-net.co.il/files/hsg/fonts/MFW_ProtocolHarel-Bold.woff') format('woff');
+}

@@ -1,0 +1,697 @@
+a:hover {
+    color:#006cb2;
+    text-decoration: none;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.subnave a:hover {
+    color:#FFF;
+}
+.standered-btn:hover {
+    background: none repeat scroll 0 0 #00568c !important;
+}
+.standered-btn.disabled:hover {
+    background: none repeat scroll 0 0 #e9eaec !important;
+}
+
+
+.standard_link:hover {
+    color: #003557 !important;
+    text-decoration: underline !important;
+}
+.standard_links:hover, .standard_links:hover span {
+    color: #003557 !important;
+    text-decoration: none !important;
+}
+#agents_search_categories1 li .date-sec input[type="submit"]:hover {
+    background: #265C93;
+}
+.standard_effect:hover {
+    text-decoration: underline !important;
+}
+.standard_link_border:hover {
+    color: #003557 !important;
+    border-bottom: 1px solid #003557 !important;
+}
+.insurence_plan .arrowicon:hover {
+    background-position: -125px -42px;
+}
+.en .insurence_plan .arrowicon:hover {
+    background-position: -158px -2563px;
+    width: 42px;
+    height: 42px;
+}
+.systems1 .customers-info li a:hover em {
+    background-position: -79px -243px;
+}
+.reports1 .customers-info li a:hover em, .reports_box .reports_recommended ul li a:hover em {
+    background-position: 0px -427px;
+}
+.footesecondarynav a:hover, .footenav a:hover {
+    text-decoration: underline;
+}
+.footenav a:hover, .footesecondarynav a:hover {
+    color:#fff;
+}
+#paging .paging ul li.current a:hover {
+    color:#585858;
+}
+#paging .next:hover, #filter-pagination .next:hover {
+    background-position: -113px -524px;
+}
+#paging .prev:hover, #filter-pagination .prev:hover {
+    background-position: -114px -553px;
+}
+#paging .prev.disable:hover {
+    background-position: -80px -42px;
+}
+#paging .next-arrow:hover, #filter-pagination .next-arrow:hover {
+    background-position: -166px -1783px;
+}
+#filter-pagination .prev-arrow:hover {
+    background-position: -73px -1780px;
+}
+#login .row li:hover {
+    background:#eeeff3;
+}
+#login .row li.active:hover, #downloads .accordionClick.on.over {
+    background: #265c93;
+}
+.media_icon > li.share_icon > a:hover {
+    background-position: 0 -381px;
+}
+.media_icon li.print_icon:hover a {
+    background-position: 0 -290px;
+}
+.media_icon li.print_icon a:hover,
+.media_icon li.print_icon a:focus {
+    background-position: -103px -1021px;
+}
+.media_icon li.like_icon:hover a {
+    background-position: 0 -336px;
+}
+#search_categories .search_categories li:hover {
+    background: #e8eaed;
+}
+#results_title .filters li.more ul li:hover, .subnave li:hover, .slidenav ul li:hover {
+    background: #01213f;
+}
+.secondary_nav > ul > li:hover > a {
+    color:#c89015;
+}
+.secondary_nav > ul > li.slidenav:hover > a {
+    border-bottom: 3px solid transparent;
+}
+#left_menu li:hover {
+    background:#ced6e6;
+}
+#left_menu li:hover a {
+    color: #003f80;
+}
+.megamenu li:hover {
+    background-color: #01182e;
+}
+.megamenu li.empty:hover {
+    background-color: #022447;
+}
+.nav_new .menu_panel .menu_panel_inner >ul >li:hover {
+    background-color: #013469;
+}
+.nav .main_menu_box ul li.active > a, .nav .main_menu_box ul li.active > a:hover {
+    border-bottom: 4px solid #013163;
+}
+.listItems ul {
+    padding-top:30px;
+}
+#downloads > ul > li > a.online:hover, #info_tabs #tab1 > ul > li > a.online:hover, #action-form .doc_online li > a.online:hover em, #action-form .doc_online li > a.online:hover em {
+    background-position:0 -427px;
+}
+#info_tabs #tab1 > ul > li > a.download:hover, .tab_container .doc_online li > a.download:hover em, #action-form .doc_online li > a.download:hover em, #action-form .doc_online li > a.download:hover em {
+    background-position:0 -457px;
+}
+.media_icon li.like_icon:hover .like-value, .media_icon li.like_icon:focus .like-value {
+    color: #022447;
+}
+.media_icon li.like_icon.newLike:hover a {
+    background-position: 0 -490px;
+}
+#filter_content table td > a:hover, .tab_container .plan li a:hover {
+    text-decoration: underline;
+    color: #003557;
+}
+#agents_useful_info .useful-content-data ul a.download:hover:after, #action_form .doc_online li > a.download:hover em {
+    background-position: 0 -457px;
+    text-decoration: underline;
+    color: #003557;
+}
+#agents_useful_info .useful-content-data ul a.online:hover:after, #action_form .doc_online li > a.online:hover em {
+    background-position: 0 -427px;
+    text-decoration: underline;
+    color: #003557;
+}
+#downloads .accordionClick.over {
+    background: #EDEFF2;
+}
+input[type="button"]:hover {
+    background: #006CB2;
+}
+#agents_search_categories li .date-sec input[type="submit"]:hover {
+    background: #265C93;
+}
+.nav .main_menu_box > ul > li > a:hover {
+    border-bottom: 4px solid #d8d7d5;
+}
+.user_nav .nav .main_menu_box ul li.home_icon a {
+    border-bottom: none;
+}
+#downloads .accordionClick:hover {
+    background-color: #edeff2;
+}
+#downloads .accordionClick.on:hover {
+    background-color: #265c93;
+}
+.sbOptions li:hover {
+    background-color: #e4e6e9;
+    ;
+}
+#dictionary_index .alphaabet li:hover a {
+    background:#265c93;
+    color:#fff;
+}
+#main_content .tooltip-wrap .close-btn:hover, #filter_content .tooltip-wrap .close-btn:hover {
+    background-position: -121px -463px;
+}
+#title_slider .pagination li:hover a {
+    background-position: -120px -1415px;
+}
+/*#agents_results_list a.fav:hover {
+     background-position: -167px -1818px;
+}*/
+ #newsletter a:hover:after, #newsletter1 a:hover:after {
+    background-position: -20px -1935px;
+}
+#expansoins a.crsl_left:hover, #trust_carousel a.crsl_left:hover, #info_tabs #loby-section-open ul.harelLiArrows li em:hover {
+    background-position: -113px -523px;
+}
+#expansoins a.crsl_right:hover, #trust_carousel a.crsl_right:hover {
+    background-position: -113px -553px;
+}
+.lobby-report .collapse-content-one li .tabclick:hover em {
+    background-position: -74px -1714px;
+}
+.lobby-report .collapse-content-one li.active .tabclick:hover em {
+    background-position: -74px -1747px
+}
+.lobby-report .collapse-content-one li .tabclick:hover a {
+    color: #003557 !important;
+    text-decoration: underline !important;
+}
+.lobby-report .collapse-content-one li.active .tabclick em:hover {
+    background-position: -74px -1747px;
+}
+.lobby-report .collapse-content-one li.active > em:hover {
+    background-position: -74px -1749px;
+}
+/*.lobby-report .collapse-content-one li .collapse-data-align a.star:hover {
+     background-position: -153px -1189px;
+}*/
+ .lobby-report .alignment.tabing-content li .tabclick em:hover {
+    background-position: -169px -1532px;
+}
+.lobby-report.mini_collapse .box-content .detailes-text li .collapse-data-align:last-child {
+    padding: 0px;
+}
+#error_bar .close:hover {
+    background: url("../img/sprite-img.png") no-repeat -99px -2056px;
+}
+#error_bar.alert .close:hover {
+    background-position: -175px -2134px;
+}
+#reports .customers-info li a:hover em {
+    background-position: 0px -427px;
+}
+#agents_useful_info ul li .star-point:hover, #agents_useful_info ul li .fav:hover {
+    background-position: -130px -2094px;
+}
+#filter_content .policy-icon > span a:hover {
+    background-position: -132px -2057px;
+}
+.close-btn:hover {
+    background-position: -31px -1316px;
+}
+.popover-title .close-btn:hover {
+    background-position: -121px -463px
+}
+.user_nav .nav .user_box #favorites li span:hover {
+    background: #013060;
+}
+.nav_new #favorites li span:hover {
+    background: #013265;
+}
+.nav_new .user_menu_wrapper ul li:hover {
+    background: #011f3d;
+}
+.nav_new.not_logged .user_menu_wrapper ul li:hover {
+    background: none;
+}
+.nav_new .user_menu_wrapper ul li.agent_name:hover {
+    background: none;
+    cursor:default;
+}
+#favorites .user_content h2 strong:hover {
+    background-position: -114px -2433px;
+}
+.home_carousel a.crsl_left:hover {
+    background-position: -111px -2563px;
+}
+.home_carousel a.crsl_right:hover {
+    background-position: -158px -2563px;
+}
+@media only screen and (max-width: 1013px) and (min-width: 766px) {
+    .user_nav .nav .main_menu_box ul li.active > a:hover {
+        border-bottom: none !important;
+    }
+    .user_nav .nav .main_menu_box ul li:hover a {
+        border-bottom: none;
+    }
+    .user_nav .nav .main_menu_box > ul > li.active:hover .megamenu > a {
+        left:22px;
+    }
+}
+@media only screen and (max-width: 765px) {
+    .nav .main_menu_box ul li.active > a:hover {
+        border-bottom: none !important;
+    }
+    .nav .main_menu_box ul li:hover a {
+        border-bottom: none;
+    }
+    .nav .main_menu_box > ul > li.active:hover .megamenu > a {
+        left:22px;
+    }
+    #promotion_content a:hover, #agents_search_promotion .agents_search_promotion a:hover, #agents_search_categories li a:hover {
+        color: #fff;
+    }
+}
+@media only screen and (max-width: 518px) {
+    .media_icon li.share_icon > a:hover {
+        background-position: -49px -164px;
+    }
+}
+#agents_results_list .agents_results_list li.agents_useful_info .useful-content-data ul li a.download:after:hover {
+    background-position: 0 -457px;
+    text-decoration: underline;
+    color: #003557;
+}
+.collective_auto-complete-blog .primary-blog tr:hover, .auto-complete-blog .primary-blog tr:hover {
+    background-color: #CCC;
+}
+/*#favorites .user_content .content-data a.phone:hover {
+    text-decoration: underline;
+    color: #003557;
+}*/
+ .tabing-panel .tabing-content .collapse-data-align a.mobility-links:hover {
+    text-decoration: underline;
+    color:#003557 !important;
+}
+/*
+.tabing-panel .tabing-content .collapse-data-align a.fav:hover{
+    background: transparent !important;
+    color: #003557 !important;
+    text-decoration: underline;
+}
+.tabing-panel .tabing-content .collapse-data-align a.fav.disable_star:hover {
+    background: transparent !important;
+    color: #585858 !important;
+    text-decoration: none;
+}
+*/
+ #info_tabs #loby-section-open ul.harelLiArrows li a:hover em {
+    background-position: -113px -523px;
+}
+.promo_carousel a.crsl_left:hover {
+    background-position: -50px -70px;
+}
+.promo_carousel a.crsl_right:hover {
+    background-position: -78px -70px;
+}
+/*
+   .systems1 .collapse_heading.active_heading .heading:hover, 
+.reports1 .collapse_heading.active_heading .heading:hover {
+    background-color: #003f80;
+}
+.systems1.marketing_arena .collapse_heading.active_heading .heading:hover {
+     background-color: #fff;
+    
+} 
+    */
+
+
+#reports .customers-info li a:hover {
+    text-decoration: underline;
+    color: #003557;
+}
+#reports .report-text:hover {
+    text-decoration: underline;
+    color: #003557;
+}
+#systems .customers-info li a:hover {
+    text-decoration: underline;
+    color: #003557;
+}
+#systems .customers-info li a:hover em {
+    background-position: -79px -243px;
+}
+.agents_tabs #tabs .tab_header:hover {
+    background: #ffffff;
+    color: #F2F2F2;
+}
+/*.agents_tabs #tabs > li > .tab_header.active:hover {
+    background: #265c93;
+    color: #F2F2F2;
+    border: none;
+}*/
+ .tab_container .doc_online li > a.online:hover em {
+    background-position: 0 -427px;
+}
+#collapse_cagtegory .accordionClick:hover {
+    background: #edeff2;
+}
+#collapse_cagtegory .accordionClick.on:hover {
+    background: #265C93;
+}
+.standard_table table td a.btn:hover {
+    background: #00568e;
+}
+/*
+    .agents_tabs #tabs .tab_header:hover {
+    background: #edeff2;
+}
+.agents_tabs .collapse_heading .heading:hover {
+    background: #FFF;
+}
+    */
+
+#dictionary_index .alphaabet li.disabled a:hover {
+    background: #edeff2;
+    color: #979696;
+}
+#downloads .accordiondoc > ul > li > a.online:hover em {
+    background-position: 0 -426px;
+}
+#downloads .accordiondoc > ul > li > a.download:hover em {
+    background-position: 0 -457px;
+}
+#expansoins.expansoins_lobby a.crsl_right:hover, .promo_carousel.expensive-slides a.crsl_right:hover {
+    background-position: -114px -553px;
+}
+.ie8 #expansoins.expansoins_lobby a.crsl_right:hover, .promo_carousel.expensive-slides a.crsl_right:hover {
+    background-position: -114px -554px;
+}
+#expansoins.expansoins_lobby a.crsl_left:hover, .promo_carousel.expensive-slides a.crsl_left:hover {
+    background-position: -113px -524px;
+}
+.ie8 #expansoins.expansoins_lobby a.crsl_left:hover, .promo_carousel.expensive-slides a.crsl_left:hover {
+    background-position: -113px -523px;
+}
+.expensive-slides ul a.report-text:hover {
+    text-decoration: underline;
+    color: #003557;
+}
+#filter_content table td > a:hover > em {
+    background-position: 0 -458px;
+}
+#filter_info_form .button-section input[type="button"]:hover {
+    background: #00568e;
+}
+/*.home_carousel a.crsl_left:hover {
+background:url(../img/sprite-img.png) -50px -70px no-repeat;
+margin-left: 12px;
+}*/
+
+/*.home_carousel a.crsl_right:hover {
+     background-position: -78px -70px ;
+}*/
+ .search_categories-classbase .search_categories li:hover {
+    background: #e8eaed;
+}
+#search_categories1 .search_categories li:hover {
+    background: #e8eaed;
+}
+#share-open.media_icon li a.twitter:hover {
+    background: url(../img/sprite-img.png) -99px -1045px no-repeat;
+}
+#share-open.media_icon li a.open-fb:hover {
+    background:url(../img/sprite-img.png) -98px -844px no-repeat;
+}
+#share-open.media_icon li a.open-mail:hover {
+    background:url(../img/sprite-img.png) -98px -896px no-repeat;
+}
+#share-open.media_icon li a.open-in:hover {
+    background:url(../img/sprite-img.png) -98px -949px no-repeat;
+}
+#share-open.media_icon li a.open-plus:hover {
+    background:url(../img/sprite-img.png) -98px -1001px no-repeat;
+}
+/*.agents_useful_info ul li .standard_link:hover,
+.agents_useful_info ul li .standard_link:hover span {
+    color:#006CB2 !important;
+}*/
+ .info_panel .info_panel_head .info_close em:hover:before {
+    background-position: -121px -463px;
+}
+#client_health .policy-icon > span a:hover {
+    background-position: -122px -462px;
+}
+.user_nav .nav #search_btn:hover {
+    background: #00568e url(../img/search_icon.png) 51% center no-repeat;
+}
+.nav_new .user_button:hover, .nav_new .search_button:hover, .nav_new .menu_button:hover {
+    background-color: #013469;
+}
+.nav_new .menu_panel .menu_panel_inner >ul >li:hover {
+    background-color: #013469;
+}
+#filter-pagination ul li.activepage a:hover {
+    color: #585858;
+}
+input[type="button"]:hover {
+    background: none repeat scroll 0 0 #006CB2;
+}
+.print .collapse_heading:hover {
+    background:none;
+}
+.print #collapse_cagtegory .accordionClick:hover {
+    background-color: white;
+}
+#tabs .tab_header:hover {
+    background: #edeff2;
+    color: #F2F2F2;
+}
+/*#tabs > li > .tab_header.active:hover {
+    background: #003f80;
+    color: #F2F2F2;
+}*/
+ .tab_container .doc_online li > a.download:hover em {
+    background-position: 0 -457px;
+}
+.tab_container .doc_online li > a.online:hover em {
+    background-position: 0 -427px;
+}
+#filter-pagination ul li.active a:hover {
+    color: #585858;
+}
+#filter-pagination ul li a:hover {
+    color: #003557;
+    text-decoration:underline;
+    /*    border-bottom:1px #d4d8dd solid;*/
+}
+.search_bar .search_scope.open .current a:hover {
+    background:#c9d4ed;
+}
+.search_bar .search_scope .search_scope-menu li a:hover {
+    background-color:#c9d4ed;
+}
+/*.agents_tabs #tabs > li > .tab_header.active:hover span {
+    background: url("../img/sprite-img.png") -123px -395px no-repeat !important;
+}*/
+ #agents_search_categories1 .first-area li a:hover li {
+    background: none !important;
+}
+#agents_search_categories1 .first-area li.active a:hover {
+    background: #003f80 !important;
+}
+#agents_search_categories1 .wrap-column li a:hover {
+    background: #edeff2;
+}
+#agents_search_categories1 .wrap-column li.border-none:hover {
+    background: #edeff2;
+}
+#agents_search_categories1 .wrap-column li.active:hover {
+    background: #e0e8fa;
+}
+#agents_search_categories1 .wrap-column li.active:hover ul li {
+    background: red;
+}
+#agents_search_categories1 .wrap-column .info-date li li:hover {
+    background: none;
+}
+#agents_search_categories1 .wrap-column li.open-sec.open a.bottm-bd:hover {
+    background: #e0e8fa url(../img/black-saprator.png) repeat-x bottom center;
+}
+#agents_search_categories1 .first-area li a:hover {
+    background: #e1e3e6;
+}
+div.title-With-Background a:hover {
+    color: rgb(255, 255, 255);
+    font-size: 12pt;
+}
+div.mediaPlayerInitialPlayButton:hover {
+    background-color: rgb(0, 0, 0);
+}
+ul.mediaPlayerEncodingMenu li:hover {
+    color: rgb(128, 0, 0);
+}
+.mediaPlayerControl:hover {
+    background-color: rgba(156, 206, 240, 0.5);
+}
+.ms-select h2:hover {
+    color: rgb(185, 95, 0);
+}
+.ms-select li:hover {
+    color: rgb(185, 95, 0);
+}
+a.ms-accentText2:hover {
+    color: rgb(185, 95, 0);
+}
+#dictionary_index .alphaabet li.disabled a:hover {
+    background: #edeff2;
+    color: #979696;
+}
+.ie8 a.popover_btn:hover {
+    text-decoration: none;
+}
+.popover .popover_link .bid:hover {
+    text-decoration: none !important;
+}
+@media only screen and (max-width: 1013px) {
+    .nav_new .menu_panel .megamenu_wrapper .megamenu li:hover {
+        background-color: #01182e
+    }
+    .nav_new .menu_panel .megamenu_wrapper .megamenu li.empty:hover {
+        background-color: #022447
+    }
+}
+@media only screen and (max-width: 765px) {
+    .tab_container .tab > li:hover > a {
+        color: #585858;
+    }
+    .tab_container .tab > li.accordionbtn.active:hover > a {
+        color: #fff;
+    }
+    .tab_container .tab > li:hover > span .tab > li {
+        text-align: right;
+    }
+    .tab_container .tab > li:hover > span {
+        display: none;
+    }
+    #tabs .tab_header:hover {
+        color: #F2F2F2;
+    }
+    .home_carousel a.crsl_left:hover {
+        background-position: -50px -70px;
+    }
+    .home_carousel a.crsl_right:hover {
+        background-position: -78px -70px;
+    }
+    #agents_search_categories1 .wrap-column li.border-none:hover {
+        background: none;
+    }
+    #agents_search_categories1 .wrap-column li a:hover, #agents_search_categories1 li a:hover, #agents_search_categories1 li a:hover span, #agents_search_categories1 .wrap-column li.active:hover {
+        background: #021d3a !important;
+        color: #fff !important
+    }
+    #agents_search_categories1 .first-area li a:hover {
+        background: #021d3a;
+    }
+    #agents_search_categories1 .first-area li.active a:hover, #agents_search_categories1 .first-area li.active a {
+        background: #01152d !important;
+    }
+    #agents_search_categories1 .wrap-column li.active:hover, #agents_search_categories1 .wrap-column li.active a:hover span {
+        background: #01152d !important;
+        font-weight: bold;
+    }
+}
+@media screen and (max-width:518px) {
+    #share-open.media_icon li a.open-like:hover {
+        background-position: -64px -1087px;
+    }
+    #share-open.media_icon li a.open-fb:hover {
+        background-position: -64px -1133px;
+    }
+    #share-open.media_icon li a.open-mail:hover {
+        background-position: -64px -1179px;
+    }
+    #share-open.media_icon li a.open-in:hover {
+        background-position: -64px -1225px;
+    }
+    #share-open.media_icon li a.open-plus:hover {
+        background-position: -64px -1271px;
+    }
+    #share-open.media_icon li a.twitter:hover {
+        background-position: -64px -1047px;
+    }
+    .media_icon li.share_icon > a:hover {
+        background-position: -49px -164px;
+    }
+    .nav .main_menu_box ul li:hover a {
+        border:none !important;
+    }
+}
+.harel-guide-content .collapse-content-one li:hover a {
+    color: #003557 !important;
+    text-decoration: underline !important;
+}
+.nav_new .megamenu a.information:hover {
+    text-decoration: underline;
+}
+/*#results_title .filters li a:hover {
+    text-decoration: underline;
+}*/
+#results_title .filters .filter_list>li>a:hover:after {
+    float: right;
+    content: "";
+    height: 1px;
+    border-bottom: 3px solid #C49112;
+    display: inline-block;
+    width: 100%;
+}
+#results_title .filters .filter_list>li.more_filters>a:hover:after {
+border-bottom: 0 solid #C49112;
+}
+#results_title .filters li ul li a:hover {
+    text-decoration: none;
+}
+.popup-bottom input[type="submit"]:hover {
+    background: #00568c;
+}
+#login-popup .try-again-link .try:hover {
+    color: #003557;
+}
+#login-popup .close-btn:hover {
+    background: url(../img/sprite-img.png) no-repeat -32px -1316px;
+}
+#company_login .popup-bottom input[type="submit"]:hover {
+    background: #00568c;
+}
+#business_card .quote_btn:hover span {
+    background: #00568c;
+}
+#company_login ul li div:hover {
+    background: #F5F5F5;
+}
+#company_login ul li.active div:hover {
+    background: #013163;
+}
+#company_login ul li.active div .popup-bottom .hsg-custom-input .terms_link:hover {
+    text-decoration:underline;
+}

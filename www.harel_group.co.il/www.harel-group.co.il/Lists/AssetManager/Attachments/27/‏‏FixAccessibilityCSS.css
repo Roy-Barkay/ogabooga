@@ -1,0 +1,46 @@
+.focused{border:1px solid #f2f3f4 !important;opacity:.9;outline:2px solid #003c81 !important}
+.client .auto-complete-blog .primary-blog tr td a.focused, a.focused {
+    border: 2px #2561A7 solid !important;
+    opacity: 0.9;
+    outline: 2px #f2f3f4 solid !important;
+}
+
+ul.dps_ul a.dps_a.focused { /* banners */
+    border: 3px solid white !important;
+    outline: none !important;
+}
+
+input.focused {
+    border: 2px #2561A7 solid !important;
+    opacity: 0.9;
+    outline: 2px #f2f3f4 solid !important;
+}
+button:focus{outline: 2px #f2f3f4 solid !important;}
+.whitebox button:focus{outline: 2px #f2f3f4 solid !important;}
+.collective_autocomplete_wrapper button:focus{outline: 2px #f2f3f4 solid !important;}
+.standard_form input[type="submit"].focused,.standard_form input[type="text"].focused,
+.standard_form input[type="tel"].focused,
+.standard_form input[type="number"].focused, .standard_form select.focused
+{
+    border: 2px #2561A7 solid !important;
+    opacity: 0.9;
+    outline: 2px #f2f3f4 solid !important;
+}
+.standard_form input[type="submit"].focused
+{
+    border: 2px #f2f3f4 solid !important;
+    opacity: 0.9;
+    outline: 2px #2561A7 solid !important;
+}
+#searchBox.focused
+{
+    border: 2px #f2f3f4 solid !important;
+    opacity: 0.9;
+    outline: 2px #2561A7 solid !important;
+}
+
+
+ /* DPH-3067 - ×”×¡×¨×ª ×ž×¡×’×¨×ª ×›×¤×ª×•×¨ ×›×©×”×•× ×‘×¤×•×§×•×¡ ×‘×“×¤×™ ×œ×•×‘×™  */
+.switch-div button[role="link"]:focus .btn_content {
+   display: none;
+}

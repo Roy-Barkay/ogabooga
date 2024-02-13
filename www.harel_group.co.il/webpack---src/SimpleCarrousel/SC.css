@@ -1,0 +1,137 @@
+.sc-mainwrapper{
+    max-width: 980px;
+    direction: rtl;
+}
+
+.carrousel_title H2{
+        color: #003c7f;
+}                            
+
+#simpleUL {
+    direction: rtl;
+}
+
+.sc-header{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 42px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #003c7f;
+}
+.sc-card-margin{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.sc-card{
+    width: 198px;
+    height: 239px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(119, 119, 119, 0.3);
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-color:white;
+    overflow: hidden;
+}
+
+.sc-icon-container{
+    width: 100%;
+    padding-top: 23px;
+    padding-bottom: 10px;
+    direction: rtl;
+
+}
+img.sc-icon{
+    width: 80px;
+    height: 58px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sc-card-title {
+    width: 100%;
+    height: 38px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.04;
+    letter-spacing: normal;
+    overflow: hidden;
+    text-align: center;
+    color: #003f80;
+}
+.sc-card-body{
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: center;
+    color: #003c7f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.slick-dots li {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+.slick-dots li button  {
+    background-color:transparent;
+    border:1px solid #2d76cb;    
+    height:14px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    width:14px;
+}
+
+.slick-dots li.slick-active button:before  {
+    background-color:#2d76cb;
+    border:1px solid #2d76cb;
+    color: transparent;    
+    height:14px;
+    width:14px ;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    opacity: 1;
+    
+}
+.slick-dots li button:before  {
+    color: transparent;    
+}
+svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit {
+    font-size: 20px;
+}
+
+@media screen and (max-width:480px) {
+
+    .slick-dots li {
+        width: 6px;
+        height: 6px;
+        cursor: pointer;
+    }
+
+}
+.hiddenText {
+    position: absolute;
+    left: -999px;
+    width: 0;
+    font-size: 0px;
+    clip: rect(0 0 0 0);
+}

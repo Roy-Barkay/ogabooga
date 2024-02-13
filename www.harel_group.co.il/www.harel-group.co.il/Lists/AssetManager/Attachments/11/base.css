@@ -1,0 +1,36 @@
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+body {
+  color: #003f80;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-family: "mfw_protocolharel", Arial;
+  font-weight: normal;
+  line-height: 1.5;
+  background-color: #f4f6fc;
+  direction: rtl;
+}
+
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+
+body::backdrop {
+  background-color: #fff;
+}

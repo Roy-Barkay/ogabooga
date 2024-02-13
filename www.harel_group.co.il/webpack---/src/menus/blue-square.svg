@@ -1,0 +1,67 @@
+var _defs, _mask, _mask2;
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import React from "react";
+const SvgBlueSquare = _ref => {
+  let {
+    title,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React.createElement("svg", _extends({
+    width: 355,
+    height: 559,
+    viewBox: "0 0 355 559"
+  }, props), title ? /*#__PURE__*/React.createElement("title", null, title) : null, _defs || (_defs = /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("linearGradient", {
+    id: "d",
+    x1: "50%",
+    x2: "50%",
+    y1: "0%",
+    y2: "100%"
+  }, /*#__PURE__*/React.createElement("stop", {
+    offset: "0%",
+    stopColor: "#052F58"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "9.784%",
+    stopColor: "#2E73C5"
+  }), /*#__PURE__*/React.createElement("stop", {
+    offset: "100%",
+    stopColor: "#2D79D2"
+  })), /*#__PURE__*/React.createElement("path", {
+    id: "c",
+    d: "M0 0h355v536c0 16.569-13.431 30-30 30H30c-16.569 0-30-13.431-30-30V0z"
+  }))), /*#__PURE__*/React.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd",
+    transform: "translate(0 -7)"
+  }, _mask || (_mask = /*#__PURE__*/React.createElement("mask", {
+    id: "b",
+    fill: "#fff"
+  }, /*#__PURE__*/React.createElement("path", {
+    id: "a",
+    d: "M0 0h355v603c0 16.569-13.431 30-30 30H30c-16.569 0-30-13.431-30-30V0z"
+  }))), /*#__PURE__*/React.createElement("g", {
+    mask: "url(#b)"
+  }, _mask2 || (_mask2 = /*#__PURE__*/React.createElement("mask", {
+    id: "e",
+    fill: "#fff"
+  }, /*#__PURE__*/React.createElement("use", {
+    xlinkHref: "#c"
+  }))), /*#__PURE__*/React.createElement("path", {
+    fill: "#0A78C8",
+    d: "M-17.955 218.67C-100.52 109.606-45.238-24.883 55.479-89.437c-7.37 61.67 14.309 107.122 44.608 139.733 61.24 65.933 211.594 99.654 353.078.127 33.174-23.315 65.762-65.361 89.71-94.407 17.913 119.7-42.022 229.926-158.371 311.763-148.996 104.801-316 65.1-402.46-49.107",
+    mask: "url(#e)",
+    opacity: 0.045,
+    style: {
+      mixBlendMode: "multiply"
+    }
+  }), /*#__PURE__*/React.createElement("path", {
+    fill: "#0A78C8",
+    d: "M-34.62 279.666C-150.22 213.786-148.168 66.302-78.9-35.774c15.61 60.047 52.068 92.87 91.799 110.2 80.31 35.05 230.952 2.777 325.046-148.78 22.07-35.517 36.8-88.08 48.297-124.997 59.952 102.962 44.807 230.008-32.575 354.633C254.572 314.877 86.433 348.651-34.62 279.666",
+    mask: "url(#e)",
+    opacity: 0.045,
+    style: {
+      mixBlendMode: "multiply"
+    }
+  }))));
+};
+export default "data:image/svg+xml;base64,bW9kdWxlLmV4cG9ydHMgPSBfX3dlYnBhY2tfcHVibGljX3BhdGhfXyArICJzdmcvYmx1ZS1zcXVhcmUuc3ZnIjs=";
+export { SvgBlueSquare as ReactComponent };

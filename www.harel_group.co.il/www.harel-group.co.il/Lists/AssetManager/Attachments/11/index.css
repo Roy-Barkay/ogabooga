@@ -1,0 +1,22 @@
+* {
+  font-family: "mfw_protocolharel", Arial;
+}
+
+.all_wrapper {
+    background-image: linear-gradient(to bottom, rgb(201, 226, 255), rgb(243, 243, 243));
+    min-height: 50vh;
+    position: relative;
+    width: 100%;
+    height: 100%;    
+}
+#header {   
+    min-height: 105px;
+    background-color: rgb(201, 226, 255);
+    position: static;
+}
+.focused
+{   
+    border: 1px #84ec99 solid !important;
+    opacity: 0.9;
+    outline: 2px #84ec99 solid !important; 
+}
